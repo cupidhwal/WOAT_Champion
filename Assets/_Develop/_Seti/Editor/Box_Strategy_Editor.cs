@@ -9,8 +9,6 @@ namespace Seti
     /// <summary>
     /// Strategy Box Custom Editor
     /// </summary>
-
-    // 수동 검색 버전
     [CustomEditor(typeof(Box_Strategy))]
     public class Box_Strategy_Editor : Editor
     {
@@ -43,21 +41,53 @@ namespace Seti
             EditUtility.DrawLine(2);
         }
 
+        private void DrawStrategyList()
+        {
+            EditUtility.SubjectLine(Color.gray, 2, "Strategy List");
+
+            // Look Strategies
+            EditorGUILayout.LabelField("Look Strategies", EditorStyles.boldLabel);
+            DrawStrategySubList(strategyBox.lookStrategies);
+            EditUtility.DrawLine(Color.gray, 1);
+
+            // Move Strategies
+            EditorGUILayout.LabelField("Move Strategies", EditorStyles.boldLabel);
+            DrawStrategySubList(strategyBox.moveStrategies);
+            EditUtility.DrawLine(Color.gray, 1);
+
+            /*// Jump Strategies
+            EditorGUILayout.LabelField("Jump Strategies", EditorStyles.boldLabel);
+            DrawStrategySubList(strategyBox.jumpStrategies);
+            EditUtility.DrawLine(Color.gray, 1);
+
+            // Attack Strategies
+            EditorGUILayout.LabelField("Attack Strategies", EditorStyles.boldLabel);
+            DrawStrategySubList(strategyBox.attackStrategies);
+            EditUtility.DrawLine(Color.gray, 1);
+
+            // Defend Strategies
+            EditorGUILayout.LabelField("Defend Strategies", EditorStyles.boldLabel);
+            DrawStrategySubList(strategyBox.defendStrategies);*/
+
+            // 추가 전략 리스트 예시
+            // EditorGUILayout.LabelField("Attack Strategies", EditorStyles.boldLabel);
+            // DrawStrategySubList(strategyBox.attackStrategies);
+        }
+
         private void RefreshAllStrategies()
         {
             // 모든 전략 리스트를 갱신
             RefreshStrategyList(strategyBox.lookStrategies);
             RefreshStrategyList(strategyBox.moveStrategies);
-            RefreshStrategyList(strategyBox.jumpStrategies);
+            /*RefreshStrategyList(strategyBox.jumpStrategies);
             RefreshStrategyList(strategyBox.attackStrategies);
-            RefreshStrategyList(strategyBox.defendStrategies);
+            RefreshStrategyList(strategyBox.defendStrategies);*/
 
             // 새로운 전략 리스트가 있다면 여기에 추가
             // RefreshStrategyList(strategyBox.attackStrategies);
 
             // 변경 사항 저장
             EditorUtility.SetDirty(strategyBox);
-            //Debug.Log("모든 전략 리스트가 갱신되었습니다.");
         }
 
         private void RefreshStrategyList<T>(List<T> strategyList) where T : class, IStrategy
@@ -82,39 +112,6 @@ namespace Seti
             }
 
             Debug.Log($"{typeof(T).Name} 전략 갱신: 새 {typeof(T).Name}가 {addedCount}개 추가되었습니다.");
-        }
-
-        private void DrawStrategyList()
-        {
-            EditUtility.SubjectLine(Color.gray, 2, "Strategy List");
-
-            // Look Strategies
-            EditorGUILayout.LabelField("Look Strategies", EditorStyles.boldLabel);
-            DrawStrategySubList(strategyBox.lookStrategies);
-            EditUtility.DrawLine(Color.gray, 1);
-
-            // Move Strategies
-            EditorGUILayout.LabelField("Move Strategies", EditorStyles.boldLabel);
-            DrawStrategySubList(strategyBox.moveStrategies);
-            EditUtility.DrawLine(Color.gray, 1);
-
-            // Jump Strategies
-            EditorGUILayout.LabelField("Jump Strategies", EditorStyles.boldLabel);
-            DrawStrategySubList(strategyBox.jumpStrategies);
-            EditUtility.DrawLine(Color.gray, 1);
-
-            // Attack Strategies
-            EditorGUILayout.LabelField("Attack Strategies", EditorStyles.boldLabel);
-            DrawStrategySubList(strategyBox.attackStrategies);
-            EditUtility.DrawLine(Color.gray, 1);
-
-            // Defend Strategies
-            EditorGUILayout.LabelField("Defend Strategies", EditorStyles.boldLabel);
-            DrawStrategySubList(strategyBox.defendStrategies);
-
-            // 추가 전략 리스트 예시
-            // EditorGUILayout.LabelField("Attack Strategies", EditorStyles.boldLabel);
-            // DrawStrategySubList(strategyBox.attackStrategies);
         }
 
         private void DrawStrategySubList<T>(List<T> strategyList) where T : class, IStrategy

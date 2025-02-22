@@ -6,7 +6,7 @@ namespace Seti
     /// <summary>
     /// ControlType.Input Controller
     /// </summary>
-    public class Controller_Input : Controller_Base, IController
+    public class Controller_Input : Controller_Base
     {
         // 필드
         #region Variables
@@ -15,7 +15,7 @@ namespace Seti
 
         // 인터페이스
         #region Interface
-        public Type GetControlType() => typeof(Control_Input);
+        public override Type GetControlType() => typeof(Control_Input);
         #endregion
 
         // 라이프 사이클
@@ -31,10 +31,9 @@ namespace Seti
             }
         }
 
-        protected override void Awake()
+        private void Awake()
         {
             // 초기화
-            base.Awake();
             control = new InputSystem_Actions();
         }
 
@@ -86,7 +85,7 @@ namespace Seti
                 control.Player.Dash.started += dash.OnDashStarted;
             }
 
-            // Jump 행동 이벤트 바인딩
+            /*// Jump 행동 이벤트 바인딩
             if (behaviourMap.TryGetValue(typeof(Jump), out var jumpBehaviour))
             {
                 Jump jump = jumpBehaviour as Jump;
@@ -112,7 +111,7 @@ namespace Seti
                     control.Player.Magic.started += attack.OnMagicStarted;
                     control.Player.Magic.canceled += attack.OnMagicCanceled;
                 }
-            }
+            }*/
 
             // Interact 행동 이벤트 바인딩
             if (behaviourMap.TryGetValue(typeof(Interact), out var interactBehaviour))
@@ -153,7 +152,7 @@ namespace Seti
                 control.Player.Dash.started -= dash.OnDashStarted;
             }
 
-            // Jump 행동 이벤트 해제
+            /*// Jump 행동 이벤트 해제
             if (behaviourMap.TryGetValue(typeof(Jump), out var jumpBehaviour))
             {
                 Jump jump = jumpBehaviour as Jump;
@@ -179,7 +178,7 @@ namespace Seti
                     control.Player.Magic.started -= attack.OnMagicStarted;
                     control.Player.Magic.canceled -= attack.OnMagicCanceled;
                 }
-            }
+            }*/
 
             // Interact 행동 이벤트 해제
             if (behaviourMap.TryGetValue(typeof(Interact), out var interactBehaviour))

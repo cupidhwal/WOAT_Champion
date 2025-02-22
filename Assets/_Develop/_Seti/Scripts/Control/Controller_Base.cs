@@ -4,44 +4,47 @@ using UnityEngine;
 
 namespace Seti
 {
-    public abstract class Controller_Base : MonoBehaviour
+    public abstract class Controller_Base : MonoBehaviour, IController
     {
         // 필드
         #region Variables
-        public Actor Actor { get; protected set; }
-        protected Dictionary<Type, IBehaviour> behaviourMap;    // 행동 매핑 (타입에 따른 행동 인스턴스)
+        protected Dictionary<Type, IBehaviour> behaviourMap;            // 행동 매핑 (타입에 따른 행동 인스턴스)
+        protected Dictionary<IBehaviour, List<Strategy>> strategyMap;   // 전략 매핑
         #endregion
 
         // 속성
         #region Properties
         public Dictionary<Type, IBehaviour> BehaviourMap => behaviourMap;
+        public Dictionary<IBehaviour, List<Strategy>> StrategyMap => strategyMap;
         #endregion
 
         // 인터페이스
         #region Interface
-        public void Initialize()
+        public abstract Type GetControlType();
+        public virtual void Initialize()
         {
-            // Actor 참조
-            Actor = GetComponent<Actor>();
-
             // Actor의 behaviours 리스트에서 동적으로 매핑
-            SetActorBehaviours(Actor);
+            SetActorBehaviours(GetComponent<Actor>());
         }
         public void SetActorBehaviours(Actor actor)
         {
             behaviourMap = new();
+            strategyMap = new();
 
-            foreach (var behaviour in actor.Behaviours)
+            foreach (var mapping in actor.Blueprint.behaviourStrategies)
             {
-                if (behaviour.behaviour == null) continue;
+                if (mapping.behaviour == null) continue;
+
+                // 전략 매핑
+                strategyMap.Add(mapping.behaviour, mapping.strategies);
 
                 // 명시적으로 Initialize 호출
-                behaviour.behaviour.Initialize(actor);
+                mapping.behaviour.Initialize(actor);
 
-                var behaviourType = behaviour.behaviour.GetType();
+                var behaviourType = mapping.behaviour.GetType();
                 if (!behaviourMap.ContainsKey(behaviourType))
                 {
-                    behaviourMap.Add(behaviourType, behaviour.behaviour);
+                    behaviourMap.Add(behaviourType, mapping.behaviour);
                 }
             }
         }
@@ -49,11 +52,6 @@ namespace Seti
 
         // 라이프 사이클
         #region Life Cycle
-        protected virtual void Awake()
-        {
-            Initialize();
-        }
-
         protected virtual void Start()
         {
             //Cursor.lockState = CursorLockMode.Locked;

@@ -32,10 +32,17 @@ namespace Seti
             DrawBehaviourList();
 
             EditUtility.DrawLine(2);
+
+            // 삭제 경고 메시지 추가
+            EditorGUILayout.HelpBox("Behaviour 클래스를 삭제하려면 먼저 상단의 Remove 버튼을 눌러 직렬화 정보를 우선적으로 제거하길 권장합니다.", MessageType.Warning);
+
         }
 
         private void RefreshBehaviourList()
         {
+            // 삭제된 클래스가 있는지 확인하고 정리
+            behaviourBox.behaviours.RemoveAll(behaviour => behaviour == null);
+
             // IBehaviour를 구현한 모든 클래스 탐색
             var allBehaviours = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())

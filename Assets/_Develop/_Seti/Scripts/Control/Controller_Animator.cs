@@ -16,6 +16,9 @@ namespace Seti
     {
         // 필드
         #region Variables
+        [SerializeField]
+        protected Transform lookTarget;
+
         // 컴포넌트
         protected Controller_Base controller;
         //protected Damagable damagable;
@@ -106,7 +109,7 @@ namespace Seti
                 AniMachine.AddState(new AniState_Dash());
             }
 
-            if (controller.BehaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
+            /*if (controller.BehaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
             {
                 Attack attack = attackBehaviour as Attack;
                 if (attack.HasStrategy<Attack_Normal>() || attack.HasStrategy<Attack_Tackle>())
@@ -120,7 +123,7 @@ namespace Seti
             {
                 Stagger stagger = staggerBehaviour as Stagger;
                 AniMachine.AddState(new AniState_Stagger());
-            }
+            }*/
         }
         #endregion
 
@@ -133,9 +136,9 @@ namespace Seti
             Actor.Condition.IsAttack = true;
             Actor.Condition.AttackPoint = RayManager.Instance.RayToScreen();*/
 
-            if (Actor.Controller.BehaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
+            /*if (Actor.Controller.BehaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
                 if (attackBehaviour is Attack attack)
-                    attack.OnAttackEnter();
+                    attack.OnAttackEnter();*/
 
             /*if (Actor.Condition.IsMove)
             {
@@ -181,6 +184,16 @@ namespace Seti
         {
             //useSkill.UseSkillAnimation();
             MagicAttackEnd();
+        }
+
+        public void OnAnimatorIK(int layerIndex)
+        {
+            if (Animator)
+            {
+                // IK 활성화
+                Animator.SetLookAtWeight(1.0f); // 값이 클수록 강하게 바라봄
+                Animator.SetLookAtPosition(lookTarget.position);
+            }
         }
     }
 }

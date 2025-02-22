@@ -39,7 +39,7 @@ namespace Seti
         {
             // 초기화
             player = GetComponent<Player>();
-            InitializeBehaviourMap();
+            //InitializeBehaviourMap();
         }
         #endregion
 
@@ -86,16 +86,16 @@ namespace Seti
         }*/
 
         // 행동 매핑
-        private void InitializeBehaviourMap()
+        /*private void InitializeBehaviourMap()
         {
             behaviourMap = new Dictionary<Type, IBehaviour>();
 
             foreach (var behaviour in player.Behaviours)
             {
-                var type = behaviour.behaviour.GetType();
-                behaviourMap[type] = behaviour.behaviour;
+                var type = behaviour.GetType();
+                behaviourMap[type] = behaviour;
             }
-        }
+        }*/
         #endregion
     }
 }

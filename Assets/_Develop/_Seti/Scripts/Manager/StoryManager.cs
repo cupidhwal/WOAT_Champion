@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,37 +6,6 @@ using Unity.Cinemachine;
 
 namespace Seti
 {
-    [Serializable]
-    public class Composition
-    {
-        // 필드
-        [SerializeField]
-        private string iD;
-        [SerializeField]
-        private GameObject target;
-        [SerializeField]
-        private CompositionObject action;
-
-        // 속성
-        public string ID => iD;
-        public GameObject Target => target;
-        public CompositionObject Action => action;
-    }
-
-    [Serializable]
-    public class CompositionsPerScene
-    {
-        // 필드
-        public int sceneIndex;
-        public List<Composition> compositions;
-
-        // 인스펙터에서 값이 변경될 때 자동 실행
-        public void UpdateIndex(int index)
-        {
-            sceneIndex = index;
-        }
-    }
-
     /// <summary>
     /// 게임 스토리 총괄 디렉터
     /// </summary>
@@ -98,7 +66,7 @@ namespace Seti
         public void CorExcutor(IEnumerator cor) => StartCoroutine(cor);
         public void SelectComposition(int number, int order)
         {
-            string number_order = number.ToString() + order.ToString();
+            string number_order = number.ToString() + "/" + order.ToString();
             var composition = compositionList[currentIndex].compositions.FirstOrDefault(com => com.ID == number_order);
 
             composition.Action.Execute(composition.Target);

@@ -18,7 +18,7 @@ namespace Seti
         #region Variables
         [Header("Variables: Dash")]
         [SerializeField]
-        private float dashSpeed = 2f;
+        private float dashSpeed = 20f;
         [SerializeField]
         private float dashCooldown = 1f;
         [SerializeField]

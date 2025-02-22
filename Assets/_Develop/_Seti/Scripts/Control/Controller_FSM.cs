@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    public class Controller_FSM : Controller_Base, IController
+    public class Controller_FSM : Controller_Base
     {
         public enum EnemyState
         {
@@ -34,20 +34,16 @@ namespace Seti
 
         // 인터페이스
         #region Interface
-        public Type GetControlType() => typeof(Control_FSM);
-        #endregion
-
-        // 라이프 사이클
-        #region Life Cycle
-        protected override void Awake()
+        public override Type GetControlType() => typeof(Control_FSM);
+        public override void Initialize()
         {
-            base.Awake();
+            base.Initialize();
 
             // FSM 초기화
-            stateMachine = new StateMachine<Controller_FSM>(
+            /*stateMachine = new StateMachine<Controller_FSM>(
                 this,
                 new Enemy_State_Idle()
-            );
+            );*/
             stateMachine.OnStateChanged += SwitchState;
 
             // 상태 추가
@@ -56,7 +52,10 @@ namespace Seti
             // 행동 이벤트 바인딩
             BindFSMBehaviours();
         }
+        #endregion
 
+        // 라이프 사이클
+        #region Life Cycle
         protected override void Update()
         {
             base.Update();
@@ -71,7 +70,7 @@ namespace Seti
         public void SwitchState(State<Controller_FSM> state)
         {
             // FSM 상태에 따라 동작 제어
-            switch (state)
+            /*switch (state)
             {
                 case Enemy_State_Idle:
                     currentState = EnemyState.Idle;
@@ -112,18 +111,18 @@ namespace Seti
                 case Enemy_State_Dead:
                     currentState = EnemyState.Dead;
                     break;
-            }
+            }*/
         }
         private void AddStates()
         {
             // 누구나 죽는다
-            stateMachine.AddState(new Enemy_State_Dead());
+            //stateMachine.AddState(new Enemy_State_Dead());
 
             if (BehaviourMap.TryGetValue(typeof(Move), out var moveBehaviour))
             {
                 if (moveBehaviour is Move move)
                 {
-                    if (move.HasStrategy<Move_Normal>() || move.HasStrategy<Move_Walk>())
+                    /*if (move.HasStrategy<Move_Normal>() || move.HasStrategy<Move_Walk>())
                         stateMachine.AddState(new Enemy_State_Patrol());
 
                     if (move.HasStrategy<Move_Run>())
@@ -133,11 +132,11 @@ namespace Seti
                     {
                         stateMachine.AddState(new Enemy_State_Chase());
                         stateMachine.AddState(new Enemy_State_BackOff());
-                    }
+                    }*/
                 }
             }
 
-            if (BehaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
+            /*if (BehaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
             {
                 if (attackBehaviour is Attack attack)
                 {
@@ -156,7 +155,7 @@ namespace Seti
             {
                 if (staggerBehaviour is Stagger)
                     stateMachine.AddState(new Enemy_State_Stagger());
-            }
+            }*/
         }
 
         private void BindFSMBehaviours()
@@ -171,10 +170,10 @@ namespace Seti
                 if (lookBehaviour is Look look)
                     stateMachine.OnStateChanged += look.SwitchStrategy;
 
-            // Attack 행동 이벤트 바인딩
+            /*// Attack 행동 이벤트 바인딩
             if (behaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))
                 if (attackBehaviour is Attack attack)
-                    stateMachine.OnStateChanged += attack.SwitchStrategy;
+                    stateMachine.OnStateChanged += attack.SwitchStrategy;*/
 
             // 다른 행동 이벤트 바인딩 가능
             // if (behaviourMap.TryGetValue(typeof(Jump), out var jumpBehaviour)) { ... }

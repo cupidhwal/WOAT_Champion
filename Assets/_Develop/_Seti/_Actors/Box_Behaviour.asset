@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0550a87a71a4e4642a32546689554e57, type: 3}
+  m_Name: Box_Behaviour
+  m_EditorClassIdentifier: 
+  behaviours:
+  - rid: 5694582337867087953
+  - rid: 5694582337867087954
+  - rid: 5694582337867087955
+  - rid: 5694582337867087956
+  references:
+    version: 2
+    RefIds:
+    - rid: 5694582337867087953
+      type: {class: Dash, ns: Seti, asm: Assembly-CSharp}
+      data: 
+    - rid: 5694582337867087954
+      type: {class: Interact, ns: Seti, asm: Assembly-CSharp}
+      data: 
+    - rid: 5694582337867087955
+      type: {class: Look, ns: Seti, asm: Assembly-CSharp}
+      data:
+        strategies: []
+    - rid: 5694582337867087956
+      type: {class: Move, ns: Seti, asm: Assembly-CSharp}
+      data:
+        strategies: []
