@@ -71,6 +71,9 @@ namespace Seti
         // 초기화
         public void Initialize()
         {
+            // Check Controller
+            controller = GetComponent<Controller_Base>();
+
             // Check Actor Condition
             condition = GetComponent<Condition_Actor>();
             condition.Initialize();
@@ -82,10 +85,6 @@ namespace Seti
                 if (!animator)
                     animator = anim.transform.gameObject.AddComponent<Controller_Animator>();
             }
-
-            // Define Control
-            controller = GetComponent<Controller_Base>();
-            controller.Initialize();
         }
 
         // 추상화

@@ -66,6 +66,11 @@ namespace Seti
             }
         }
 
+        protected virtual void Awake()
+        {
+            Initialize();
+        }
+
         protected virtual void OnDestroy()
         {
             // 행동 매핑 해제

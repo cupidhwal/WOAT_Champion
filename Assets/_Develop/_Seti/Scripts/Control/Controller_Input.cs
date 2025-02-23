@@ -31,8 +31,10 @@ namespace Seti
             }
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             // 초기화
             control = new InputSystem_Actions();
         }
