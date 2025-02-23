@@ -9,13 +9,11 @@ namespace Seti
         // 필드
         #region Variables
         protected Dictionary<Type, IBehaviour> behaviourMap;            // 행동 매핑 (타입에 따른 행동 인스턴스)
-        protected Dictionary<IBehaviour, List<Strategy>> strategyMap;   // 전략 매핑
         #endregion
 
         // 속성
         #region Properties
         public Dictionary<Type, IBehaviour> BehaviourMap => behaviourMap;
-        public Dictionary<IBehaviour, List<Strategy>> StrategyMap => strategyMap;
         #endregion
 
         // 인터페이스
@@ -24,19 +22,18 @@ namespace Seti
         public virtual void Initialize()
         {
             // Actor의 behaviours 리스트에서 동적으로 매핑
-            SetActorBehaviours(GetComponent<Actor>());
+            SetBehaviours(GetComponent<Actor>());
         }
-        public void SetActorBehaviours(Actor actor)
+        public virtual void SetBehaviours(Actor actor)
         {
-            behaviourMap = new();
-            strategyMap = new();
+            // 행동 매핑 초기화
+            if (behaviourMap == null)
+                behaviourMap = new();
+            else behaviourMap.Clear();
 
             foreach (var mapping in actor.Blueprint.behaviourStrategies)
             {
                 if (mapping.behaviour == null) continue;
-
-                // 전략 매핑
-                strategyMap.Add(mapping.behaviour, mapping.strategies);
 
                 // 명시적으로 Initialize 호출
                 mapping.behaviour.Initialize(actor);

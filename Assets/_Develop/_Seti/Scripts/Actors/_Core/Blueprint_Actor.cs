@@ -44,7 +44,7 @@ namespace Seti
         #endregion
 
         // 특정 행동에 대한 전략 가져오기
-        public List<Strategy> GetStrategiesForBehaviour(IBehaviour behaviour)
+        public List<Strategy> GetStrategies(IBehaviour behaviour)
         {
             return behaviourStrategies
                 .FirstOrDefault(mapping => mapping.behaviour == behaviour)?
@@ -67,8 +67,12 @@ namespace Seti
                 }
             }
         }
+    }
+}
 
-        // 런타임에서의 행동 추가
+#region Dummy
+/*
+// 런타임에서의 행동 추가
         public void AddBehaviour(Type behaviourType)
         {
             if (behaviourType == null || !typeof(IBehaviour).IsAssignableFrom(behaviourType))
@@ -136,7 +140,7 @@ namespace Seti
         /// <summary>
         /// 갱신된 설계도의 행동-전략 주입
         /// </summary>
-        /*public void UpdateBehaviours(Blueprint_Actor blueprint, Actor actor)
+        public void UpdateBehaviours(Blueprint_Actor blueprint, Actor actor)
         {
             // 기존 행동 초기화
             actor.Behaviours.Clear();
@@ -153,7 +157,7 @@ namespace Seti
 #if UNITY_EDITOR
             EditorUtility.SetDirty(actor);
 #endif
-        }*/
+        }
 
         /// <summary>
         /// 갱신된 설계도의 행동-전략 매핑
@@ -179,5 +183,5 @@ namespace Seti
 
             return newBehaviour;
         }
-    }
-}
+ */
+#endregion

@@ -20,7 +20,7 @@ MonoBehaviour:
   behaviourStrategies:
   - rid: 5694582337867088123
   - rid: 5694582337867088113
-  - rid: 5694582337867088201
+  - rid: 5694582355282886796
   references:
     version: 2
     RefIds:
@@ -110,12 +110,12 @@ MonoBehaviour:
     - rid: 5694582337867088128
       type: {class: Look_Watch, ns: Seti, asm: Assembly-CSharp}
       data: 
-    - rid: 5694582337867088201
+    - rid: 5694582355282886796
       type: {class: BehaviourStrategyMapping, ns: Seti, asm: Assembly-CSharp}
       data:
         behaviour:
-          rid: 5694582337867088202
+          rid: 5694582355282886797
         strategies: []
-    - rid: 5694582337867088202
+    - rid: 5694582355282886797
       type: {class: Dash, ns: Seti, asm: Assembly-CSharp}
       data: 

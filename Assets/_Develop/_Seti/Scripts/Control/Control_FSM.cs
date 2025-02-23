@@ -15,7 +15,7 @@ namespace Seti
             }
 
             // 명시적으로 초기화 호출
-            controller.SetActorBehaviours(actor);
+            controller.SetBehaviours(actor);
         }
 
         public void OnExit(Actor actor)

@@ -40,7 +40,7 @@ namespace Seti
             {
                 condition_Player = actor.Condition as Condition_Player;
             }
-            strategies = actor.Controller.StrategyMap[this];
+            strategies = actor.Blueprint.GetStrategies(this);
 
             foreach (var mapping in strategies)
             {

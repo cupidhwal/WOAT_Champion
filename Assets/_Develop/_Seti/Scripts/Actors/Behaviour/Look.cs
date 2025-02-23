@@ -31,7 +31,7 @@ namespace Seti
         public void Initialize(Actor actor)
         {
             this.actor = actor;
-            strategies = actor.Controller.StrategyMap[this];
+            strategies = actor.Blueprint.GetStrategies(this);
 
             foreach (var mapping in strategies)
             {
