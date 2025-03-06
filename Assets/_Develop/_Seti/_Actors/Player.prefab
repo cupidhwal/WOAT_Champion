@@ -203,10 +203,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 127
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -318,14 +318,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueprint: {fileID: 11400000, guid: f93c5573f78a663458b891cc63e75f62, type: 2}
-  condition: {fileID: 0}
-  controller: {fileID: 0}
-  health: 100
-  attack: 10
-  defend: 1
-  rate_Attack: 1
+  gearCurrent: {fileID: 0}
+  gearNear: {fileID: 0}
   rate_Movement: 2
-  stagger: 0.5
   mag_WalkToRun: 1.5
   attackProgressive: 2.5
   dashSpeed: 30
@@ -345,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b88fe0134d4ebe4d8e4a53995a461fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponType: 0
+  currentAction: 0
   inAction: 0
 --- !u!114 &6479128335977052299
 MonoBehaviour:
@@ -432,10 +427,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 127
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

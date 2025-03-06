@@ -21,9 +21,19 @@ MonoBehaviour:
   - rid: 5694582337867088123
   - rid: 5694582337867088113
   - rid: 5990299322230767872
+  - rid: 1020670195813056603
   references:
     version: 2
     RefIds:
+    - rid: 1020670195813056603
+      type: {class: BehaviourStrategyMapping, ns: Seti, asm: Assembly-CSharp}
+      data:
+        behaviour:
+          rid: 1020670195813056604
+        strategies: []
+    - rid: 1020670195813056604
+      type: {class: Interact, ns: Seti, asm: Assembly-CSharp}
+      data: 
     - rid: 5694582337867088113
       type: {class: BehaviourStrategyMapping, ns: Seti, asm: Assembly-CSharp}
       data:

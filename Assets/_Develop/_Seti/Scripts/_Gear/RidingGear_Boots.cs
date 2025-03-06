@@ -63,7 +63,7 @@ namespace Seti
             throw new System.NotImplementedException();
         }
 
-        public override void TakeOff()
+        public override void RideOff()
         {
             throw new System.NotImplementedException();
         }

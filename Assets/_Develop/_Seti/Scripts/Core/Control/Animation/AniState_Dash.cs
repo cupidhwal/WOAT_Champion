@@ -1,0 +1,51 @@
+using System;
+using UnityEngine;
+
+namespace Seti
+{
+    public class AniState_Dash : AniState_Base
+    {
+        // 오버라이드
+        #region Override
+        // 초기화 메서드 - 생성 후 1회 실행
+        public override void OnInitialized() { }
+
+        // 상태 전환 시 State Enter에 1회 실행
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            context.Animator.SetTrigger(OnDash);
+        }
+
+        // 상태 전환 시 State Exit에 1회 실행
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+
+        // 상태 전환 조건 메서드
+        public override Type CheckTransitions()
+        {
+            switch (context.Actor.Condition.CurrentAction)
+            {
+                case Action.Idle:
+                    return typeof(AniState_Idle);
+
+                case Action.Walk:
+                    return typeof(AniState_Move);
+
+                default:
+                    return null;
+            }
+        }
+
+        // 상태 실행 중
+        public override void Update(float deltaTime) => base.Update(deltaTime);
+        #endregion
+
+        // 메서드
+        #region Methods
+        #endregion
+    }
+}

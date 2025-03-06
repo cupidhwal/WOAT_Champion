@@ -32,6 +32,7 @@ namespace Seti
 
         // 일반
         [Header("Variables")]
+        protected Rigidbody rbGear;
 
         // 이벤트
         protected UnityAction OnSpecUpdate;
@@ -63,7 +64,8 @@ namespace Seti
         // 라이프 사이클
         protected virtual void Start()
         {
-            
+            // 참조
+            rbGear = GetComponent<Rigidbody>();
         }
         protected virtual void OnEnable()
         {
@@ -76,7 +78,7 @@ namespace Seti
 
         // 메서드
         public abstract void RideOn(Actor actor);
-        public abstract void TakeOff();
+        public abstract void RideOff();
         public abstract void EnhanceMode();
     }
 }

@@ -35,8 +35,7 @@ namespace Seti
             dir = MoveDirection(moveInput);
 
             if (!actor ||
-                !actor.Condition.InAction ||
-                !actor.Condition.CanMove)
+                !actor.Condition.InAction)
             {
                 QuaterView_Move(Vector2.zero);
                 return;
@@ -61,19 +60,19 @@ namespace Seti
 
         protected virtual void QuaterView_Move(Vector2 moveInput)
         {
-            if (actor.Condition.IsAttack || actor.Condition.IsMagic) return;
+            //if (actor.Condition.IsAttack || actor.Condition.IsMagic) return;
 
             Vector3 moveDirection = new(dir.x, 0, dir.y);
             QuaterView_Dir(moveDirection);
         }
         protected void QuaterView_Dir(Vector3 moveDirection)
         {
-            float moveEff = actor.Condition.IsChase ? actor.Magnification_WalkToRun : 1;
+            float moveEff = actor.Condition.CurrentAction == Action.Run ? actor.Magnification_WalkToRun : 1;
             Vector3 move = moveEff * actor.Rate_Movement * Time.deltaTime * moveDirection.normalized;
             Vector3 QuaterView = Quaternion.Euler(0f, 45f, 0f) * move;
 
             // Root Motion을 쓰지 않는 경우에만 실행
-            if (!actor.Controller_Animator.Animator.applyRootMotion && actor.Condition.CanMove)
+            if (!actor.Controller_Animator.Animator.applyRootMotion)
                 actor.transform.Translate(QuaterView, Space.World);
 
             QuaterView_Rot(QuaterView);

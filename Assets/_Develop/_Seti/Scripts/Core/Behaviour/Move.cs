@@ -16,7 +16,6 @@ namespace Seti
         #region Variables
         // 전략 관리
         private Actor actor;
-        private Condition_Player condition_Player;
         [SerializeReference]
         private List<Strategy> strategies;
         private IMoveStrategy currentStrategy;
@@ -31,15 +30,9 @@ namespace Seti
         public IMoveStrategy CurrentStrategy => currentStrategy;
 
         // 인터페이스
-        #region Interface
-        // 초기화
         public void Initialize(Actor actor)
         {
             this.actor = actor;
-            if (actor is Player)
-            {
-                condition_Player = actor.Condition as Condition_Player;
-            }
             strategies = actor.Blueprint.GetStrategies(this);
 
             foreach (var mapping in strategies)
@@ -131,45 +124,32 @@ namespace Seti
                     break;
             }*/
         }
-        #endregion
 
         // 라이프 사이클
-        #region Life Cycle
         public void FixedUpdate()
         {
-            if (!actor.Condition.InAction) return;
-            if (actor is Player && condition_Player.IsDash) return;
+            if (!actor.Condition.InAction ||
+                actor.Condition.CurrentAction == Action.Dash) return;
             currentStrategy?.Move(moveInput);
         }
-        #endregion
 
         // 컨트롤러
-        #region Controllers
-        #region Controller_Input
-        public void OnMovePerformed(InputAction.CallbackContext context) => OnMove(context.ReadValue<Vector2>(), true);
-        public void OnMoveCanceled(InputAction.CallbackContext _) => OnMove(Vector2.zero, false);
-        #endregion
+        public void OnMovePerformed(InputAction.CallbackContext context) => OnMove(context.ReadValue<Vector2>(), Action.Walk);
+        public void OnMoveCanceled(InputAction.CallbackContext _) => OnMove(Vector2.zero, Action.Idle);
 
-        #region Controller_FSM
-        public void FSM_MoveInput(Vector2 moveInput, bool isMove) => OnMove(moveInput, isMove);
-        #endregion
-        #endregion
+        //public void FSM_MoveInput(Vector2 moveInput, bool isMove) => OnMove(moveInput, isMove);
+
+        // 메서드
+        public void OnMove(Vector2 moveInput, Action action)
+        {
+            this.moveInput = moveInput;
+            actor.Condition.ActionChange(action);
+        }
 
         // 이벤트 메서드
-        #region Event Methods
         public void OnCollisionEnter(Collision collision)
         {
             currentStrategy?.GetOverCurb(collision);
         }
-        #endregion
-
-        // 메서드
-        #region Methods
-        public void OnMove(Vector2 moveInput, bool isMove)
-        {
-            this.moveInput = moveInput;
-            actor.Condition.IsMove = isMove;
-        }
-        #endregion
     }
 }

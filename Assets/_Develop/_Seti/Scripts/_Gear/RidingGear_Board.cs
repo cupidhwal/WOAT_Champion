@@ -23,7 +23,8 @@ namespace Seti
         [SerializeField]
         private float maxSpeed;
 
-        private FixedJoint joint;
+        // 일반
+        protected FixedJoint joint;
         #endregion
 
         // 속성
@@ -50,23 +51,59 @@ namespace Seti
 
         protected override void SpecUpdate()
         {
-            maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            if (receiver && transducer && propulsor)
+                maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            else maxSpeed = 0f;
         }
 
         private void OnValidate()
         {
-            maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            if (receiver && transducer && propulsor)
+                maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            else maxSpeed = 0f;
         }
         #endregion
 
         // 메서드
         public override void RideOn(Actor actor)
         {
-            joint.anchor = actor.GetComponent<Rigidbody>().transform.position;
-            joint.connectedAnchor = this.transform.position;
+            // 쓰러진 라이딩기어를 바르게 놓기
+            float yRotation = this.gameObject.transform.localRotation.eulerAngles.y;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
+
+            // 원활한 운전을 위해 리지드바디 회전 고정
+            rbGear.constraints = RigidbodyConstraints.FreezeRotation;
+
+            // 플레이어와 라이딩기어의 충돌 무시
+            //foreach (var parts in GearColliders)
+            //    Physics.IgnoreCollision(playerCollider, parts, true);
+
+            // 라이딩기어의 로컬 좌표 (0, 0, 0)를 월드 좌표로 변환
+            Vector3 targetPosition = transform.TransformPoint(new Vector3(0, 0, 0));
+
+            // 플레이어의 로컬 좌표 (0, 0, 0)를 월드 좌표로 변환하고 그 차이를 계산
+            Vector3 offset = actor.transform.TransformPoint(new Vector3(0, 0, 0)) - actor.transform.position;
+
+            // 플레이어의 월드 좌표를 보드의 해당 위치로 이동
+            actor.transform.position = targetPosition - offset;
+
+            if (joint == null)
+            {
+                // 고정 조인트를 플레이어와 연결
+                joint = actor.gameObject.AddComponent<FixedJoint>();
+                joint.connectedBody = rbGear;
+                joint.autoConfigureConnectedAnchor = false;
+            }
+
+            joint.autoConfigureConnectedAnchor = false;         // 조인트 오토 해제
+            joint.anchor = new Vector3(0, 0, 0);                // 조인트 주체 위치
+            joint.connectedAnchor = new Vector3(0, 0, 0);       // 조인트 표적 위치
+
+            // joint 상태가 변했으므로 이벤트 호출
+            //OnStanceChanged?.Invoke();
         }
 
-        public override void TakeOff()
+        public override void RideOff()
         {
             throw new System.NotImplementedException();
         }

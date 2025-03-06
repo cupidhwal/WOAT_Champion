@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Seti
@@ -12,48 +13,77 @@ namespace Seti
         // 필드
         #region Variables
         // 전략 관리
-        private Player player;
+        private Actor actor;
         #endregion
 
         // 인터페이스
-        #region Interface
-        // 초기화
         public void Initialize(Actor actor)
         {
-            if (actor is Player)
-                player = actor as Player;
+            this.actor = actor;
         }
-
         public Type GetBehaviourType() => typeof(Interact);
-        #endregion
 
-        // 컨트롤러
-        #region Controllers
-        public void OnInteractStarted(InputAction.CallbackContext _) => OnInteraction();
-        #endregion
+        // 이벤트 핸들러
+        public void OnInteractStarted(InputAction.CallbackContext context)
+        {
+            string path = context.control.path;
+            switch (path)
+            {
+                case "/Keyboard/r":
+                    OnRide();
+                    break;
+
+                case "/Keyboard/g":
+                    OnInteraction();
+                    break;
+
+                case "/Keyboard/3":
+                    //Debug.Log("Magic 3");
+                    break;
+
+                case "/Keyboard/4":
+                    //Debug.Log("Magic 4");
+                    break;
+            }
+        }
 
         // 메서드
-        #region Methods
         void OnInteraction()
         {
-            if (StoryManager.Instance.IsDialogue)
-            {
-                StoryManager.Instance.NextDialogue();
-                return;
-            }
+            //if (StoryManager.Instance.IsDialogue)
+            //{
+            //    StoryManager.Instance.NextDialogue();
+            //    return;
+            //}
 
-            if (player.CurrentTeller != null && player.CurrentTeller.CanDialogue)
-            {
-                player.CurrentTeller.StoryEnter();
-                return;
-            }
+            //if (player.CurrentTeller != null && player.CurrentTeller.CanDialogue)
+            //{
+            //    player.CurrentTeller.StoryEnter();
+            //    return;
+            //}
 
-            /*if (player.CurrentNPC != null)
-            {
-                player.CurrentNPC.Switch_TradeUI();
-                return;
-            }*/
+            //if (player.CurrentNPC != null)
+            //{
+            //    player.CurrentNPC.Switch_TradeUI();
+            //    return;
+            //}
         }
-        #endregion
+
+        void OnRide()
+        {
+            if (actor.CurrentGear)
+            {
+                actor.CurrentGear.RideOff();
+                actor.SetGear(null);
+                return;
+            }
+
+            if (actor.NearGear)
+            {
+                actor.SetGear(actor.NearGear);
+                actor.NearGear.RideOn(actor);
+                return;
+            }
+        }
     }
 }
