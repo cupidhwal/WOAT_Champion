@@ -484,6 +484,7 @@ MonoBehaviour:
   receiver: {fileID: 11400000, guid: 083ba9669170ea941831e15815831311, type: 2}
   transducer: {fileID: 11400000, guid: 54a5aa72122db5447a6b2e0833c4ec2d, type: 2}
   propulsor: {fileID: 11400000, guid: 6b14a1e39ad519c48aa266a1ec6d97e3, type: 2}
+  enhance: {fileID: 11400000, guid: e16f6223e7787374e8099b57ac9a5aca, type: 2}
   maxSpeed: 40.499996
 --- !u!1 &949191644
 GameObject:

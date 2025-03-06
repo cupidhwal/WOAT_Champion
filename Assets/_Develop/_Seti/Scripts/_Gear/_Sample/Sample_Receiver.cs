@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    [CreateAssetMenu(fileName = "New Receiver", menuName = "Gear Parts/Receiver/Sample")]
+    [CreateAssetMenu(fileName = "New Receiver", menuName = "Gear/Parts/Receiver/Sample")]
     public class Sample_Receiver : Receiver
     {
         public override void Excute()

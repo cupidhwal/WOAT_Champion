@@ -15,6 +15,10 @@ namespace Seti
         [SerializeField]
         protected Propulsor_Electronic propulsor;
 
+        [Header("Enhance Mode : Boots")]
+        [SerializeField]
+        protected EnhanceMode_Boots enhance;
+
         [Header("Spec : Boots")]
         [SerializeField]
         private float maxPower;
@@ -25,34 +29,48 @@ namespace Seti
 
         // Spec
         #region Spec
-        public override bool Parts_Change_Propulsor(Propulsor propulsor)
+        public bool Parts_Change_Propulsor(Propulsor_Electronic propulsor)
         {
-            bool succeed = false;
-            switch (propulsor)
-            {
-                case Propulsor_Electronic:
-                    Debug.Log("파츠 교체 : 구동부");
-                    this.propulsor = propulsor as Propulsor_Electronic;
-                    succeed = true;
-                    break;
-
-                case Propulsor_Kinetic:
-                    Debug.Log("부츠 타입 라이딩기어는 역학 구동 타입 구동부를 사용할 수 없습니다.");
-                    succeed = false;
-                    break;
-            }
+            Debug.Log("파츠 교체 : 구동부");
+            this.propulsor = propulsor;
 
             OnSpecUpdate?.Invoke();
-            return succeed;
+            return true;
         }
+
+        public bool Enhance_Change(EnhanceMode_Boots enhance)
+        {
+            this.enhance = enhance;
+
+            OnSpecUpdate?.Invoke();
+            return true;
+        }
+
         protected override void SpecUpdate()
         {
             maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
         }
+
         private void OnValidate()
         {
             maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
         }
         #endregion
+
+        // 메서드
+        public override void RideOn(Actor actor)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void TakeOff()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void EnhanceMode()
+        {
+            enhance.Activate();
+        }
     }
 }

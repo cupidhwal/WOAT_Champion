@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    [CreateAssetMenu(fileName = "New Propulsor", menuName = "Gear Parts/Propulsor/Sample")]
+    [CreateAssetMenu(fileName = "New Propulsor", menuName = "Gear/Parts/Propulsor/Sample")]
     public class Sample_Propulsor_Kinetic : Propulsor_Kinetic
     {
         public override void Excute()

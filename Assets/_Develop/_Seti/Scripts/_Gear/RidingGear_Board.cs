@@ -15,9 +15,15 @@ namespace Seti
         [SerializeField]
         protected Propulsor_Kinetic propulsor;
 
+        [Header("Enhance Mode : Board")]
+        [SerializeField]
+        protected EnhanceMode_Board enhance;
+
         [Header("Spec : Board")]
         [SerializeField]
         private float maxSpeed;
+
+        private FixedJoint joint;
         #endregion
 
         // 속성
@@ -25,34 +31,55 @@ namespace Seti
 
         // Spec
         #region Spec
-        public override bool Parts_Change_Propulsor(Propulsor propulsor)
+        public bool Parts_Change_Propulsor(Propulsor_Kinetic propulsor)
         {
-            bool succeed = false;
-            switch (propulsor)
-            {
-                case Propulsor_Electronic:
-                    Debug.Log("보드 타입 라이딩기어는 전력 방출 타입 구동부를 사용할 수 없습니다.");
-                    succeed = false;
-                    break;
-
-                case Propulsor_Kinetic:
-                    Debug.Log("파츠 교체 : 구동부");
-                    this.propulsor = propulsor as Propulsor_Kinetic;
-                    succeed = true;
-                    break;
-            }
+            Debug.Log("파츠 교체 : 구동부");
+            this.propulsor = propulsor;
 
             OnSpecUpdate?.Invoke();
-            return succeed;
+            return true;
         }
+
+        public bool Enhance_Change(EnhanceMode_Board enhance)
+        {
+            this.enhance = enhance;
+
+            OnSpecUpdate?.Invoke();
+            return true;
+        }
+
         protected override void SpecUpdate()
         {
             maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
         }
+
         private void OnValidate()
         {
             maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
         }
         #endregion
+
+        // 메서드
+        public override void RideOn(Actor actor)
+        {
+            joint.anchor = actor.GetComponent<Rigidbody>().transform.position;
+            joint.connectedAnchor = this.transform.position;
+        }
+
+        public override void TakeOff()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void EnhanceMode()
+        {
+            enhance.Activate();
+        }
+
+        // Break
+        private void OnJointBreak(float breakForce)
+        {
+
+        }
     }
 }

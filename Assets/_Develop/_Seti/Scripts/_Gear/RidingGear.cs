@@ -30,6 +30,10 @@ namespace Seti
         [SerializeField]
         protected Transducer transducer;
 
+        // 일반
+        [Header("Variables")]
+
+        // 이벤트
         protected UnityAction OnSpecUpdate;
         #endregion
 
@@ -53,7 +57,6 @@ namespace Seti
             OnSpecUpdate?.Invoke();
             return true;
         }
-        public abstract bool Parts_Change_Propulsor(Propulsor propulsor);
         protected abstract void SpecUpdate();
         #endregion
 
@@ -70,6 +73,10 @@ namespace Seti
         {
             OnSpecUpdate -= SpecUpdate;
         }
+
         // 메서드
+        public abstract void RideOn(Actor actor);
+        public abstract void TakeOff();
+        public abstract void EnhanceMode();
     }
 }
