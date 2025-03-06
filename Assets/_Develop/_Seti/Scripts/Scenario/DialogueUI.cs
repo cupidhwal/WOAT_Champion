@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 using TMPro;
+using Noah;
 
 namespace Seti
 {
@@ -18,10 +16,14 @@ namespace Seti
     public class DialogueUI : MonoBehaviour
     {
         #region Variables
+        // Current
+        private int currentNumber;
+
         // 대사 콜렉션
         private Queue<Dialogue> dialogues;
 
         // UI
+        public GameObject dialogueSwitch;
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI sentenceText;
         public GameObject npcImage;
@@ -31,6 +33,8 @@ namespace Seti
         public UnityAction OnDialogueEnter;
         public UnityAction OnDialogueEnd;
         #endregion
+
+        public int CurrentNumber => currentNumber;
 
         private void OnEnable()
         {
@@ -54,6 +58,8 @@ namespace Seti
             sentenceText.text = "";
 
             nextButton.gameObject.SetActive(false);
+
+            OnDialogueEnd += Seen;
         }
 
         //대화 시작하기
@@ -77,7 +83,7 @@ namespace Seti
         public void DrawNextDialogue()
         {
             //dialogs 체크
-            if (dialogues.Count == 0)
+            if (dialogues == null || dialogues.Count == 0)
             {
                 EndDialogue();
                 return;
@@ -85,6 +91,7 @@ namespace Seti
 
             //dialogs에서 하나 꺼내온다
             Dialogue dialogue = dialogues.Dequeue();
+            currentNumber = dialogue.number;
 
             if (dialogue.character == 1)
             {
@@ -103,6 +110,7 @@ namespace Seti
             StopAllCoroutines();
             StartCoroutine(TypingSentence(dialogue.sentence));
 
+            // 대화 도중 연출 처리
             if (dialogue.nextType == NextType.Composition)
                 StoryManager.Instance.SelectComposition(dialogue.number, dialogue.order);
         }
@@ -131,6 +139,16 @@ namespace Seti
 
             if (ComponentUtility.TryGetComponentInParent<UIManager>(transform, out var uiManager))
                 uiManager.CloseDialogueUI();
+        }
+
+        private void Seen()
+        {
+            DataManager.Instance.DialogueData.CheckSeens[currentNumber] = true;
+
+            if (DataManager.Instance.DialogueData.CheckSeens[^1])
+                DataManager.Instance.DialogueData.SeenCompleted = true;
+
+            SaveLoadManager.Instance.SaveScenario(DataManager.Instance.DialogueData);
         }
     }
 }
