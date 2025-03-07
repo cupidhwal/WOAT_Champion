@@ -48,12 +48,6 @@ namespace Seti
         #endregion
 
         // 라이프 사이클
-        #region Life Cycle
-        protected virtual void Start()
-        {
-            //Cursor.lockState = CursorLockMode.Locked;
-        }
-
         protected virtual void FixedUpdate()
         {
             // Move 행동이 있으면 Update 호출
@@ -74,10 +68,8 @@ namespace Seti
             behaviourMap?.Clear();
             behaviourMap = null;
         }
-        #endregion
 
         // 이벤트 메서드
-        #region Event Methods
         protected virtual void OnCollisionEnter(Collision collision)
         {
             // Move 행동의 OnCollisionEnter 호출
@@ -86,6 +78,5 @@ namespace Seti
                 (moveBehaviour as Move)?.OnCollisionEnter(collision);
             }
         }
-        #endregion
     }
 }

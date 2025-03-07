@@ -78,12 +78,10 @@ namespace Seti
         #endregion
 
         // 라이프 사이클
-        #region Life Cycle
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             Initialize();
         }
-        #endregion
 
         // 추상화
         protected abstract Condition_Actor CreateState();
@@ -99,12 +97,8 @@ namespace Seti
             condition.Initialize();
 
             // Check Animator Controller
-            if (ComponentUtility.TryGetComponentAll<Animator>(transform, out var anim))
-            {
-                animator = anim.transform.GetComponent<Controller_Animator>();
-                if (!animator)
-                    animator = anim.transform.gameObject.AddComponent<Controller_Animator>();
-            }
+            animator = GetComponentInChildren<Controller_Animator>();
+            animator.Initialize();
         }
 
         public void SetGear(RidingGear gear) => gearCurrent = gear;

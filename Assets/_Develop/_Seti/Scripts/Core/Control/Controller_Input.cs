@@ -71,11 +71,13 @@ namespace Seti
             if (behaviourMap.TryGetValue(typeof(Move), out var moveBehaviour))
             {
                 Move move = moveBehaviour as Move;
-                if (move.HasStrategy<Move_Normal>())
+                if (move.HasStrategy<Move_Normal>() || move.HasStrategy<Move_Walk>())
                 {
                     control.Player.Move.performed += move.OnMovePerformed;
                     control.Player.Move.canceled += move.OnMoveCanceled;
                 }
+                if (move.HasStrategy<Move_Run>())
+                    control.Player.Sprint.started += move.OnRunStarted;
             }
 
             // Dash 행동 이벤트 바인딩
@@ -138,11 +140,13 @@ namespace Seti
             if (behaviourMap.TryGetValue(typeof(Move), out var moveBehaviour))
             {
                 Move move = moveBehaviour as Move;
-                if (move.HasStrategy<Move_Normal>())
+                if (move.HasStrategy<Move_Normal>() || move.HasStrategy<Move_Walk>())
                 {
                     control.Player.Move.performed -= move.OnMovePerformed;
                     control.Player.Move.canceled -= move.OnMoveCanceled;
                 }
+                if (move.HasStrategy<Move_Run>())
+                    control.Player.Sprint.started -= move.OnRunStarted;
             }
 
             // Dash 행동 이벤트 해제

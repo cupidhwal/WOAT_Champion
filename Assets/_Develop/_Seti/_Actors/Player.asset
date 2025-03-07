@@ -63,19 +63,19 @@ MonoBehaviour:
       data:
         strategy:
           rid: 5694582337867088120
-        isActive: 1
+        isActive: 0
     - rid: 5694582337867088117
       type: {class: Strategy, ns: Seti, asm: Assembly-CSharp}
       data:
         strategy:
           rid: 5694582337867088121
-        isActive: 0
+        isActive: 1
     - rid: 5694582337867088118
       type: {class: Strategy, ns: Seti, asm: Assembly-CSharp}
       data:
         strategy:
           rid: 5694582337867088122
-        isActive: 0
+        isActive: 1
     - rid: 5694582337867088119
       type: {class: Move_Nav, ns: Seti, asm: Assembly-CSharp}
       data: 

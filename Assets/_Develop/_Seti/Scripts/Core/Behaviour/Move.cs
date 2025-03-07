@@ -21,13 +21,14 @@ namespace Seti
         private IMoveStrategy currentStrategy;
 
         // 제어 관리
-        private Vector2 moveInput;  // 입력 값
-        public Vector2 MoveInput => moveInput;
+        private bool isRunning = false;
+        private Vector2 moveInput;
         private State<Controller_FSM> currentState;
         #endregion
 
         // 속성
         public IMoveStrategy CurrentStrategy => currentStrategy;
+        public Vector2 MoveInput => moveInput;
 
         // 인터페이스
         public void Initialize(Actor actor)
@@ -134,16 +135,37 @@ namespace Seti
         }
 
         // 컨트롤러
-        public void OnMovePerformed(InputAction.CallbackContext context) => OnMove(context.ReadValue<Vector2>(), Action.Walk);
-        public void OnMoveCanceled(InputAction.CallbackContext _) => OnMove(Vector2.zero, Action.Idle);
-
-        //public void FSM_MoveInput(Vector2 moveInput, bool isMove) => OnMove(moveInput, isMove);
+        public void OnMovePerformed(InputAction.CallbackContext context) => OnMove(context.ReadValue<Vector2>());
+        public void OnMoveCanceled(InputAction.CallbackContext _) => OnMove(Vector2.zero);
+        public void OnRunStarted(InputAction.CallbackContext _) => OnRun();
 
         // 메서드
-        public void OnMove(Vector2 moveInput, Action action)
+        private void OnMove(Vector2 moveInput)
         {
             this.moveInput = moveInput;
-            actor.Condition.ActionChange(action);
+            actor.Controller_Animator.MoveInputX = moveInput.x;
+
+            if (moveInput == Vector2.zero)
+            {
+                actor.Condition.ActionChange(Action.Idle);
+            }
+            else
+            {
+                if (!isRunning)
+                    actor.Condition.ActionChange(Action.Walk);
+                else
+                    actor.Condition.ActionChange(Action.Run);
+            }
+        }
+
+        private void OnRun()
+        {
+            isRunning = !isRunning;
+            if (actor.Condition.CurrentAction == Action.Walk && isRunning)
+                actor.Condition.ActionChange(Action.Run);
+
+            if (actor.Condition.CurrentAction == Action.Run && !isRunning)
+                actor.Condition.ActionChange(Action.Walk);
         }
 
         // 이벤트 메서드

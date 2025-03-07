@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Seti
+{
+    [CreateAssetMenu(fileName = "DB_Receiver", menuName = "Database/DB_Receiver")]
+    public class DB_Receiver : ScriptableObject
+    {
+        [HideInInspector]
+        [SerializeReference]
+        public List<Receiver> receivers;
+
+        private void OnValidate()
+        {
+            int removedCount = receivers.RemoveAll(b => b == null);
+
+            if (removedCount > 0)
+            {
+                UnityEditor.EditorUtility.SetDirty(this);
+                //UnityEditor.AssetDatabase.SaveAssets();
+            }
+        }
+    }
+}

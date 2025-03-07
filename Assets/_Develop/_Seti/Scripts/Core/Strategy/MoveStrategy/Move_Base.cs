@@ -18,8 +18,6 @@ namespace Seti
         protected Vector2 dir;
         #endregion
 
-        // 인터페이스
-        #region Interface
         // 초기화
         public virtual void Initialize(Actor actor)
         {
@@ -99,7 +97,8 @@ namespace Seti
             Vector3 forward = actor.transform.forward * moveDirection.z;
             Vector3 right = actor.transform.right * moveDirection.x;
 
-            Vector3 move = actor.Rate_Movement * Time.fixedDeltaTime * (forward + right).normalized;
+            float speed = actor.Condition.CurrentAction == Action.Run ? actor.Magnification_WalkToRun * actor.Rate_Movement : actor.Rate_Movement;
+            Vector3 move = speed * Time.fixedDeltaTime * (forward + right).normalized;
             rb.MovePosition(actor.transform.position + move);
         }
 
@@ -133,7 +132,6 @@ namespace Seti
             if (height > 0f && height < 0.5f)
                 actor.transform.Translate(new Vector3(0, height, 0));
         }
-        #endregion
 
         // 유틸리티
         #region Utilities

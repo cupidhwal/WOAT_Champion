@@ -30,6 +30,9 @@ namespace MagicaCloth2
 
                     act(tscr);
                     EditorUtility.SetDirty(tscr);
+
+                    // OnValidate()手動呼び出し
+                    tscr.GetType().GetMethod("OnValidate", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.Invoke(tscr, null);
                 }
             }
         }

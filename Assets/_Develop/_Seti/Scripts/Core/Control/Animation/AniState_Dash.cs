@@ -6,7 +6,6 @@ namespace Seti
     public class AniState_Dash : AniState_Base
     {
         // 오버라이드
-        #region Override
         // 초기화 메서드 - 생성 후 1회 실행
         public override void OnInitialized() { }
 
@@ -35,6 +34,9 @@ namespace Seti
                 case Action.Walk:
                     return typeof(AniState_Move);
 
+                case Action.Run:
+                    return typeof(AniState_Move);
+
                 default:
                     return null;
             }
@@ -42,10 +44,5 @@ namespace Seti
 
         // 상태 실행 중
         public override void Update(float deltaTime) => base.Update(deltaTime);
-        #endregion
-
-        // 메서드
-        #region Methods
-        #endregion
     }
 }

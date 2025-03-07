@@ -109,25 +109,25 @@ namespace Seti
         #endregion
 
         // 라이프 사이클
-        #region Life Cycle
         public void Update()
         {
             if (!actor.Condition.InAction) return;
             currentStrategy?.Look();
         }
-        #endregion
 
         // 이벤트 핸들러
-        #region Event Handlers
-        #region Controller_Input
         public void OnLookPerformed(InputAction.CallbackContext context)
         {
+            //actor.Controller_Animator.MouseDelta = lookInput.y;
+
             lookInput = context.ReadValue<Vector2>();
             currentStrategy?.Look(lookInput);
         }
 
         public void OnLookCanceled(InputAction.CallbackContext _)
         {
+            //actor.Controller_Animator.MouseDelta = lookInput.y;
+            
             lookInput = Vector2.zero;
             currentStrategy?.Look(lookInput);
         }
@@ -141,37 +141,7 @@ namespace Seti
         {
             ChangeStrategy(typeof(Look_Normal));
         }
-        #endregion
 
-        #region Controller_FSM
         public void FSM_LookInput() => currentStrategy?.Look();
-        #endregion
-        #endregion
     }
 }
-
-#region Dummy
-/*public void SetStrategy(Blueprint_Actor blueprint)
-        {
-            // 전략 리스트 가져오기
-            if (strategies != null)
-                strategies.Clear();
-            else strategies = new();
-            List<Strategy> availableStrategies = CollectionUtility.FirstOrNull(blueprint.behaviourStrategies,
-                                                                               beSt => beSt.behaviour.GetBehaviourType() == typeof(Look))
-                                                                               .strategies;
-            if (strategies == null)
-            {
-                Debug.Log("이 Actor는 Look 행동이 없습니다.");
-                return;
-            }
-            else
-            {
-                foreach (var strategy in availableStrategies)
-                {
-                    if (strategy.isActive)
-                        strategies.Add(strategy);
-                }
-            }
-        }*/
-#endregion

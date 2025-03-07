@@ -29,6 +29,9 @@ namespace Seti
                 case Action.Walk:
                     return typeof(AniState_Move);
 
+                case Action.Run:
+                    return typeof(AniState_Move);
+
                 case Action.Dash:
                     return typeof(AniState_Dash);
 
