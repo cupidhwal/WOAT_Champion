@@ -67,6 +67,8 @@ namespace Seti
 
         private IEnumerator Dash_Excute(Vector2 moveInput)
         {
+            if (!canDash) yield break;
+
             // 대시 기능
             //if (!isDashing)    // 대시 중이 아닐 때에만 방향 갱신
             //{
@@ -103,12 +105,10 @@ namespace Seti
             // 대시 끝
             if (move.MoveInput != Vector2.zero)
             {
-                actor.Condition.ActionChange(Action.Walk);
+                if (move.IsRunning)
+                    actor.Condition.ActionChange(Action.Run);
+                else actor.Condition.ActionChange(Action.Walk);
             }
-            //else if ()
-            //{
-            //    actor.Condition.ActionChange(Action.Run);
-            //}
             else
             {
                 actor.Condition.ActionChange(Action.Idle);

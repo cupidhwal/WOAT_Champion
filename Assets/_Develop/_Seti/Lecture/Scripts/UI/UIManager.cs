@@ -5,7 +5,7 @@ namespace Seti
     /// <summary>
     /// 
     /// </summary>
-    public class UIManager : MonoBehaviour
+    public class UIManager : Singleton<UIManager>
     {
         // 필드
         #region Variables
@@ -17,54 +17,6 @@ namespace Seti
         public DialogueUI dialogueUI;
 
         public int itemID = 0;
-        #endregion
-
-        // 라이프 사이클
-        #region Life Cycle
-        private void Start()
-        {
-            // 마우스 커서가 플레이 화면 밖으로 나가지 않도록 고정
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-
-        private void Update()
-        {
-            /*if (Input.GetKeyDown(KeyCode.I))
-            {
-                Toggle(playerInventoryUI.gameObject);
-            }
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Toggle(playerEquipmentUI.gameObject);
-            }
-
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                Toggle(playerStatusUI.gameObject);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                AddNewItem(0);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                AddNewItem(1);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                AddNewItem(2);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                AddNewItem(3);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                AddNewItem(4);
-            }*/
-        }
         #endregion
 
         // 메서드

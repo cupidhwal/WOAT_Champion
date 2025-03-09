@@ -3,15 +3,6 @@ using UnityEngine.Events;
 
 namespace Seti
 {
-    public enum Action
-    {
-        Idle,
-        Walk,
-        Run,
-        Dash,
-        Ride
-    }
-
     /// <summary>
     /// Actor 추상 클래스
     /// </summary>

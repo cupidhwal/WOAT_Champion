@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Seti
@@ -20,7 +21,7 @@ namespace Seti
         protected EnhanceMode_Board enhance;
 
         [Header("Spec : Board")]
-        [SerializeField]
+        [SerializeField, ReadOnly]
         private float maxSpeed;
 
         // 일반
@@ -68,8 +69,8 @@ namespace Seti
         public override void RideOn(Actor actor)
         {
             // 쓰러진 라이딩기어를 바르게 놓기
-            float yRotation = this.gameObject.transform.localRotation.eulerAngles.y;
-            this.gameObject.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
+            float yRotation = gameObject.transform.localRotation.eulerAngles.y;
+            rbGear.MoveRotation(Quaternion.Euler(0, yRotation, 0));
 
             // 원활한 운전을 위해 리지드바디 회전 고정
             rbGear.constraints = RigidbodyConstraints.FreezeRotation;
@@ -99,13 +100,27 @@ namespace Seti
             joint.anchor = new Vector3(0, 0, 0);                // 조인트 주체 위치
             joint.connectedAnchor = new Vector3(0, 0, 0);       // 조인트 표적 위치
 
-            // joint 상태가 변했으므로 이벤트 호출
-            //OnStanceChanged?.Invoke();
+            onPower = true;
         }
 
-        public override void RideOff()
+        public override void RideOff(Actor actor)
         {
-            throw new System.NotImplementedException();
+            if (joint != null)
+            {
+                Destroy(joint);
+                joint = null;
+
+                // 라이딩기어 옆으로 내리기
+                actor.transform.GetComponent<Rigidbody>().AddForce(OffDirection() * 250, ForceMode.Impulse);
+            }
+
+            rbGear.constraints = RigidbodyConstraints.None;
+
+            // 플레이어와 라이딩기어의 충돌 활성화
+            //foreach (var parts in GearColliders)
+            //    Physics.IgnoreCollision(playerCollider, parts, false);
+
+            onPower = false;
         }
 
         public override void EnhanceMode()
@@ -117,6 +132,18 @@ namespace Seti
         private void OnJointBreak(float breakForce)
         {
 
+        }
+
+        // 하차 방향 오버라이드
+        protected override Vector3 OffDirection()
+        {
+            //float playerPos = isRight ? 1f : -1f;
+            //float dir = (boardDrive.MoveInput == Vector2.zero) ? playerPos : boardDrive.MoveInput.x;
+            float dir = -1f;
+
+            Vector3 direction = (Vector3.up + new Vector3(dir, 0, 0).normalized).normalized;
+            Vector3 realDirection = this.transform.TransformDirection(direction);
+            return realDirection;
         }
     }
 }

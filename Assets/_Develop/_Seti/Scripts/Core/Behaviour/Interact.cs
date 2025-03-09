@@ -29,16 +29,16 @@ namespace Seti
             string path = context.control.path;
             switch (path)
             {
-                case "/Keyboard/r":
-                    OnRide();
+                case "/Keyboard/escape":
+                    ESC();
                     break;
 
                 case "/Keyboard/g":
                     OnInteraction();
                     break;
 
-                case "/Keyboard/3":
-                    //Debug.Log("Magic 3");
+                case "/Keyboard/r":
+                    OnRide();
                     break;
 
                 case "/Keyboard/4":
@@ -48,6 +48,14 @@ namespace Seti
         }
 
         // 메서드
+        void ESC()
+        {
+            if (Manager_UI.Instance)
+            {
+                Manager_UI.Instance.Close();
+            }
+        }
+
         void OnInteraction()
         {
             //if (StoryManager.Instance.IsDialogue)
@@ -73,7 +81,10 @@ namespace Seti
         {
             if (actor.CurrentGear)
             {
-                actor.CurrentGear.RideOff();
+                actor.Condition.ActionChange(Action.Idle);
+                actor.Controller_Animator.ActivateLayer(0);
+
+                actor.CurrentGear.RideOff(actor);
                 actor.SetGear(null);
                 return;
             }
@@ -82,6 +93,9 @@ namespace Seti
             {
                 actor.SetGear(actor.NearGear);
                 actor.NearGear.RideOn(actor);
+
+                actor.Controller_Animator.ActivateLayer(1);
+                actor.Condition.ActionChange(Action.Ride);
                 return;
             }
         }

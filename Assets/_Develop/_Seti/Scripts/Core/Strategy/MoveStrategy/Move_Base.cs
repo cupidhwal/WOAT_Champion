@@ -42,11 +42,11 @@ namespace Seti
             if (actor is Player player)
                 switch (player.View)
                 {
-                    case Player.ViewType.Follow_Person:
+                    case ViewType.Follow_Person:
                         Follow_Person_Move(moveInput);
                         break;
 
-                    case Player.ViewType.QuaterView:
+                    case ViewType.QuaterView:
                         QuaterView_Move(moveInput);
                         break;
                 }
@@ -73,16 +73,17 @@ namespace Seti
             if (!actor.Controller_Animator.Animator.applyRootMotion)
                 actor.transform.Translate(QuaterView, Space.World);
 
-            QuaterView_Rot(QuaterView);
+            Rotation(QuaterView);
         }
-        protected void QuaterView_Rot(Vector3 moveDirection)
+
+        protected void Rotation(Vector3 moveDirection)
         {
             // 이동이 발생할 때만 회전
             if (moveDirection != Vector3.zero)
             {
                 // 진행 방향으로 회전
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-                actor.transform.rotation = Quaternion.Slerp(actor.transform.rotation, targetRotation, 20f * Time.deltaTime);
+                actor.transform.rotation = Quaternion.Slerp(actor.transform.rotation, targetRotation, actor.Rotation_Sensitivity * Time.deltaTime);
             }
         }
 
@@ -92,14 +93,19 @@ namespace Seti
             if (rb == null) return;
 
             Vector2 dir = MoveDirection(moveInput);
-            Vector3 moveDirection = new(dir.x, 0, dir.y);
+            //Vector3 moveDir = new(dir.x, 0f, dir.y);
+            Vector3 moveDir = MathF.Abs(dir.y) > 0.2f ? new(0f, 0f, dir.y) : new(dir.x, 0f, 0f);
 
-            Vector3 forward = actor.transform.forward * moveDirection.z;
-            Vector3 right = actor.transform.right * moveDirection.x;
+            Vector3 forward = actor.transform.forward * moveDir.z;
+            Vector3 right = actor.transform.right * moveDir.x;
 
             float speed = actor.Condition.CurrentAction == Action.Run ? actor.Magnification_WalkToRun * actor.Rate_Movement : actor.Rate_Movement;
-            Vector3 move = speed * Time.fixedDeltaTime * (forward + right).normalized;
-            rb.MovePosition(actor.transform.position + move);
+            Vector3 move = moveDir.magnitude * speed * Time.fixedDeltaTime * (forward + right).normalized;
+
+            if (!actor.Controller_Animator.Animator.applyRootMotion)
+                rb.MovePosition(actor.transform.position + move);
+
+            //Rotation(move);
         }
 
         // 방지턱 보정

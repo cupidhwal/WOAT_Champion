@@ -21,7 +21,6 @@ namespace Seti
         private IMoveStrategy currentStrategy;
 
         // 제어 관리
-        private bool isRunning = false;
         private Vector2 moveInput;
         private State<Controller_FSM> currentState;
         #endregion
@@ -29,6 +28,7 @@ namespace Seti
         // 속성
         public IMoveStrategy CurrentStrategy => currentStrategy;
         public Vector2 MoveInput => moveInput;
+        public bool IsRunning { get; private set; } = false;
 
         // 인터페이스
         public void Initialize(Actor actor)
@@ -151,7 +151,7 @@ namespace Seti
             }
             else
             {
-                if (!isRunning)
+                if (!IsRunning)
                     actor.Condition.ActionChange(Action.Walk);
                 else
                     actor.Condition.ActionChange(Action.Run);
@@ -160,11 +160,11 @@ namespace Seti
 
         private void OnRun()
         {
-            isRunning = !isRunning;
-            if (actor.Condition.CurrentAction == Action.Walk && isRunning)
+            IsRunning = !IsRunning;
+            if (actor.Condition.CurrentAction == Action.Walk && IsRunning)
                 actor.Condition.ActionChange(Action.Run);
 
-            if (actor.Condition.CurrentAction == Action.Run && !isRunning)
+            if (actor.Condition.CurrentAction == Action.Run && !IsRunning)
                 actor.Condition.ActionChange(Action.Walk);
         }
 

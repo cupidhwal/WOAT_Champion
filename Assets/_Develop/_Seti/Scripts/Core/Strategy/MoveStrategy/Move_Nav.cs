@@ -8,7 +8,7 @@ namespace Seti
         {
             Vector3 moveDirection = new(dir.x, 0, dir.y);
             Vector3 QuaterView = Quaternion.Euler(0f, 45f, 0f) * moveDirection;
-            QuaterView_Rot(QuaterView);
+            Rotation(QuaterView);
         }
     }
 }

@@ -12,12 +12,12 @@ public class CamHolder : MonoBehaviour {
 	public Camera cam;
     public Transform camRotator;
 	private Vector3 start_angle;
-	private int currentCamTarget;
+	//private int currentCamTarget;
 
 
 	void Start () 
 	{
-		currentCamTarget = 0;
+		//currentCamTarget = 0;
 	//	cam_target = cam_targetAll[currentCamTarget];
 		start_angle = transform.position; 
 	}

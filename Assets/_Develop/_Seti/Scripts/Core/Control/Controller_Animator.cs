@@ -7,12 +7,13 @@ namespace Seti
         // 필드
         #region Variables
         protected Transform lookTarget;
+        protected Animator animator;
         #endregion
 
         // 속성
         #region Properties
         public StateMachine<Controller_Animator> AniMachine { get; private set; }
-        public Animator Animator { get; private set; }
+        public Animator Animator => animator;
         public Actor Actor { get; private set; }
         public Move Move { get; private set; }
 
@@ -38,7 +39,7 @@ namespace Seti
             lookTarget = Actor.transform.Find("Head_Root").GetChild(0);
 
             // 애니메이션 컨트롤러 초기화
-            Animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             AniMachine = new StateMachine<Controller_Animator>(
                 this,
                 new AniState_Idle()
@@ -61,16 +62,22 @@ namespace Seti
                 AniMachine.AddState(new AniState_Dash());
         }
 
-
-        // 애니메이션 IK
-
-        public void OnAnimatorIK(int layerIndex)
+        public void ActivateLayer(int layerIndex)
         {
-            if (Animator)
+            for (int i = 1; i < animator.layerCount; i++)
+            {
+                animator.SetLayerWeight(i, i == layerIndex ? 1f : 0f);
+            }
+        }
+
+        // 애니메이션
+        private void OnAnimatorIK(int layerIndex)
+        {
+            if (animator)
             {
                 // IK 활성화
-                Animator.SetLookAtWeight(1.0f); // 값이 클수록 강하게 바라봄
-                Animator.SetLookAtPosition(lookTarget.position);
+                animator.SetLookAtWeight(1.0f); // 값이 클수록 강하게 바라봄
+                animator.SetLookAtPosition(lookTarget.position);
             }
         }
     }

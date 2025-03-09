@@ -37,30 +37,19 @@ namespace Seti
 
         private void RefreshReceiverList()
         {
-            // 삭제된 클래스가 있는지 확인하고 정리
-            receiverDB.receivers.RemoveAll(receiver => receiver == null);
+            var guids = AssetDatabase.FindAssets("t:Receiver", new[] { "Assets/_Develop/_Seti/_Gear/Parts" });
 
-            // Receiver를 구현한 모든 클래스 탐색
-            var allReceivers = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
-                .Where(t => typeof(Receiver).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
-                .ToList();
+            receiverDB.receivers.Clear();
 
-            int addedCount = 0;
-
-            foreach (var receiver in allReceivers)
+            foreach (var guid in guids)
             {
-                // 중복 검사
-                if (!receiverDB.receivers.Any(f => f.GetType() == receiver))
-                {
-                    var newReceiver = Activator.CreateInstance(receiver) as Receiver;
-                    receiverDB.receivers.Add(newReceiver);
-                    addedCount++;
-                }
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                var receiver = AssetDatabase.LoadAssetAtPath<Receiver>(path);
+                receiverDB.receivers.Add(receiver);
             }
 
-            EditorUtility.SetDirty(receiverDB); // 변경 사항 저장
-            Debug.Log($"Receiver DB 갱신: 새 집속부가 {addedCount}개 추가되었습니다.");
+            EditorUtility.SetDirty(receiverDB);
+            Debug.Log($"Receiver DB 갱신 완료: {receiverDB.receivers.Count}개의 집속부가 등록되었습니다.");
         }
 
         private void DrawReceiverList()
@@ -70,7 +59,7 @@ namespace Seti
             for (int i = 0; i < receiverDB.receivers.Count; i++)
             {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(receiverDB.receivers[i].GetType().Name);
+                EditorGUILayout.LabelField(receiverDB.receivers[i].Name);
 
                 if (GUILayout.Button("Remove"))
                 {

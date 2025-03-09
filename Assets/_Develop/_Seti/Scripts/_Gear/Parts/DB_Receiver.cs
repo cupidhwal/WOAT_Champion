@@ -8,7 +8,7 @@ namespace Seti
     {
         [HideInInspector]
         [SerializeReference]
-        public List<Receiver> receivers;
+        public List<Receiver> receivers = new();
 
         private void OnValidate()
         {
@@ -17,7 +17,11 @@ namespace Seti
             if (removedCount > 0)
             {
                 UnityEditor.EditorUtility.SetDirty(this);
-                //UnityEditor.AssetDatabase.SaveAssets();
+                // Unity의 다음 프레임에서 저장하도록 지연 실행
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    UnityEditor.AssetDatabase.SaveAssets();
+                };
             }
         }
     }

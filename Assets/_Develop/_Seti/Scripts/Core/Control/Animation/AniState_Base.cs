@@ -49,28 +49,16 @@ namespace Seti
         }
 
         float speed = 0f;
-        protected float CurrentSpeed()
+        protected void CurrentSpeed()
         {
             if (context.Actor && context.Actor.Condition.InAction)
             {
-                float forward = context.Move.MoveInput.y < 0 ? -1 : 1;
-
                 float velovity = context.Actor.Condition.CurrentAction != Action.Idle ? context.Actor.Rate_Movement : 0f;
 
                 float magnification = context.Actor.Condition.CurrentAction == Action.Run ? context.Actor.Magnification_WalkToRun : 1;
 
-                speed = Mathf.Lerp(speed, forward * velovity * magnification, 10f * Time.deltaTime);
+                speed = Mathf.Lerp(speed, magnification * velovity, 10f * Time.deltaTime);
             }
-            return speed;
-        }
-
-        float xInput = 0f;
-        protected float MoveInput()
-        {
-            xInput = Mathf.Lerp(xInput, context.MoveInputX, 10f * Time.deltaTime);
-
-            xInput = Mathf.Abs(xInput) > 0.01f ? xInput : 0f;
-            return xInput;
         }
     }
 }

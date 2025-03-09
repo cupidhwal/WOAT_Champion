@@ -45,7 +45,9 @@ namespace Seti
         [SerializeField]
         protected float mag_WalkToRun = 1.5f;
         [SerializeField]
-        protected float attackProgressive = 2.5f;
+        protected float rotation_Sense = 5f;
+        //[SerializeField]
+        //protected float attackProgressive = 2.5f;
 
         [Header("Variables: Dash")]
         [SerializeField]
@@ -60,7 +62,15 @@ namespace Seti
         #region Properties
         public Blueprint_Actor Blueprint => blueprint;
         public Condition_Actor Condition => condition;
-        public Controller_Base Controller => controller;
+        public Controller_Base Controller
+        {
+            get
+            {
+                if (!controller)
+                    controller = GetComponent<Controller_Base>();
+                return controller;
+            }
+        }
         public Controller_Animator Controller_Animator => animator;
         public RidingGear CurrentGear => gearCurrent;
         public RidingGear NearGear => gearNear;
@@ -71,6 +81,7 @@ namespace Seti
         //public float Rate_Attack => rate_Attack;
         public float Rate_Movement => rate_Movement;
         public float Magnification_WalkToRun => mag_WalkToRun;  // 걷기/달리기
+        public float Rotation_Sensitivity => rotation_Sense;
 
         public float Dash_Speed => dashSpeed;
         public float Dash_Cooldown => dashCooldown;
@@ -89,9 +100,6 @@ namespace Seti
         // 초기화
         public void Initialize()
         {
-            // Check Controller
-            controller = GetComponent<Controller_Base>();
-
             // Check Actor Condition
             condition = GetComponent<Condition_Actor>();
             condition.Initialize();

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: DB_Transducer
   m_EditorClassIdentifier: 
   transducers:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 7efe9040b9db1974380d68d34d89ea85, type: 2}
+  - {fileID: 11400000, guid: 54a5aa72122db5447a6b2e0833c4ec2d, type: 2}

@@ -22,7 +22,11 @@ namespace Seti
             if (removedCount > 0)
             {
                 UnityEditor.EditorUtility.SetDirty(this);
-                UnityEditor.AssetDatabase.SaveAssets(); // 강제 저장
+                //// Unity의 다음 프레임에서 저장하도록 지연 실행
+                //UnityEditor.EditorApplication.delayCall += () =>
+                //{
+                //    UnityEditor.AssetDatabase.SaveAssets();
+                //};
             }
         }
     }

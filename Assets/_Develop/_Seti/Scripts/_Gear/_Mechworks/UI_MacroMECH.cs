@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Seti
@@ -9,19 +10,50 @@ namespace Seti
     {
         // 필드
         #region Variables
-        [Header("UI : 집속부")]
-        [SerializeField]
-        private GameObject UI_Receivers;
+        private MacroMECH macroMECH;
 
-        [Header("UI : 변환부")]
+        [Header("Variables")]
         [SerializeField]
-        private GameObject UI_Transducers;
-
-        [Header("UI : 구동부")]
+        private int codeID;
         [SerializeField]
-        private GameObject UI_Propulsors;
+        private GameObject partsModule;
+        [SerializeField]
+        private Transform contents;
         #endregion
 
+        // 라이프 사이클
+        private void OnEnable()
+        {
+            if (!macroMECH)
+                macroMECH = GetComponentInParent<MacroMECH>();
+
+            AddModule();
+        }
+
         // 메서드
+        public void AddModule()
+        {
+            IEnumerable<Parts> partsList = codeID switch
+            {
+                0 => macroMECH.ReceiverDB.receivers,
+                1 => macroMECH.TransducerDB.transducers,
+                2 => macroMECH.PropulsorDB.propulsors,
+                _ => null
+            };
+            foreach (var parts in partsList)
+            {
+                if (partsModule)
+                {
+                    GameObject moduleObj = Instantiate(partsModule, contents);
+                    Module module = moduleObj.GetComponent<Module>();
+                    module.SetModule(parts);
+                }
+            }
+        }
+
+        public void DelModule()
+        {
+
+        }
     }
 }

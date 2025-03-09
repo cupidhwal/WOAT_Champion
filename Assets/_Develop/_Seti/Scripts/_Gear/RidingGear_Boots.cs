@@ -20,7 +20,7 @@ namespace Seti
         protected EnhanceMode_Boots enhance;
 
         [Header("Spec : Boots")]
-        [SerializeField]
+        [SerializeField, ReadOnly]
         private float maxPower;
         #endregion
 
@@ -48,12 +48,16 @@ namespace Seti
 
         protected override void SpecUpdate()
         {
-            maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            if (receiver && transducer && propulsor)
+                maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            else maxPower = 0f;
         }
 
         private void OnValidate()
         {
-            maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            if (receiver && transducer && propulsor)
+                maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            else maxPower = 0f;
         }
         #endregion
 
@@ -63,7 +67,7 @@ namespace Seti
             throw new System.NotImplementedException();
         }
 
-        public override void RideOff()
+        public override void RideOff(Actor actor)
         {
             throw new System.NotImplementedException();
         }

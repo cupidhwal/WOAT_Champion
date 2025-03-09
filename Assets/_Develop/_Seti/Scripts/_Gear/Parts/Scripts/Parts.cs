@@ -7,6 +7,21 @@ namespace Seti
     /// </summary>
     public abstract class Parts : ScriptableObject
     {
+        // 필드
+        [Header("Parts : Core")]
+        [SerializeField]
+        private Sprite partsIcon;
+        [SerializeField]
+        private string partsName;
+        [SerializeField]
+        private string partsGeneration;
+
+        // 속성
+        public Sprite Icon => partsIcon;
+        public string Name => partsName;
+        public string Generation => partsGeneration;
+
+        // 정의
         public abstract void Excute();
     }
 }

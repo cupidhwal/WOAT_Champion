@@ -479,12 +479,12 @@ Material:
     - _LightDirection_MaskOn: 0
     - _LightFalloffAffectShadowT: 0
     - _LightFalloffSoftness: 1
-    - _LightIntensity: 1
+    - _LightIntensity: 1.5
     - _LinkDetailsWithBase: 1
     - _MCIALO: 0
     - _MCapIntensity: 1
     - _MVCOL: 0
-    - _MaiColPo: 0.8
+    - _MaiColPo: 1
     - _MatCap: 0
     - _MaterialID: 1
     - _MaxFadDistance: 2

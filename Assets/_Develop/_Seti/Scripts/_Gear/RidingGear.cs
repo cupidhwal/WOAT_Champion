@@ -12,13 +12,6 @@ namespace Seti
     /// 2. 탑승/하차
     /// 3. 파츠
     /// 4. 인핸스 모드
-    
-    public enum GearType
-    {
-        Board,
-        Boots
-    }
-
     public abstract class RidingGear : MonoBehaviour
     {
         // 필드
@@ -32,11 +25,15 @@ namespace Seti
 
         // 일반
         [Header("Variables")]
+        [SerializeField]
+        protected bool onPower = false;
         protected Rigidbody rbGear;
 
         // 이벤트
         protected UnityAction OnSpecUpdate;
         #endregion
+
+        public bool OnPower => onPower;
 
         // Spec
         #region Spec
@@ -78,7 +75,14 @@ namespace Seti
 
         // 메서드
         public abstract void RideOn(Actor actor);
-        public abstract void RideOff();
+        public abstract void RideOff(Actor actor);
         public abstract void EnhanceMode();
+
+        // 하차 방향 정하기
+        protected virtual Vector3 OffDirection()
+        {
+            // RidingBoard와 RidingBoots에서 반드시 Override 할 것
+            return Vector3.up; // 기본 하차 방향은 위쪽
+        }
     }
 }

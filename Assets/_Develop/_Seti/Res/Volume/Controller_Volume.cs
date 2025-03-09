@@ -31,8 +31,7 @@ namespace Seti
         private void Start()
         {
             // 카메라 확인
-            var cameraData = Camera.main.GetComponent<UniversalAdditionalCameraData>();
-            if (cameraData != null)
+            if (Camera.main.TryGetComponent<UniversalAdditionalCameraData>(out var cameraData))
                 cameraData.renderPostProcessing = true;
 
             // 참조

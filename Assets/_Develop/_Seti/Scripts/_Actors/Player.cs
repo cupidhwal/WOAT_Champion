@@ -7,13 +7,6 @@ namespace Seti
     /// </summary>
     public class Player : Actor
     {
-        // View type
-        public enum ViewType
-        {
-            Follow_Person,
-            QuaterView,
-        }
-
         // 필드
         #region Variables
         [Header("View Type")]

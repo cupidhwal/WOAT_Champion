@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.Android.Gradle.Manifest;
 using UnityEditor;
 using UnityEngine;
 
@@ -37,30 +38,20 @@ namespace Seti
 
         private void RefreshTransducerList()
         {
-            // 삭제된 클래스가 있는지 확인하고 정리
-            transducerDB.transducers.RemoveAll(transducer => transducer == null);
-
             // Transducer를 구현한 모든 클래스 탐색
-            var allTransducers = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
-                .Where(t => typeof(Transducer).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
-                .ToList();
+            var guids = AssetDatabase.FindAssets("t:Transducer", new[] { "Assets/_Develop/_Seti/_Gear/Parts" });
 
-            int addedCount = 0;
+            transducerDB.transducers.Clear();
 
-            foreach (var transducer in allTransducers)
+            foreach (var guid in guids)
             {
-                // 중복 검사
-                if (!transducerDB.transducers.Any(f => f.GetType() == transducer))
-                {
-                    var newTransducer = Activator.CreateInstance(transducer) as Transducer;
-                    transducerDB.transducers.Add(newTransducer);
-                    addedCount++;
-                }
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                var transducer = AssetDatabase.LoadAssetAtPath<Transducer>(path);
+                transducerDB.transducers.Add(transducer);
             }
 
-            EditorUtility.SetDirty(transducerDB); // 변경 사항 저장
-            Debug.Log($"Transducer DB 갱신: 새 변환부가 {addedCount}개 추가되었습니다.");
+            EditorUtility.SetDirty(transducerDB);
+            Debug.Log($"Transducer DB 갱신 완료: {transducerDB.transducers.Count}개의 집속부가 등록되었습니다.");
         }
 
         private void DrawTransducerList()
@@ -70,7 +61,7 @@ namespace Seti
             for (int i = 0; i < transducerDB.transducers.Count; i++)
             {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(transducerDB.transducers[i].GetType().Name);
+                EditorGUILayout.LabelField(transducerDB.transducers[i].Name);
 
                 if (GUILayout.Button("Remove"))
                 {

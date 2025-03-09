@@ -321,7 +321,7 @@ MonoBehaviour:
   gearCurrent: {fileID: 0}
   gearNear: {fileID: 0}
   rate_Movement: 2
-  mag_WalkToRun: 1.5
+  mag_WalkToRun: 3
   attackProgressive: 2.5
   dashSpeed: 30
   dashCooldown: 1
@@ -490,6 +490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rifle_Full_Body
       objectReference: {fileID: 0}
+    - target: {fileID: 6610486086422486376, guid: 3d739828fd8d4dc43a009ffed23deefe, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2ea20ac6142453a44b573e3bfe616b63, type: 2}
     - target: {fileID: 8769508095441855100, guid: 3d739828fd8d4dc43a009ffed23deefe, type: 3}
       propertyPath: lookTarget
       value: 

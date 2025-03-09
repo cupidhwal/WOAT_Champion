@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac9c8a6bcda83a4b9c832cf4f6b2f46, type: 3}
   m_Name: Sample_Receiver
   m_EditorClassIdentifier: 
+  partsIcon: {fileID: 0}
+  partsName: "\uC0D8\uD50C \uC9D1\uC18D\uBD80 1"
+  partsGeneration: "1\uC138\uB300"
   efficiency: 0.9

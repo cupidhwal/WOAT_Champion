@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: DB_Propulsor
   m_EditorClassIdentifier: 
   propulsors:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6fde0065297546e4f980b59c04af69cb, type: 2}
+  - {fileID: 11400000, guid: 6b14a1e39ad519c48aa266a1ec6d97e3, type: 2}

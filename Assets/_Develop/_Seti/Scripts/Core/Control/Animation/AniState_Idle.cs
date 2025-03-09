@@ -18,6 +18,7 @@ namespace Seti
         public override void OnExit()
         {
             base.OnExit();
+
             context.Animator.SetBool(Hash_InputDetected, true);
         }
 

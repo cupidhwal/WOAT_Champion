@@ -17,14 +17,14 @@ public class Rob11Ctrl : MonoBehaviour
 
     [Header("Repeat time for some animations")]
     public int playCount = 1; // Cyclyc Animations repeat time
-    private int currentPlayCount = 0;
+    //private int currentPlayCount = 0;
 
     private int currentNumber = 0; //
-    int N = 2;             
+    //int N = 2;             
 
     private string animationName = "YourAnimationName";
     private bool battleIsActive = false;
-    private bool isPushing = false;
+    //private bool isPushing = false;
     public string pushableTag = "Pushable";
 
 
@@ -87,13 +87,13 @@ public class Rob11Ctrl : MonoBehaviour
         {
             if (Input.GetAxis("Vertical")>0.1)
             {
-                Debug.Log("Персонаж толкает объект: ");
+                //Debug.Log("Персонаж толкае?объект: ");
                 anim.SetBool("Push", true);
                 setEmotion(6);
             }
             if (Input.GetAxis("Vertical") < 0.1)
             {
-                Debug.Log("Персонаж толкает объект: ");
+                //Debug.Log("Персонаж толкае?объект: ");
                 anim.SetBool("Push", false);
                 resetEmo();
             }
