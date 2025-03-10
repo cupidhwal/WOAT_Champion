@@ -16,13 +16,12 @@ namespace Seti
         protected Transform headTransform;    // 플레이어의 머리 부분 Transform
 
         // 일반 필드
-        protected float headXRotation;        // head X축 회전값
-        protected float headYRotation;        // head Y축 회전값
-        protected float bodyYRotation;        // body Y축 회전값
+        protected float headXRotation;
+        protected float headYRotation;
+        protected float bodyYRotation;
         #endregion
 
         // 메서드
-        #region Methods
         public void Initialize(Actor actor, float mouseSensitivity = 0f)
         {
             this.actor = actor;
@@ -34,6 +33,13 @@ namespace Seti
         public Type GetStrategyType() => typeof(ILookStrategy);
 
         public abstract void Look(Vector2 readValue = default);
-        #endregion
+
+        // 보드 탑승 직전 플레이어의 위치에 따라 동기화 방향을 결정하는 메서드
+        protected float DefineSync()
+        {
+            if (actor.CurrentGear is RidingGear_Board board)
+                return board.BoardDir ? 80f : -80f;
+            return 0f;
+        }
     }
 }

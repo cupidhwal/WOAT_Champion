@@ -76,8 +76,10 @@ namespace Seti
             if (board.OnPower)
             {
                 Drive();
-                Turn();
                 Tilt();
+
+                if (moveInput.y > 0.5f)
+                    Turn();
             }
         }
 

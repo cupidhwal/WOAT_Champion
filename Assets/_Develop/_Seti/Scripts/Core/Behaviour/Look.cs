@@ -22,7 +22,9 @@ namespace Seti
         private Vector2 lookInput;
 
         // 제어 관리
-        private State<Controller_FSM> currentState;
+        public float headXRotation;
+        public float headYRotation;
+        public float bodyYRotation;
         #endregion
 
         // 인터페이스
@@ -31,6 +33,7 @@ namespace Seti
         public void Initialize(Actor actor)
         {
             this.actor = actor;
+            actor.Condition.OnStanceChange += SwitchStrategy;
             strategies = actor.Blueprint.GetStrategies(this);
 
             foreach (var mapping in strategies)
@@ -39,6 +42,18 @@ namespace Seti
                 switch (lookStrategy)
                 {
                     case Look_Normal:
+                        lookStrategy.Initialize(actor, 0.1f);
+                        break;
+
+                    case Look_Attention:
+                        lookStrategy.Initialize(actor);
+                        break;
+
+                    case Look_Ride:
+                        lookStrategy.Initialize(actor);
+                        break;
+
+                    case Look_KeepGoing:
                         lookStrategy.Initialize(actor, 0.1f);
                         break;
 
@@ -87,59 +102,52 @@ namespace Seti
             }
         }
 
-        public void SwitchStrategy(State<Controller_FSM> state)
+        public void SwitchStrategy()
         {
-            // FSM 상태에 따라 동작 제어
-            /*currentState = state;
-            switch (currentState)
+            switch (actor.Condition.CurrentStance)
             {
-                case Enemy_State_Attack_Normal:
-                    ChangeStrategy(typeof(Look_Watch));
+                case Stance.Normal:
+                    ChangeStrategy(typeof(Look_Normal));
                     break;
 
-                case Enemy_State_Attack_Magic:
-                    ChangeStrategy(typeof(Look_Watch));
+                case Stance.Boots:
+                    ChangeStrategy(typeof(Look_Normal));
                     break;
 
-                default:
-                    ChangeStrategy(null);
+                case Stance.Board:
+                    ChangeStrategy(typeof(Look_Ride));
                     break;
-            }*/
+            }
         }
         #endregion
 
         // 라이프 사이클
         public void Update()
         {
-            if (!actor.Condition.InAction) return;
             currentStrategy?.Look();
         }
 
         // 이벤트 핸들러
         public void OnLookPerformed(InputAction.CallbackContext context)
         {
-            //actor.Controller_Animator.MouseDelta = lookInput.y;
-
             lookInput = context.ReadValue<Vector2>();
             currentStrategy?.Look(lookInput);
         }
 
         public void OnLookCanceled(InputAction.CallbackContext _)
         {
-            //actor.Controller_Animator.MouseDelta = lookInput.y;
-            
             lookInput = Vector2.zero;
             currentStrategy?.Look(lookInput);
         }
 
         public void OnKeepGoingStarted(InputAction.CallbackContext _)
         {
-            //ChangeStrategy(typeof(Look_KeepGoing));
+            ChangeStrategy(typeof(Look_KeepGoing));
         }
 
         public void OnKeepGoingCanceled(InputAction.CallbackContext _)
         {
-            ChangeStrategy(typeof(Look_Normal));
+            SwitchStrategy();
         }
 
         public void FSM_LookInput() => currentStrategy?.Look();

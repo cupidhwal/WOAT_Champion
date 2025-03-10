@@ -61,7 +61,18 @@ namespace Seti
         // 속성
         #region Properties
         public Blueprint_Actor Blueprint => blueprint;
-        public Condition_Actor Condition => condition;
+        public Condition_Actor Condition
+        {
+            get
+            {
+                if (!condition)
+                {
+                    condition = GetComponent<Condition_Actor>();
+                    condition.Initialize();
+                }
+                return condition;
+            }
+        }
         public Controller_Base Controller
         {
             get
@@ -100,10 +111,6 @@ namespace Seti
         // 초기화
         public void Initialize()
         {
-            // Check Actor Condition
-            condition = GetComponent<Condition_Actor>();
-            condition.Initialize();
-
             // Check Animator Controller
             animator = GetComponentInChildren<Controller_Animator>();
             animator.Initialize();

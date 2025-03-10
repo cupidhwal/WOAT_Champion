@@ -15,6 +15,9 @@ MonoBehaviour:
   lookStrategies:
   - rid: 5694582334033231882
   - rid: 5694582334033231883
+  - rid: 1020670283196661849
+  - rid: 1020670283196661860
+  - rid: 1020670283196661887
   moveStrategies:
   - rid: 5694582334033231884
   - rid: 5694582334033231885
@@ -23,6 +26,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1020670283196661849
+      type: {class: Look_KeepGoing, ns: Seti, asm: Assembly-CSharp}
+      data: 
+    - rid: 1020670283196661860
+      type: {class: Look_Ride, ns: Seti, asm: Assembly-CSharp}
+      data: 
+    - rid: 1020670283196661887
+      type: {class: Look_Attention, ns: Seti, asm: Assembly-CSharp}
+      data: 
     - rid: 5694582334033231882
       type: {class: Look_Normal, ns: Seti, asm: Assembly-CSharp}
       data: 

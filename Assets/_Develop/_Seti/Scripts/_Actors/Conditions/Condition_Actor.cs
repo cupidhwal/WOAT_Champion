@@ -12,6 +12,8 @@ namespace Seti
         #region Variables
         [Header("Action")]
         [SerializeField]
+        private Stance currentStance;
+        [SerializeField]
         private Action currentAction;
         [SerializeField]
         protected bool inAction = false;
@@ -21,11 +23,13 @@ namespace Seti
         protected Rigidbody rb;
 
         // 이벤트
+        public UnityAction OnStanceChange;
         public UnityAction OnActionChange;
         #endregion
 
         // 속성
         #region Properties
+        public Stance CurrentStance => currentStance;
         public Action CurrentAction => currentAction;
         public bool InAction => inAction;
         public bool IsGrounded { get; protected set; } = true;
@@ -47,29 +51,38 @@ namespace Seti
             inAction = true;
         }
 
+        public void StanceChange(Stance stance)
+        {
+            switch (stance)
+            {
+                case Stance.Normal:
+                    currentStance = Stance.Normal;
+                    break;
+
+                case Stance.Board:
+                    currentStance = Stance.Board;
+                    break;
+
+                case Stance.Boots:
+                    currentStance = Stance.Boots;
+                    break;
+            }
+            OnStanceChange?.Invoke();
+        }
+
         public void ActionChange(Action action)
         {
-            switch (action)
+            if (currentStance == Stance.Normal)
             {
-                case Action.Idle:
-                    currentAction = Action.Idle;
-                    break;
-
-                case Action.Walk:
-                    currentAction = Action.Walk;
-                    break;
-
-                case Action.Run:
-                    currentAction = Action.Run;
-                    break;
-
-                case Action.Dash:
-                    currentAction = Action.Dash;
-                    break;
-
-                case Action.Ride:
-                    currentAction = Action.Ride;
-                    break;
+                currentAction = action;
+            }
+            else
+            {
+                currentAction = action switch
+                {
+                    Action.Idle => Action.Idle,
+                    _ => Action.Drive,
+                };
             }
             OnActionChange?.Invoke();
         }

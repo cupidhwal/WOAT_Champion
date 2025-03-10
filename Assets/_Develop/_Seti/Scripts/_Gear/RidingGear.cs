@@ -16,18 +16,18 @@ namespace Seti
     {
         // 필드
         #region Variables
+        // 일반
+        [Header("Variables")]
+        [SerializeField]
+        protected bool onPower = false;
+        protected Rigidbody rbGear;
+
         [Header("Parts : 집속부")]
         [SerializeField]
         protected Receiver receiver;
         [Header("Parts : 변환부")]
         [SerializeField]
         protected Transducer transducer;
-
-        // 일반
-        [Header("Variables")]
-        [SerializeField]
-        protected bool onPower = false;
-        protected Rigidbody rbGear;
 
         // 이벤트
         protected UnityAction OnSpecUpdate;

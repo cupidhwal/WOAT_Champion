@@ -164,9 +164,9 @@ namespace Seti
                     stateMachine.OnStateChanged += move.SwitchStrategy;
 
             // Look 행동 이벤트 바인딩
-            if (behaviourMap.TryGetValue(typeof(Look), out var lookBehaviour))
-                if (lookBehaviour is Look look)
-                    stateMachine.OnStateChanged += look.SwitchStrategy;
+            //if (behaviourMap.TryGetValue(typeof(Look), out var lookBehaviour))
+            //    if (lookBehaviour is Look look)
+            //        stateMachine.OnStateChanged += look.SwitchStrategy;
 
             /*// Attack 행동 이벤트 바인딩
             if (behaviourMap.TryGetValue(typeof(Attack), out var attackBehaviour))

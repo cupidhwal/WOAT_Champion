@@ -18,7 +18,6 @@ MonoBehaviour:
   strategyBox: {fileID: 11400000, guid: 2c0a77883e1bd1c4c97efc943dfff710, type: 2}
   behaviourBox: {fileID: 11400000, guid: 98174a8ead4350c48af64cf9316a8a0b, type: 2}
   behaviourStrategies:
-  - rid: 5694582337867088123
   - rid: 5694582337867088113
   - rid: 5990299322230767872
   - rid: 1020670195813056603
@@ -87,38 +86,6 @@ MonoBehaviour:
       data: 
     - rid: 5694582337867088122
       type: {class: Move_Walk, ns: Seti, asm: Assembly-CSharp}
-      data: 
-    - rid: 5694582337867088123
-      type: {class: BehaviourStrategyMapping, ns: Seti, asm: Assembly-CSharp}
-      data:
-        behaviour:
-          rid: 5694582337867088124
-        strategies:
-        - rid: 5694582337867088125
-        - rid: 5694582337867088126
-    - rid: 5694582337867088124
-      type: {class: Look, ns: Seti, asm: Assembly-CSharp}
-      data:
-        strategies:
-        - rid: 5694582337867088125
-        - rid: 5694582337867088126
-    - rid: 5694582337867088125
-      type: {class: Strategy, ns: Seti, asm: Assembly-CSharp}
-      data:
-        strategy:
-          rid: 5694582337867088127
-        isActive: 1
-    - rid: 5694582337867088126
-      type: {class: Strategy, ns: Seti, asm: Assembly-CSharp}
-      data:
-        strategy:
-          rid: 5694582337867088128
-        isActive: 0
-    - rid: 5694582337867088127
-      type: {class: Look_Normal, ns: Seti, asm: Assembly-CSharp}
-      data: 
-    - rid: 5694582337867088128
-      type: {class: Look_Watch, ns: Seti, asm: Assembly-CSharp}
       data: 
     - rid: 5990299322230767872
       type: {class: BehaviourStrategyMapping, ns: Seti, asm: Assembly-CSharp}

@@ -7,7 +7,7 @@ namespace Seti
     /// </summary>
     public class Look_Normal : Look_Base
     {
-        public override void Look(Vector2 readValue)
+        public override void Look(Vector2 readValue = default)
         {
             if (actor is not Player) return;
 
@@ -23,8 +23,20 @@ namespace Seti
             else
                 bodyYRotation = 0;
 
+            // Head
+            if (actor.Condition.CurrentStance == Stance.Board)
+            {
+                Quaternion targetRotation = Quaternion.Euler(0f, -DefineSync(), 0f);
+                headTransform.localRotation = Quaternion.Slerp(headTransform.localRotation, targetRotation, 0.1f);
+            }
+            else
+            {
+                headYRotation = Mathf.Lerp(headYRotation, 0, 0.005f * Time.deltaTime);
+                headTransform.localRotation = Quaternion.Euler(headXRotation, headYRotation, 0f);
+            }
+
+            // Body
             rb.MoveRotation(rb.rotation * Quaternion.Euler(0f, bodyYRotation, 0f));
-            headTransform.localRotation = Quaternion.Euler(headXRotation, headYRotation, 0f);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Seti
         // 필드
         #region Variables
         protected Dictionary<Type, IBehaviour> behaviourMap;            // 행동 매핑 (타입에 따른 행동 인스턴스)
+        protected Actor actor;
         #endregion
 
         // 속성
@@ -22,7 +23,8 @@ namespace Seti
         public virtual void Initialize()
         {
             // Actor의 behaviours 리스트에서 동적으로 매핑
-            SetBehaviours(GetComponent<Actor>());
+            actor = GetComponent<Actor>();
+            SetBehaviours(actor);
         }
         public virtual void SetBehaviours(Actor actor)
         {
@@ -48,9 +50,20 @@ namespace Seti
         #endregion
 
         // 라이프 사이클
+        protected virtual void Update()
+        {
+            if (!actor.Condition.InAction) return;
+
+            if (behaviourMap.TryGetValue(typeof(Look), out var lookBehaviour))
+            {
+                (lookBehaviour as Look)?.Update();
+            }
+        }
+
         protected virtual void FixedUpdate()
         {
-            // Move 행동이 있으면 Update 호출
+            if (!actor.Condition.InAction) return;
+
             if (behaviourMap.TryGetValue(typeof(Move), out var moveBehaviour))
             {
                 (moveBehaviour as Move)?.FixedUpdate();

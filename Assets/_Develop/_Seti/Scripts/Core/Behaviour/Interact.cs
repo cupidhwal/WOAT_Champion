@@ -81,7 +81,7 @@ namespace Seti
         {
             if (actor.CurrentGear)
             {
-                actor.Condition.ActionChange(Action.Idle);
+                actor.Condition.StanceChange(Stance.Normal);
                 actor.Controller_Animator.ActivateLayer(0);
 
                 actor.CurrentGear.RideOff(actor);
@@ -95,7 +95,7 @@ namespace Seti
                 actor.NearGear.RideOn(actor);
 
                 actor.Controller_Animator.ActivateLayer(1);
-                actor.Condition.ActionChange(Action.Ride);
+                actor.Condition.StanceChange(Stance.Board);
                 return;
             }
         }

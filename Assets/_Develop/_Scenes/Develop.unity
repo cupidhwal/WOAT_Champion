@@ -5658,17 +5658,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2482813019686307234, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: rotation_Sense
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5690500170496529690, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690500170496529690, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5983869821964893927, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5710,46 +5702,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6795691692119759101, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: runForward
-      value: 
-      objectReference: {fileID: 7400000, guid: ea1b223c1eaeb2d41ac977b947b7b50d, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: runBackward
-      value: 
-      objectReference: {fileID: 7400000, guid: 41555ddcd9a023e47b9a86853cb46914, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: walkForward
-      value: 
-      objectReference: {fileID: 7400000, guid: 2554b08f8f2cd494caf67c9105cbdb2d, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: walkBackward
-      value: 
-      objectReference: {fileID: 7400000, guid: 9c9221ab0a0fde143b2f3f243f760de6, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: runForwardMirror
-      value: 
-      objectReference: {fileID: 7400000, guid: a53e464436c20044989985531a24ef0e, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: runBackwardMirror
-      value: 
-      objectReference: {fileID: 7400000, guid: 8d571db3fcff02240a988310e3724960, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: walkForwardMirror
-      value: 
-      objectReference: {fileID: 7400000, guid: 7d249f744140db142ab01eaba4242d2d, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: overrideController
-      value: 
-      objectReference: {fileID: 22100000, guid: 7dfee531408d0d54388fd16ef8d76b1e, type: 2}
-    - target: {fileID: 7787804528026746952, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
-      propertyPath: walkBackwardMirror
-      value: 
-      objectReference: {fileID: 7400000, guid: 40361331510584c41b64acf4c3b1ee44, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7105,12 +7057,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f13ca66986f194989b8641fa71b0e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPower: 0
   receiver: {fileID: 11400000, guid: 083ba9669170ea941831e15815831311, type: 2}
   transducer: {fileID: 11400000, guid: 54a5aa72122db5447a6b2e0833c4ec2d, type: 2}
-  onPower: 0
   propulsor: {fileID: 11400000, guid: 6b14a1e39ad519c48aa266a1ec6d97e3, type: 2}
   enhance: {fileID: 11400000, guid: e16f6223e7787374e8099b57ac9a5aca, type: 2}
   maxSpeed: 40.499996
+  boardDirection: 0
 --- !u!114 &7113836022741793667
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "KeepGoing",
+                    "type": "Button",
+                    "id": "0d2be5d7-74ab-4192-b787-6a5d4ee3ef6e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -563,6 +572,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Magic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4995f2e-dc02-4b83-b62a-d9b163119e4f",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "KeepGoing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -8,7 +8,6 @@ namespace Seti
     public class Look_Watch : Look_Base
     {
         // 오버라이드
-        #region Override
         public override void Look(Vector2 _)
         {
             //if (!actor.Condition.IsAttack) return;
@@ -38,6 +37,5 @@ namespace Seti
             //    }
             //}
         }
-        #endregion
     }
 }

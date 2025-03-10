@@ -7,13 +7,20 @@ namespace Seti
         QuaterView,
     }
 
+    public enum Stance
+    {
+        Normal,
+        Board,
+        Boots
+    }
+
     public enum Action
     {
         Idle,
         Walk,
         Run,
         Dash,
-        Ride
+        Drive
     }
 
     public enum Type_UI
@@ -27,5 +34,12 @@ namespace Seti
     {
         Board,
         Boots
+    }
+
+    public enum BoardDirection
+    {
+        Left,
+        Right,
+        Null
     }
 }

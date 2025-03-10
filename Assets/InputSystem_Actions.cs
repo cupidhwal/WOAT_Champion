@@ -134,6 +134,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeepGoing"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d2be5d7-74ab-4192-b787-6a5d4ee3ef6e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -585,6 +594,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Magic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4995f2e-dc02-4b83-b62a-d9b163119e4f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""KeepGoing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1395,6 +1415,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_KeepGoing = m_Player.FindAction("KeepGoing", throwIfNotFound: true);
         // RidingGear
         m_RidingGear = asset.FindActionMap("RidingGear", throwIfNotFound: true);
         m_RidingGear_Move = m_RidingGear.FindAction("Move", throwIfNotFound: true);
@@ -1492,6 +1513,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_KeepGoing;
     public struct PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1508,6 +1530,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @KeepGoing => m_Wrapper.m_Player_KeepGoing;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1553,6 +1576,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @KeepGoing.started += instance.OnKeepGoing;
+            @KeepGoing.performed += instance.OnKeepGoing;
+            @KeepGoing.canceled += instance.OnKeepGoing;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1593,6 +1619,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @KeepGoing.started -= instance.OnKeepGoing;
+            @KeepGoing.performed -= instance.OnKeepGoing;
+            @KeepGoing.canceled -= instance.OnKeepGoing;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1849,6 +1878,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnNext(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnKeepGoing(InputAction.CallbackContext context);
     }
     public interface IRidingGearActions
     {

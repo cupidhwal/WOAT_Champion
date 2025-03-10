@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Seti
@@ -22,13 +21,30 @@ namespace Seti
 
         [Header("Spec : Board")]
         [SerializeField, ReadOnly]
-        private float maxSpeed;
+        protected float maxSpeed;
+
+        [Header("Direction")]
+        [SerializeField]
+        protected BoardDirection boardDirection;
 
         // 일반
         protected FixedJoint joint;
         #endregion
 
         // 속성
+        public bool BoardDir
+        {
+            get
+            {
+                bool isRight = boardDirection switch
+                {
+                    BoardDirection.Right => true,
+                    BoardDirection.Left => false,
+                    _ => false
+                };
+                return isRight;
+            }
+        }
         public float MaxSpeed => maxSpeed;
 
         // Spec
@@ -68,6 +84,9 @@ namespace Seti
         // 메서드
         public override void RideOn(Actor actor)
         {
+            // Actor 방향 파악
+            WhereIsPlayer(actor);
+
             // 쓰러진 라이딩기어를 바르게 놓기
             float yRotation = gameObject.transform.localRotation.eulerAngles.y;
             rbGear.MoveRotation(Quaternion.Euler(0, yRotation, 0));
@@ -126,6 +145,19 @@ namespace Seti
         public override void EnhanceMode()
         {
             enhance.Activate();
+        }
+
+        private void WhereIsPlayer(Actor actor)
+        {
+            Vector3 localPos = transform.InverseTransformPoint(actor.transform.position);
+
+            if (localPos.x > 0)
+                // 플레이어가 보드의 오른쪽에 있음
+                boardDirection = BoardDirection.Left;
+
+            else
+                // 플레이어가 보드의 왼쪽에 있음
+                boardDirection = BoardDirection.Right;
         }
 
         // Break
