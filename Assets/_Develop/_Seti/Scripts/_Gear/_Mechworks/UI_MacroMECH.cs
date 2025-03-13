@@ -12,7 +12,7 @@ namespace Seti
         #region Variables
         private MacroMECH macroMECH;
 
-        [Header("Variables")]
+        [Header("View : Module")]
         [SerializeField]
         private int codeID;
         [SerializeField]
