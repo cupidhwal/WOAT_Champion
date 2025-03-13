@@ -17,9 +17,9 @@ namespace Seti
 
         // 상호작용
         [SerializeField]
-        private Storyteller_NPC storyteller;
-        public Storyteller_NPC CurrentTeller => storyteller;
-        public void SetTeller(Storyteller_NPC teller) => storyteller = teller;
+        private NPC NPC;
+        public NPC CurrentNPC => NPC;
+        public void SetNPC(NPC npc) => NPC = npc;
 
         // 오버라이드
         protected override Condition_Actor CreateState() => gameObject.AddComponent<Condition_Player>();

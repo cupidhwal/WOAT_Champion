@@ -75,7 +75,7 @@ namespace Seti
             if (other.CompareTag("Player"))
             {
                 canDialogue = true;
-                player.SetTeller(this);
+                //player.SetTeller(this);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Seti
             if (other.CompareTag("Player"))
             {
                 canDialogue = false;
-                player.SetTeller(null);
+                //player.SetTeller(null);
             }
         }
         #endregion

@@ -23,8 +23,8 @@ namespace Seti
         private int moveForce = 5000;
         [SerializeField]
         private int downForce = 2000;
-        [SerializeField]
-        private int breakForce = 40000;
+        //[SerializeField]
+        //private int breakForce = 40000;
         [SerializeField]
         private float brakeCoefficient = 0.5f;
         [SerializeField]

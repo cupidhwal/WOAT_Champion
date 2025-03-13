@@ -30,6 +30,23 @@ namespace Seti
         MacroMECH_Propulsor,
     }
 
+    public enum Type_AI
+    {
+        Storyteller,
+        MacroMECH,
+        Mechanic,
+        Designer,
+        Rider,
+    }
+
+    public enum Type_Quest
+    {
+        None,
+        MainStory,
+        NormalQuest,
+        ChainQuest,
+    }
+
     public enum GearType
     {
         Board,

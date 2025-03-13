@@ -6,7 +6,7 @@ namespace Seti
     /// <summary>
     /// 매크로멕 시스템 관련 UI 총괄
     /// </summary>
-    public class UI_MacroMECH : MonoBehaviour
+    public class UI_MacroMECH : UI_Target
     {
         // 필드
         #region Variables
@@ -19,6 +19,8 @@ namespace Seti
         private GameObject partsModule;
         [SerializeField]
         private Transform contents;
+
+        private Queue<GameObject> modules = new();
         #endregion
 
         // 라이프 사이클
@@ -28,6 +30,11 @@ namespace Seti
                 macroMECH = GetComponentInParent<MacroMECH>();
 
             AddModule();
+        }
+
+        private void OnDisable()
+        {
+            DelModule();
         }
 
         // 메서드
@@ -42,18 +49,21 @@ namespace Seti
             };
             foreach (var parts in partsList)
             {
-                if (partsModule)
+                if (!modules.TryDequeue(out var result))
                 {
-                    GameObject moduleObj = Instantiate(partsModule, contents);
-                    Module module = moduleObj.GetComponent<Module>();
-                    module.SetModule(parts);
+                    result = Instantiate(partsModule, contents);
                 }
+                Module module = result.GetComponent<Module>();
+                module.SetModule(parts);
             }
         }
 
         public void DelModule()
         {
-
+            for (int i = 0; i < contents.childCount; i++)
+            {
+                modules.Enqueue(contents.GetChild(i).gameObject);
+            }
         }
     }
 }

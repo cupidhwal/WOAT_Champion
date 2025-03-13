@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Seti
 {
@@ -8,7 +9,11 @@ namespace Seti
         // 필드
         #region Variables
         // 일반
-        private readonly Stack<GameObject> openUIs = new();
+        private readonly Stack<GameObject> stackUI = new();
+
+        [Header("Selector")]
+        [SerializeField]
+        private UI_Selector selectorUI;
 
         [Header("UI")]
         [SerializeField]
@@ -18,32 +23,41 @@ namespace Seti
         // 라이프 사이클
         private void Start()
         {
-            Open(Type_UI.MacroMECH_Receiver);
-            Open(Type_UI.MacroMECH_Transducer);
-            Open(Type_UI.MacroMECH_Propulsor);
+            selectorUI.gameObject.SetActive(true);
+            selectorUI.ReadyToSelect();
         }
 
         // 메서드
-        public void Open(Type_UI type)
+        public void Selector(Type_AI type)
         {
-            GameObject temp = type switch
+            if (selectorUI.gameObject.activeSelf) return;
+
+            UI_Root root = type switch
             {
-                Type_UI.MacroMECH_Receiver => macroMechUI.OpenUI(0),
-                Type_UI.MacroMECH_Transducer => macroMechUI.OpenUI(1),
-                Type_UI.MacroMECH_Propulsor => macroMechUI.OpenUI(2),
-                _ => null
+                Type_AI.MacroMECH => macroMechUI,
+                _ => macroMechUI
             };
-            if (temp)
-            {
-                openUIs.Push(temp);
-            }
+
+            selectorUI.gameObject.SetActive(true);
+            selectorUI.Open(root);
+            stackUI.Push(selectorUI.gameObject);
+        }
+
+        public void Open(GameObject selected)
+        {
+            selected.SetActive(true);
+            stackUI.Push(selected);
         }
 
         public void Close()
         {
-            if (openUIs.Count > 0)
+            if (stackUI.Count > 0)
             {
-                GameObject temp = openUIs?.Pop();
+                GameObject temp = stackUI?.Pop();
+                if (temp == selectorUI.gameObject)
+                {
+                    selectorUI.Close();
+                }
                 temp.SetActive(false);
             }
         }

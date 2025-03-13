@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9426583debdbb4aab015265f08a073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfUI: "\uBCC0\uD658\uBD80"
   codeID: 1
   partsModule: {fileID: 3095304724821203338, guid: 8a0c24c4ad0cc6d48849be8c058c3034, type: 3}
   contents: {fileID: 3719051047671287102}
@@ -732,11 +733,8 @@ MonoBehaviour:
   transducerDB: {fileID: 11400000, guid: c5ea4d02fd7112145b5b259992462270, type: 2}
   propulsorDB: {fileID: 11400000, guid: 2cd20a31d8863b648baabd41bcef646c, type: 2}
   UI_Receivers: {fileID: 8929796120846338757}
-  receivers: {fileID: 0}
   UI_Transducers: {fileID: 1411974937713897659}
-  transducers: {fileID: 0}
   UI_Propulsors: {fileID: 7800250398169616990}
-  propulsors: {fileID: 0}
 --- !u!1 &4505791376729968195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9426583debdbb4aab015265f08a073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfUI: "\uAD6C\uB3D9\uBD80"
   codeID: 2
   partsModule: {fileID: 3095304724821203338, guid: 8a0c24c4ad0cc6d48849be8c058c3034, type: 3}
   contents: {fileID: 941621851351530276}
@@ -1869,6 +1868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9426583debdbb4aab015265f08a073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfUI: "\uC9D1\uC18D\uBD80"
   codeID: 0
   partsModule: {fileID: 3095304724821203338, guid: 8a0c24c4ad0cc6d48849be8c058c3034, type: 3}
   contents: {fileID: 4802329834728048051}

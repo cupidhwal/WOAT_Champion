@@ -58,6 +58,8 @@ namespace Seti
 
         void OnInteraction()
         {
+            Player player = actor as Player;
+
             //if (StoryManager.Instance.IsDialogue)
             //{
             //    StoryManager.Instance.NextDialogue();
@@ -70,11 +72,11 @@ namespace Seti
             //    return;
             //}
 
-            //if (player.CurrentNPC != null)
-            //{
-            //    player.CurrentNPC.Switch_TradeUI();
-            //    return;
-            //}
+            if (player.CurrentNPC != null)
+            {
+                player.CurrentNPC.Interact();
+                return;
+            }
         }
 
         void OnRide()

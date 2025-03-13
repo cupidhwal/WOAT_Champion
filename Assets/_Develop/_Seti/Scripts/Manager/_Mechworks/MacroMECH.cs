@@ -5,7 +5,7 @@ namespace Seti
     /// <summary>
     /// 라이딩기어의 제작, 개조, 파츠 거래 등을 총괄
     /// </summary>
-    public class MacroMECH : Singleton<MacroMECH>
+    public class MacroMECH : UI_Root
     {
         // 필드
         #region Variables
@@ -42,6 +42,12 @@ namespace Seti
         // 완충 펄 구매
 
         // 라이프 사이클
+        private void Start()
+        {
+            ui_Parts.Add(UI_Receivers);
+            ui_Parts.Add(UI_Transducers);
+            ui_Parts.Add(UI_Propulsors);
+        }
 
         // 메서드
         public GameObject OpenUI(int index)
