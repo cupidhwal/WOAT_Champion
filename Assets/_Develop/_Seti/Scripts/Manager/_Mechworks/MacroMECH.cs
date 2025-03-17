@@ -25,6 +25,11 @@ namespace Seti
         private GameObject UI_Transducers;
         [SerializeField]
         private GameObject UI_Propulsors;
+
+        [Header("임시")]
+        [SerializeField]
+        private RidingGear gear;
+        public RidingGear Gear => gear;
         #endregion
 
         // 속성

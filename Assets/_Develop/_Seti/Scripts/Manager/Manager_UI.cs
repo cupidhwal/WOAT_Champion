@@ -20,6 +20,9 @@ namespace Seti
         private MacroMECH macroMechUI;
         #endregion
 
+        // 속성
+        public MacroMECH MacroMECH => macroMechUI;
+
         // 라이프 사이클
         private void Start()
         {

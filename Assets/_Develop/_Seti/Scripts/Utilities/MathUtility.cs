@@ -6,6 +6,21 @@ namespace Seti
     // 수학 유틸리티
     public class MathUtility
     {
+        #region 단순연산
+        // 소숫점 order 자리까지 표기
+        public static string GetFormat(float value, int order)
+        {
+            string temp = order switch
+            {
+                1 => "F1",
+                2 => "F2",
+                _ => string.Empty
+            };
+
+            return value % 1 == 0 ? value.ToString() : value.ToString(temp);
+        }
+        #endregion
+
         #region 일반수학
         // 자연대수 지수함수(exponential function) 연산
         public static float CalDisExp(float x, float amplitude, float exponentialRate, float horizontalShift)

@@ -12,11 +12,9 @@ namespace Seti
         [Header("Core")]
         [SerializeField]
         protected TextMeshProUGUI objectName;
-        [SerializeField]
-        protected TextMeshProUGUI description;
 
         // 추상화
-        public abstract void SetModule(Parts parts);
-        public abstract void UseModule();
+        public abstract void SetModule(Parts parts);    // 모듈 정보 입력
+        public abstract void UseModule();               // 버튼에 연결
     }
 }
