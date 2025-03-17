@@ -42,12 +42,16 @@ namespace Seti
 
             propulsorDB.propulsors.Clear();
 
-            foreach (var guid in guids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                var propulsor = AssetDatabase.LoadAssetAtPath<Propulsor>(path);
-                propulsorDB.propulsors.Add(propulsor);
-            }
+            // 먼저 정렬한 후 리스트에 추가
+            var sortedPropulsors = guids
+                .Select(guid => AssetDatabase.LoadAssetAtPath<Propulsor>(AssetDatabase.GUIDToAssetPath(guid)))
+                .Where(propulsor => propulsor != null)
+                .OrderBy(propulsor => propulsor.GenNo)
+                .ThenBy(propulsor => propulsor.Name)
+                .ToList();
+
+            // 정렬된 리스트 추가
+            propulsorDB.propulsors.AddRange(sortedPropulsors);
 
             EditorUtility.SetDirty(propulsorDB);
             Debug.Log($"Propulsor DB 갱신 완료: {propulsorDB.propulsors.Count}개의 집속부가 등록되었습니다.");
@@ -57,8 +61,17 @@ namespace Seti
         {
             EditUtility.SubjectLine(Color.gray, 2, "구동부 : DB List");
 
+            int j = 0;
             for (int i = 0; i < propulsorDB.propulsors.Count; i++)
             {
+                if (j != propulsorDB.propulsors[i].GenNo)
+                {
+                    j = propulsorDB.propulsors[i].GenNo;
+                    if (j != 1)
+                        EditUtility.DrawLine(1);
+                    EditorGUILayout.LabelField(propulsorDB.propulsors[i].GenerationTag, EditorStyles.boldLabel);
+                }
+
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(propulsorDB.propulsors[i].Name);
 

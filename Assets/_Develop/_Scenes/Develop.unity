@@ -6589,6 +6589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2616065855489322682, guid: 2de3f524e6135e049af91ce799d8c419, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3526768994565070115, guid: 2de3f524e6135e049af91ce799d8c419, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6627,6 +6631,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3526768994565070115, guid: 2de3f524e6135e049af91ce799d8c419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386722156901691603, guid: 2de3f524e6135e049af91ce799d8c419, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386722156901691603, guid: 2de3f524e6135e049af91ce799d8c419, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7006,7 +7018,14 @@ MonoBehaviour:
   transducer: {fileID: 11400000, guid: 54a5aa72122db5447a6b2e0833c4ec2d, type: 2}
   propulsor: {fileID: 11400000, guid: 6b14a1e39ad519c48aa266a1ec6d97e3, type: 2}
   enhance: {fileID: 11400000, guid: e16f6223e7787374e8099b57ac9a5aca, type: 2}
-  maxSpeed: 40.499996
+  maxSpeed: 20.249998
+  turnSpeed: 4
+  tiltSpeed: 5
+  reverseSpeed: 8.099999
+  acceleration: 450
+  momentum: 1800
+  downForce: 720
+  brakeCoefficient: 0.5
   boardDirection: 0
 --- !u!114 &7113836022741793667
 MonoBehaviour:
@@ -7020,14 +7039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102ba83f4d28df8469a537e96c081ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 4
-  tiltSpeed: 5
-  reverseSpeed: 20
-  initialForce: 500
-  moveForce: 5000
-  downForce: 2000
-  brakeCoefficient: 0.5
-  stabAngle: 0
   board: {fileID: 7113836022741793666}
 --- !u!23 &7961889059914729414
 MeshRenderer:

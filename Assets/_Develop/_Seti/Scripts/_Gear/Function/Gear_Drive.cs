@@ -9,28 +9,9 @@ namespace Seti
     public class Gear_Drive : MonoBehaviour
     {
         // 필드
-        #region Variables
-        // 단순 변수
-        [SerializeField]
-        private int turnSpeed = 4;
-        [SerializeField]
-        private int tiltSpeed = 5;
-        [SerializeField]
-        private int reverseSpeed = 20;
-        [SerializeField]
-        private int initialForce = 500;
-        [SerializeField]
-        private int moveForce = 5000;
-        [SerializeField]
-        private int downForce = 2000;
-        //[SerializeField]
-        //private int breakForce = 40000;
-        [SerializeField]
-        private float brakeCoefficient = 0.5f;
-        [SerializeField]
-        private float stabAngle;
-
+        #region Variables        
         // 복합 변수
+        private float stabAngle;
         private Vector2 moveInput;              // 이동 입력
         private Vector3 moveDirection;          // 이동 방향
         private Vector3 currentVelocity;        // 현재 속도
@@ -48,17 +29,11 @@ namespace Seti
 
         // 속성
         #region Properties
-        public int TurnSpeed
-        {
-            get { return turnSpeed; }
-            set { turnSpeed = value; }
-        }
         public Vector2 MoveInput
         {
             get { return moveInput; }
             set { moveInput = value; }
         }
-        public Vector3 CurrentVelocity => currentVelocity;
         #endregion
 
         public void Start()
@@ -117,30 +92,30 @@ namespace Seti
             if (moveInput.y >= 0.1)
             {
                 if (currentVelocity.magnitude <= 0.1)
-                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * initialForce, ForceMode.Impulse);
+                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * board.Acceleration, ForceMode.Impulse);
 
                 if (currentVelocity.magnitude > 0.1)
-                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * moveForce, ForceMode.Force);
+                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * board.Momentum, ForceMode.Force);
 
                 if (currentVelocity.magnitude >= board.MaxSpeed)
                     rbGear.linearVelocity = rbGear.linearVelocity.normalized * board.MaxSpeed;
 
                 if (moveDirection == Vector3.zero)
-                    rbGear.linearVelocity *= brakeCoefficient;
+                    rbGear.linearVelocity *= board.BrakeCoefficient;
             }
             else
             {
                 if (currentVelocity.magnitude <= 0.1)
-                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * initialForce, ForceMode.Impulse);
+                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * board.Acceleration, ForceMode.Impulse);
 
                 if (currentVelocity.magnitude > 0.1)
-                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * moveForce, ForceMode.Force);
+                    rbGear.AddForce((board.transform.forward * moveInput.y).normalized * board.Momentum, ForceMode.Force);
 
-                if (currentVelocity.magnitude >= reverseSpeed)
-                    rbGear.linearVelocity = rbGear.linearVelocity.normalized * reverseSpeed;
+                if (currentVelocity.magnitude >= board.ReverseSpeed)
+                    rbGear.linearVelocity = rbGear.linearVelocity.normalized * board.ReverseSpeed;
 
                 if (moveDirection == Vector3.zero)
-                    rbGear.linearVelocity *= brakeCoefficient;
+                    rbGear.linearVelocity *= board.BrakeCoefficient;
             }
         }
 
@@ -150,11 +125,11 @@ namespace Seti
             if (MoveDirection() != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(MoveDirection());
-                Quaternion smoothBoardRotation = Quaternion.Slerp(rbGear.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+                Quaternion smoothBoardRotation = Quaternion.Slerp(rbGear.rotation, targetRotation, board.TurnSpeed * Time.fixedDeltaTime);
                 rbGear.MoveRotation(smoothBoardRotation);
 
                 // 턴의 미끄러짐을 방지하기 위해 다운포스를 작성
-                rbGear.AddForce(downForce * Vector3.down, ForceMode.Force);
+                rbGear.AddForce(board.DownForce * Vector3.down, ForceMode.Force);
             }
         }
 
@@ -171,7 +146,7 @@ namespace Seti
 
             Quaternion currentRotation = rbGear.rotation;
             Quaternion targetTiltRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, tiltAngle);
-            Quaternion smoothTiltRotation = Quaternion.Slerp(currentRotation, targetTiltRotation, tiltSpeed * Time.fixedDeltaTime);
+            Quaternion smoothTiltRotation = Quaternion.Slerp(currentRotation, targetTiltRotation, board.TiltSpeed * Time.fixedDeltaTime);
             rbGear.MoveRotation(smoothTiltRotation);
         }
 

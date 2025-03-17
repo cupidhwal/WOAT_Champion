@@ -10,6 +10,7 @@ namespace Seti
         [SerializeReference]
         public List<Receiver> receivers = new();
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             int removedCount = receivers.RemoveAll(b => b == null);
@@ -24,5 +25,6 @@ namespace Seti
                 };
             }
         }
+#endif
     }
 }

@@ -11,5 +11,7 @@ namespace Seti
         [SerializeField]
         private string nameOfUI;
         public string UIName => nameOfUI;
+
+        public abstract void SetModule(Parts parts);
     }
 }

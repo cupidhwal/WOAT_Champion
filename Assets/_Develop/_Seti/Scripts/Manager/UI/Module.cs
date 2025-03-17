@@ -10,6 +10,11 @@ namespace Seti
     public class Module : MonoBehaviour
     {
         // 필드
+        private UI_Target format;
+
+        [Header("Parts : Info")]
+        [SerializeField]
+        private Parts parts;
         [SerializeField]
         private Image partsIcon;
         [SerializeField]
@@ -20,9 +25,14 @@ namespace Seti
         // 메서드
         public void SetModule(Parts parts)
         {
+            format = GetComponentInParent<UI_Target>();
+
+            this.parts = parts;
             partsIcon.sprite = parts.Icon;
             partsName.text = parts.Name;
-            partsGeneration.text = parts.Generation;
+            partsGeneration.text = parts.GenerationTag;
         }
+
+        public void GetModule() => format.SetModule(parts);
     }
 }

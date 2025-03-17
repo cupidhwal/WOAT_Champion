@@ -41,12 +41,16 @@ namespace Seti
 
             receiverDB.receivers.Clear();
 
-            foreach (var guid in guids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                var receiver = AssetDatabase.LoadAssetAtPath<Receiver>(path);
-                receiverDB.receivers.Add(receiver);
-            }
+            // 먼저 정렬한 후 리스트에 추가
+            var sortedReceivers = guids
+                .Select(guid => AssetDatabase.LoadAssetAtPath<Receiver>(AssetDatabase.GUIDToAssetPath(guid)))
+                .Where(receiver => receiver != null)
+                .OrderBy(receiver => receiver.GenNo)
+                .ThenBy(receiver => receiver.Name)
+                .ToList();
+
+            // 정렬된 리스트 추가
+            receiverDB.receivers.AddRange(sortedReceivers);
 
             EditorUtility.SetDirty(receiverDB);
             Debug.Log($"Receiver DB 갱신 완료: {receiverDB.receivers.Count}개의 집속부가 등록되었습니다.");
@@ -56,8 +60,17 @@ namespace Seti
         {
             EditUtility.SubjectLine(Color.gray, 2, "집속부 : DB List");
 
+            int j = 0;
             for (int i = 0; i < receiverDB.receivers.Count; i++)
             {
+                if (j != receiverDB.receivers[i].GenNo)
+                {
+                    j = receiverDB.receivers[i].GenNo;
+                    if (j != 1)
+                        EditUtility.DrawLine(1);
+                    EditorGUILayout.LabelField(receiverDB.receivers[i].GenerationTag, EditorStyles.boldLabel);
+                }
+
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(receiverDB.receivers[i].Name);
 

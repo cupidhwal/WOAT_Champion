@@ -8,6 +8,7 @@ namespace Seti
     /// </summary>
     public abstract class UI_Root : MonoBehaviour
     {
+        // Link to Selector
         protected List<GameObject> ui_Parts = new();
         public List<GameObject> UI_Parts => ui_Parts;
     }

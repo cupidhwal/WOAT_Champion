@@ -22,6 +22,20 @@ namespace Seti
         [Header("Spec : Board")]
         [SerializeField, ReadOnly]
         protected float maxSpeed;
+        [SerializeField, ReadOnly]
+        protected float turnSpeed;
+        [SerializeField, ReadOnly]
+        protected float tiltSpeed;
+        [SerializeField, ReadOnly]
+        protected float reverseSpeed;
+        [SerializeField, ReadOnly]
+        protected float acceleration;
+        [SerializeField, ReadOnly]
+        protected float momentum;
+        [SerializeField, ReadOnly]
+        protected float downForce;
+        [SerializeField, ReadOnly]
+        protected float brakeCoefficient;
 
         [Header("Direction")]
         [SerializeField]
@@ -32,6 +46,7 @@ namespace Seti
         #endregion
 
         // 속성
+        #region Properties
         public bool BoardDir
         {
             get
@@ -46,6 +61,14 @@ namespace Seti
             }
         }
         public float MaxSpeed => maxSpeed;
+        public float TurnSpeed => turnSpeed;
+        public float TiltSpeed => tiltSpeed;
+        public float ReverseSpeed => reverseSpeed;
+        public float Acceleration => acceleration;
+        public float Momentum => momentum;
+        public float DownForce => downForce;
+        public float BrakeCoefficient => brakeCoefficient;
+        #endregion
 
         // Spec
         #region Spec
@@ -66,19 +89,23 @@ namespace Seti
             return true;
         }
 
-        protected override void SpecUpdate()
+        private void Spec()
         {
             if (receiver && transducer && propulsor)
+            {
                 maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+                turnSpeed = propulsor.Agility;
+                tiltSpeed = propulsor.Agility + 1;
+                reverseSpeed = maxSpeed * 0.4f;
+                acceleration = transducer.Efficiency * propulsor.Acceleration;
+                momentum = transducer.Efficiency * propulsor.Momentum;
+                downForce = momentum * 0.4f;
+                brakeCoefficient = 0.5f;
+            }
             else maxSpeed = 0f;
         }
-
-        private void OnValidate()
-        {
-            if (receiver && transducer && propulsor)
-                maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
-            else maxSpeed = 0f;
-        }
+        private void OnValidate() => Spec();
+        protected override void SpecUpdate() => Spec();
         #endregion
 
         // 메서드
@@ -147,6 +174,8 @@ namespace Seti
             enhance.Activate();
         }
 
+        // 기타
+        #region ETC
         private void WhereIsPlayer(Actor actor)
         {
             Vector3 localPos = transform.InverseTransformPoint(actor.transform.position);
@@ -177,5 +206,6 @@ namespace Seti
             Vector3 realDirection = this.transform.TransformDirection(direction);
             return realDirection;
         }
+        #endregion
     }
 }

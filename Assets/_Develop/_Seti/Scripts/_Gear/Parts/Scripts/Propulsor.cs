@@ -8,8 +8,9 @@ namespace Seti
     public abstract class Propulsor : Parts
     {
         // 필드
+        [Header("Parts : Transducer")]
         [SerializeField]
-        private float performance;
+        protected float performance;
 
         // 속성
         public float Performance => performance;

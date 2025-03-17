@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DB_Receiver
   m_EditorClassIdentifier: 
   receivers:
-  - {fileID: 11400000, guid: bd8a3d8db37f4c941bfcfe7a04240832, type: 2}
   - {fileID: 11400000, guid: 083ba9669170ea941831e15815831311, type: 2}
+  - {fileID: 11400000, guid: bd8a3d8db37f4c941bfcfe7a04240832, type: 2}

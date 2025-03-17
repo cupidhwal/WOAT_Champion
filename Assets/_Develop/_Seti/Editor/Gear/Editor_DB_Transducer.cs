@@ -43,12 +43,19 @@ namespace Seti
 
             transducerDB.transducers.Clear();
 
-            foreach (var guid in guids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                var transducer = AssetDatabase.LoadAssetAtPath<Transducer>(path);
-                transducerDB.transducers.Add(transducer);
-            }
+            // 먼저 정렬한 후 리스트에 추가
+            var sortedTransducers = guids
+                .Select(guid => AssetDatabase.LoadAssetAtPath<Transducer>(AssetDatabase.GUIDToAssetPath(guid)))
+                .Where(transducer => transducer != null)
+                .OrderBy(transducer => transducer.GenNo)
+                .ThenBy(transducer => transducer.Name)
+                .ToList();
+
+            // 정렬된 리스트 추가
+            transducerDB.transducers.AddRange(sortedTransducers);
+
+            // 알파벳 순 정렬 (이름 기준)
+            transducerDB.transducers.Sort((a, b) => string.Compare(a.name, b.name, StringComparison.OrdinalIgnoreCase));
 
             EditorUtility.SetDirty(transducerDB);
             Debug.Log($"Transducer DB 갱신 완료: {transducerDB.transducers.Count}개의 집속부가 등록되었습니다.");
@@ -58,8 +65,17 @@ namespace Seti
         {
             EditUtility.SubjectLine(Color.gray, 2, "변환부 : DB List");
 
+            int j = 0;
             for (int i = 0; i < transducerDB.transducers.Count; i++)
             {
+                if (j != transducerDB.transducers[i].GenNo)
+                {
+                    j = transducerDB.transducers[i].GenNo;
+                    if (j != 1)
+                        EditUtility.DrawLine(1);
+                    EditorGUILayout.LabelField(transducerDB.transducers[i].GenerationTag, EditorStyles.boldLabel);
+                }
+
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(transducerDB.transducers[i].Name);
 

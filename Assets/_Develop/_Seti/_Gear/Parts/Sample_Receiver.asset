@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partsIcon: {fileID: 0}
   partsName: "\uC0D8\uD50C \uC9D1\uC18D\uBD80 1"
-  partsGeneration: "1\uC138\uB300"
+  partsGeneration: 0
   efficiency: 0.9

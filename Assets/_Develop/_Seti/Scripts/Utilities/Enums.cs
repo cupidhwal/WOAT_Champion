@@ -23,6 +23,13 @@ namespace Seti
         Drive
     }
 
+    // 세대 추가 : Parts
+    public enum Generation
+    {
+        Gen1,
+        Gen2,
+    }
+
     public enum Type_UI
     {
         MacroMECH_Receiver,
@@ -47,7 +54,7 @@ namespace Seti
         ChainQuest,
     }
 
-    public enum GearType
+    public enum Type_Gear
     {
         Board,
         Boots

@@ -10,6 +10,7 @@ namespace Seti
         [SerializeReference]
         public List<Propulsor> propulsors;
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             int removedCount = propulsors.RemoveAll(b => b == null);
@@ -24,5 +25,6 @@ namespace Seti
                 };
             }
         }
+#endif
     }
 }

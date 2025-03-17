@@ -8,6 +8,7 @@ namespace Seti
     public abstract class Transducer : Parts
     {
         // ÇÊµå
+        [Header("Parts : Transducer")]
         [SerializeField]
         private float efficiency;
 

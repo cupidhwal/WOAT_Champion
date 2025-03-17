@@ -11,6 +11,7 @@ namespace Seti
         // ÇÊµå
         #region Variables
         private MacroMECH macroMECH;
+        private UI_Detail detail;
 
         [Header("View : Module")]
         [SerializeField]
@@ -28,6 +29,9 @@ namespace Seti
         {
             if (!macroMECH)
                 macroMECH = GetComponentInParent<MacroMECH>();
+
+            if (!detail)
+                detail = GetComponentInChildren<UI_Detail>();
 
             AddModule();
         }
@@ -65,5 +69,7 @@ namespace Seti
                 modules.Enqueue(contents.GetChild(i).gameObject);
             }
         }
+
+        public override void SetModule(Parts parts) => detail.SetModule(parts);
     }
 }
