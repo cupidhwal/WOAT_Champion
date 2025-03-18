@@ -16,24 +16,30 @@ namespace Seti
     {
         // 필드
         #region Variables
-        // 일반
-        [Header("Variables")]
+        [Header("Core")]
+        [SerializeField]
+        protected Core_Gear core;
         [SerializeField]
         protected bool onPower = false;
-        protected Rigidbody rbGear;
 
-        [Header("Parts : 집속부")]
-        [SerializeField]
-        protected Receiver receiver;
-        [Header("Parts : 변환부")]
-        [SerializeField]
-        protected Transducer transducer;
+        //[Header("Parts : 집속부")]
+        //[SerializeField]
+        //protected Receiver receiver;
+        //[Header("Parts : 변환부")]
+        //[SerializeField]
+        //protected Transducer transducer;
+
+        // 일반
+        protected Rigidbody rbGear;
 
         // 이벤트
         protected UnityAction OnSpecUpdate;
         #endregion
 
+        // 속성
+        #region Properties
         public bool OnPower => onPower;
+        #endregion
 
         // Spec
         #region Spec
@@ -41,7 +47,7 @@ namespace Seti
         {
             Debug.Log("파츠 교체 : 집속부");
 
-            this.receiver = receiver;
+            core.receiver = receiver;
 
             OnSpecUpdate?.Invoke();
             return true;
@@ -50,7 +56,7 @@ namespace Seti
         {
             Debug.Log("파츠 교체 : 변환부");
 
-            this.transducer = transducer;
+            core.transducer = transducer;
 
             OnSpecUpdate?.Invoke();
             return true;

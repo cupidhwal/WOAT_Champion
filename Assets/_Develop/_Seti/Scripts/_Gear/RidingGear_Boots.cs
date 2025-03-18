@@ -11,28 +11,23 @@ namespace Seti
     {
         // 鞘靛
         #region Variables
-        [Header("Parts : 备悼何")]
-        [SerializeField]
-        protected Propulsor_Electronic propulsor;
-
-        [Header("Enhance Mode : Boots")]
-        [SerializeField]
-        protected EnhanceMode_Boots enhance;
-
         [Header("Spec : Boots")]
         [SerializeField, ReadOnly]
         private float maxPower;
         #endregion
 
         // 加己
+        #region Properties
+        public Core_Boots Core => core as Core_Boots;
         public float MaxPower => maxPower;
+        #endregion
 
         // Spec
         #region Spec
         public bool Parts_Change_Propulsor(Propulsor_Electronic propulsor)
         {
             Debug.Log("颇明 背眉 : 备悼何");
-            this.propulsor = propulsor;
+            Core.propulsor = propulsor;
 
             OnSpecUpdate?.Invoke();
             return true;
@@ -40,7 +35,7 @@ namespace Seti
 
         public bool Enhance_Change(EnhanceMode_Boots enhance)
         {
-            this.enhance = enhance;
+            Core.enhance = enhance;
 
             OnSpecUpdate?.Invoke();
             return true;
@@ -48,15 +43,15 @@ namespace Seti
 
         protected override void SpecUpdate()
         {
-            if (receiver && transducer && propulsor)
-                maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            if (Core.receiver && Core.transducer && Core.propulsor)
+                maxPower = Core.receiver.Efficiency * Core.transducer.Efficiency * Core.propulsor.Performance;
             else maxPower = 0f;
         }
 
         private void OnValidate()
         {
-            if (receiver && transducer && propulsor)
-                maxPower = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
+            if (Core.receiver && Core.transducer && Core.propulsor)
+                maxPower = Core.receiver.Efficiency * Core.transducer.Efficiency * Core.propulsor.Performance;
             else maxPower = 0f;
         }
         #endregion
@@ -74,7 +69,7 @@ namespace Seti
 
         public override void EnhanceMode()
         {
-            enhance.Activate();
+            Core.enhance.Activate();
         }
     }
 }

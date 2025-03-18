@@ -10,7 +10,6 @@ namespace Seti
     {
         // 필드
         #region Variables
-        private MacroMECH macroMECH;
         private UI_Detail detail;
 
         [Header("View : Module")]
@@ -21,15 +20,12 @@ namespace Seti
         [SerializeField]
         private Transform contents;
 
-        private Queue<GameObject> modules = new();
+        private readonly Queue<GameObject> modules = new();
         #endregion
 
         // 라이프 사이클
         private void OnEnable()
         {
-            if (!macroMECH)
-                macroMECH = GetComponentInParent<MacroMECH>();
-
             if (!detail)
                 detail = GetComponentInChildren<UI_Detail>();
 
@@ -46,9 +42,9 @@ namespace Seti
         {
             IEnumerable<Parts> partsList = codeID switch
             {
-                0 => macroMECH.ReceiverDB.receivers,
-                1 => macroMECH.TransducerDB.transducers,
-                2 => macroMECH.PropulsorDB.propulsors,
+                0 => MacroMECH.Instance.ReceiverDB.receivers,
+                1 => MacroMECH.Instance.TransducerDB.transducers,
+                2 => MacroMECH.Instance.PropulsorDB.propulsors,
                 _ => null
             };
             foreach (var parts in partsList)
@@ -70,6 +66,7 @@ namespace Seti
             }
         }
 
+        // Scroll View에서 모듈 클릭
         public override void SetModule(Parts parts) => detail.SetModule(parts);
     }
 }

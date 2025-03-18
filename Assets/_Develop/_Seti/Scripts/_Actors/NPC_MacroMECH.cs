@@ -13,12 +13,6 @@ namespace Seti
         protected Player player;
         #endregion
 
-        // 메서드
-        public override void Interact()
-        {
-            Manager_UI.Instance.Selector(aiType);
-        }
-
         // 이벤트 메서드
         private void OnTriggerEnter(Collider other)
         {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7107679506895748278
+--- !u!1 &7489528335733660016
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 545748108537443615}
-  - component: {fileID: 2057196012191683188}
+  - component: {fileID: 1062379667146171418}
+  - component: {fileID: 9032474730156434810}
   m_Layer: 0
-  m_Name: Manager_Initialize
+  m_Name: Selector_Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &545748108537443615
-Transform:
+--- !u!224 &1062379667146171418
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7107679506895748278}
-  serializedVersion: 2
+  m_GameObject: {fileID: 7489528335733660016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,18 +31,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2057196012191683188
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9032474730156434810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7107679506895748278}
+  m_GameObject: {fileID: 7489528335733660016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b49c2eeb4663374bbccc3b61f5ae90e, type: 3}
+  m_Script: {fileID: 11500000, guid: 63c9c9af26ec90a48b98af2c4a7b4747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  core: {fileID: 11400000, guid: 44cdb6e39103207419888a8d27c15f5f, type: 2}
-  player: {fileID: 0}
-  gear: {fileID: 0}
+  nameOfUI: 
+  interactionType: 0

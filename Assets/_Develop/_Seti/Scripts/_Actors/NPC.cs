@@ -13,10 +13,17 @@ namespace Seti
         [SerializeField]
         protected Type_AI aiType;
         [SerializeField]
-        protected Type_Quest questType;
+        protected Type_Interaction[] interactionType;
         #endregion
 
+        // 속성
+        public Type_AI AiType => aiType;
+        public Type_Interaction[] InteractionType => interactionType;
+
         // 추상화
-        public abstract void Interact();
+        public virtual void Interact()
+        {
+            Manager_UI.Instance.Selector(interactionType);
+        }
     }
 }

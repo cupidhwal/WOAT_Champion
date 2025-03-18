@@ -13,14 +13,31 @@ namespace Seti
         [SerializeField]
         private TextMeshProUGUI UIName;
         [SerializeField]
-        private GameObject UIObject;
+        private UI_Node UI;
 
         // ¸Þ¼­µå
+        public void Set(Selector_Node node)
+        {
+            UIName.text = node.UIName;
+            UI = node;
+        }
         public void Set(UI_Target target)
         {
             UIName.text = target.UIName;
-            UIObject = target.gameObject;
+            UI = target;
         }
-        public void Open() => Manager_UI.Instance.Open(UIObject);
+        public void Open()
+        {
+            switch (UI)
+            {
+                case Selector_Node node:
+                    node.Open_Root();
+                    break;
+
+                case UI_Target:
+                    Manager_UI.Instance.Open(UI.gameObject);
+                    break;
+            }
+        }
     }
 }

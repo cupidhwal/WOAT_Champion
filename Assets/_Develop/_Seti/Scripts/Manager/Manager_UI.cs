@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Seti
 {
@@ -17,11 +16,12 @@ namespace Seti
 
         [Header("UI")]
         [SerializeField]
-        private MacroMECH macroMechUI;
+        private UI_MacroMECH_Manager macroMechUI;
         #endregion
 
         // 속성
-        public MacroMECH MacroMECH => macroMechUI;
+        public UI_Selector UI_Selector => selectorUI;
+        public UI_MacroMECH_Manager MacroMECH => macroMechUI;
 
         // 라이프 사이클
         private void Start()
@@ -31,18 +31,13 @@ namespace Seti
         }
 
         // 메서드
-        public void Selector(Type_AI type)
+        // Node Selector 실행
+        public void Selector(Type_Interaction[] Interactions)
         {
             if (selectorUI.gameObject.activeSelf) return;
 
-            UI_Root root = type switch
-            {
-                Type_AI.MacroMECH => macroMechUI,
-                _ => macroMechUI
-            };
-
             selectorUI.gameObject.SetActive(true);
-            selectorUI.Open(root);
+            selectorUI.Open_Node(Interactions);
             stackUI.Push(selectorUI.gameObject);
         }
 

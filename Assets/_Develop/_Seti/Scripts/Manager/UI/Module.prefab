@@ -262,7 +262,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4100604215893766851}
         m_TargetAssemblyTypeName: Seti.Module, Assembly-CSharp
-        m_MethodName: GetModule
+        m_MethodName: GetModuleInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -284,10 +284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5465f96630445d243a0ee56ad7e57e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parts: {fileID: 0}
   partsIcon: {fileID: 3774390303134363243}
   partsName: {fileID: 5307231049052030531}
   partsGeneration: {fileID: 8426489787051887144}
-  parts: {fileID: 0}
 --- !u!1 &3863334015169454613
 GameObject:
   m_ObjectHideFlags: 0

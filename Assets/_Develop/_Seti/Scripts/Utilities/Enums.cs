@@ -30,11 +30,11 @@ namespace Seti
         Gen2,
     }
 
-    public enum Type_UI
+    public enum Type_Interaction
     {
-        MacroMECH_Receiver,
-        MacroMECH_Transducer,
-        MacroMECH_Propulsor,
+        Trade,
+        Modify,
+        Dialogue,
     }
 
     public enum Type_AI

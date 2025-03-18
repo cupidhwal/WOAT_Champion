@@ -33,6 +33,7 @@ namespace Seti
             partsGeneration.text = parts.GenerationTag;
         }
 
-        public void GetModule() => format.SetModule(parts);
+        // Scroll View에서 모듈 클릭
+        public void GetModuleInfo() => format.SetModule(parts);
     }
 }

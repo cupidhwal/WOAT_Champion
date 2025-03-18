@@ -10,8 +10,11 @@ namespace Seti
     {
         // 필드
         #region Variables
+        [Header("Reference")]
         [SerializeField]
         private Player player;
+        [SerializeField]
+        private RidingGear gear;
 
         // 초기화 이벤트
         public UnityAction Set_First;
@@ -21,6 +24,7 @@ namespace Seti
 
         // 속성
         public Player Player => player;
+        public RidingGear Gear => gear;
 
         private void Start()
         {
@@ -41,6 +45,10 @@ namespace Seti
             // 플레이어
             if (!player)
                 player = FindAnyObjectByType<Player>();
+
+            // 임시 - 라이딩기어
+            if (!gear)
+                gear = FindAnyObjectByType<RidingGear>();
         }
     }
 }

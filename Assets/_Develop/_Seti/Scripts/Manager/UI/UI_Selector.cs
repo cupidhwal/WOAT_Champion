@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Seti
@@ -10,21 +11,51 @@ namespace Seti
     {
         // 필드
         #region Variables
-        [Header("Selector")]
+        [Header("Unit : Selector")]
+        [SerializeField]
+        private GameObject selectorNode;
         [SerializeField]
         private GameObject selector;
-        private Queue<GameObject> selectors = new();
-        private int initialCount = 3;
+
+        private readonly Queue<GameObject> choices = new();
+        private readonly Stack<GameObject> selectors = new();
         #endregion
 
         // 메서드
-        public void Open(UI_Root root)
+        public void Open_Node(Type_Interaction[] Interactions)
         {
+            for (int i = 0; i < Interactions.Length; i++)
+            {
+                // Selector 생성
+                if (!selectors.TryPop(out var result))
+                {
+                    result = Instantiate(selector, transform.GetChild(0));
+                }
+                result.SetActive(true);
+
+                // Node 생성
+                if (!choices.TryDequeue(out var choice))
+                {
+                    choice = Instantiate(selectorNode, transform);
+                }
+                Selector_Node node = choice.GetComponent<Selector_Node>();
+                node.SetNode(Interactions[i]);
+
+                // Selector 세팅
+                Selector sel = result.GetComponent<Selector>();
+                sel.Set(node);
+            }
+        }
+
+        public void Open_Root(UI_Root root)
+        {
+            Close();
+
             for (int i = 0; i < root.UI_Parts.Count; i++)
             {
-                if (!selectors.TryDequeue(out var result))
+                if (!selectors.TryPop(out var result))
                 {
-                    result = Instantiate(selector, transform);
+                    result = Instantiate(selector, transform.GetChild(0));
                 }
                 result.SetActive(true);
                 Selector sel = result.GetComponent<Selector>();
@@ -34,23 +65,32 @@ namespace Seti
 
         public void Close()
         {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                GameObject temp = transform.GetChild(i).gameObject;
-                temp.SetActive(false);
-                selectors.Enqueue(temp);
-            }
+            CloseStack();
+            CloseQueue();
         }
 
         public void ReadyToSelect()
         {
-            for (int i = 0; i < initialCount; i++)
-            {
-                GameObject temp = Instantiate(selector, transform);
-                temp.SetActive(false);
-                selectors.Enqueue(temp);
-            }
+            CloseStack();
             gameObject.SetActive(false);
+        }
+
+        private void CloseStack()
+        {
+            for (int i = transform.GetChild(0).childCount - 1; i >= 0; i--)
+            {
+                GameObject temp = transform.GetChild(0).GetChild(i).gameObject;
+                temp.SetActive(false);
+                selectors.Push(temp);
+            }
+        }
+        private void CloseQueue()
+        {
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                GameObject temp = transform.GetChild(i).gameObject;
+                choices.Enqueue(temp);
+            }
         }
     }
 }

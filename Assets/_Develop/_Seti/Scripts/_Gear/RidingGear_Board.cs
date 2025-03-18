@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Seti
@@ -11,14 +12,6 @@ namespace Seti
     {
         // 필드
         #region Variables
-        [Header("Parts : 구동부")]
-        [SerializeField]
-        protected Propulsor_Kinetic propulsor;
-
-        [Header("Enhance Mode : Board")]
-        [SerializeField]
-        protected EnhanceMode_Board enhance;
-
         [Header("Spec : Board")]
         [SerializeField, ReadOnly]
         protected float maxSpeed;
@@ -47,6 +40,7 @@ namespace Seti
 
         // 속성
         #region Properties
+        public Core_Board Core => core as Core_Board;
         public bool BoardDir
         {
             get
@@ -75,7 +69,7 @@ namespace Seti
         public bool Parts_Change_Propulsor(Propulsor_Kinetic propulsor)
         {
             Debug.Log("파츠 교체 : 구동부");
-            this.propulsor = propulsor;
+            Core.propulsor = propulsor;
 
             OnSpecUpdate?.Invoke();
             return true;
@@ -83,7 +77,7 @@ namespace Seti
 
         public bool Enhance_Change(EnhanceMode_Board enhance)
         {
-            this.enhance = enhance;
+            Core.enhance = enhance;
 
             OnSpecUpdate?.Invoke();
             return true;
@@ -91,18 +85,28 @@ namespace Seti
 
         private void Spec()
         {
-            if (receiver && transducer && propulsor)
+            if (Core.receiver && Core.transducer && Core.propulsor)
             {
-                maxSpeed = receiver.Efficiency * transducer.Efficiency * propulsor.Performance;
-                turnSpeed = propulsor.Agility;
-                tiltSpeed = propulsor.Agility + 1;
+                maxSpeed = Core.receiver.Efficiency * Core.transducer.Efficiency * Core.propulsor.Performance;
+                turnSpeed = Core.propulsor.Agility;
+                tiltSpeed = Core.propulsor.Agility + 1;
                 reverseSpeed = maxSpeed * 0.4f;
-                acceleration = transducer.Efficiency * propulsor.Acceleration;
-                momentum = transducer.Efficiency * propulsor.Momentum;
+                acceleration = Core.transducer.Efficiency * Core.propulsor.Acceleration;
+                momentum = Core.transducer.Efficiency * Core.propulsor.Momentum;
                 downForce = momentum * 0.4f;
                 brakeCoefficient = 0.5f;
             }
-            else maxSpeed = 0f;
+            else
+            {
+                maxSpeed = 0f;
+                turnSpeed = 0f;
+                tiltSpeed = 0f;
+                reverseSpeed = 0f;
+                acceleration = 0f;
+                momentum = 0f;
+                downForce = 0f;
+                brakeCoefficient = 0f;
+            }
         }
         private void OnValidate() => Spec();
         protected override void SpecUpdate() => Spec();
@@ -171,7 +175,7 @@ namespace Seti
 
         public override void EnhanceMode()
         {
-            enhance.Activate();
+            Core.enhance.Activate();
         }
 
         // 기타

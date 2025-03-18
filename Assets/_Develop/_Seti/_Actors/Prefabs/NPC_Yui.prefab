@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiType: 1
-  questType: 0
+  interactionType: 0000000001000000
   player: {fileID: 0}
 --- !u!1001 &3946837375195693419
 PrefabInstance:
