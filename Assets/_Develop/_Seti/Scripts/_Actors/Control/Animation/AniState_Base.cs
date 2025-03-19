@@ -41,11 +41,14 @@ namespace Seti
         // 메서드
         public override void Update(float deltaTime)
         {
-            CurrentSpeed();
+            if (context.Move != null)
+            {
+                CurrentSpeed();
 
-            context.Animator.SetFloat(Hash_ForwardSpeed, speed * context.Move.MoveInput.y);
-            context.Animator.SetFloat(Hash_VerticalSpeed, speed * context.Move.MoveInput.x);
-            context.Animator.SetFloat(Hash_MouseDelta, context.MouseDelta);
+                context.Animator.SetFloat(Hash_ForwardSpeed, speed * context.Move.MoveInput.y);
+                context.Animator.SetFloat(Hash_VerticalSpeed, speed * context.Move.MoveInput.x);
+                context.Animator.SetFloat(Hash_MouseDelta, context.MouseDelta);
+            }
         }
 
         float speed = 0f;

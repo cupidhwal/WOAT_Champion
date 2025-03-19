@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c707b45c015ce4db6d2f1238ea37b3, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  actorName: Player_Root
-  actorPrefab: {fileID: 5337826641535269605, guid: 81a810801f70069499479b7584b549f8, type: 3}
+  actorName: Player
+  actorPrefab: {fileID: 5690500170496529690, guid: b0d03f3bc4a244d40a386532523dc62d, type: 3}
   controlType: 0
   strategyBox: {fileID: 11400000, guid: 2c0a77883e1bd1c4c97efc943dfff710, type: 2}
   behaviourBox: {fileID: 11400000, guid: 98174a8ead4350c48af64cf9316a8a0b, type: 2}

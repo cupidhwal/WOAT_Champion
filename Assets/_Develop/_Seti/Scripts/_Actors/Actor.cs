@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Seti
 {
@@ -10,11 +11,10 @@ namespace Seti
     /// <summary>
     /// Actor의 기본 정의
     /// </summary>
-    public abstract class Actor : MonoBehaviour
+    public abstract class Actor : Character
     {
         // 필드
         #region Variables
-        protected IControl control;
         [Header("Self Definition")]
         [SerializeField]
         protected Blueprint_Actor blueprint;
@@ -30,14 +30,6 @@ namespace Seti
 
         // 스탯
         [Header("Current Status")]
-        //[SerializeField]
-        //protected float health = 100f;
-        //[SerializeField]
-        //protected float attack = 10f;
-        //[SerializeField]
-        //protected float defend = 1f;
-        //[SerializeField]
-        //protected float rate_Attack = 1f;
         [SerializeField]
         protected float rate_Movement = 2f;
 
@@ -46,16 +38,20 @@ namespace Seti
         protected float mag_WalkToRun = 1.5f;
         [SerializeField]
         protected float rotation_Sense = 5f;
-        //[SerializeField]
-        //protected float attackProgressive = 2.5f;
 
         [Header("Variables: Dash")]
         [SerializeField]
-        private float dashSpeed = 20f;
+        protected float dashSpeed = 20f;
         [SerializeField]
-        private float dashCooldown = 1f;
+        protected float dashCooldown = 1f;
         [SerializeField]
-        private float dashDuration = 0.2f;
+        protected float dashDuration = 0.2f;
+
+        // 일반
+        protected IControl control;
+
+        // 이벤트
+        public UnityAction<Actor> OnMeetAnother;
         #endregion
 
         // 속성
@@ -85,11 +81,6 @@ namespace Seti
         public Controller_Animator Controller_Animator => animator;
         public RidingGear CurrentGear => gearCurrent;
         public RidingGear NearGear => gearNear;
-
-        //public float Health => health;
-        //public float Attack => attack;
-        //public float Defend => defend;
-        //public float Rate_Attack => rate_Attack;
         public float Rate_Movement => rate_Movement;
         public float Magnification_WalkToRun => mag_WalkToRun;  // 걷기/달리기
         public float Rotation_Sensitivity => rotation_Sense;
@@ -102,62 +93,53 @@ namespace Seti
         // 라이프 사이클
         protected virtual void Start()
         {
-            Initialize();
+            // Check Animator Controller
+            animator = GetComponentInChildren<Controller_Animator>();
+            animator.Initialize();
+
+            // 초기화
+            Manager_Channel.Instance.Register(this);
         }
 
         // 추상화
         protected abstract Condition_Actor CreateState();
 
-        // 초기화
-        public void Initialize()
+        public void Accept_StanceChange()
         {
-            // Check Animator Controller
-            animator = GetComponentInChildren<Controller_Animator>();
-            animator.Initialize();
+            Debug.Log("다른 액터의 상태 변화 수신!");
+        }
+
+        public void Accept_ActionChange()
+        {
+            Debug.Log("다른 액터의 행동 변화 수신!");
         }
 
         public void SetGear(RidingGear gear) => gearCurrent = gear;
 
-        private void SwitchController()
-        {
-            switch (blueprint.controlType)
-            {
-                case ControlType.Input:
-                    SwitchControlType(new Control_Input());
-                    break;
-
-                case ControlType.AI:
-                    SwitchControlType(new Control_FSM());
-                    break;
-            }
-        }
-
-        private void SwitchControlType(IControl newControl)
-        {
-            if (controller)
-            {
-                control = controller.GetControlType() as IControl;
-                control?.OnExit(this);
-            }
-
-            control = newControl;
-            control.OnEnter(this);
-        }
-
         // 이벤트 메서드
+        #region Event Methods
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Gear"))
+            if (other.TryGetComponent<Actor>(out var otherActor))
             {
-                if (ComponentUtility.TryGetComponentAll<RidingGear>(other.transform, out var gear))
-                    gearNear = gear;
+                Debug.Log($"{name}이(가) {otherActor.name}을(를) 만났다!");
+                OnMeetAnother?.Invoke(otherActor);
+            }
+
+            if (other.TryGetComponent<RidingGear>(out var gear))
+            {
+                gearNear = gear;
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            
+            if (other.GetComponent<RidingGear>())
+            {
+                gearNear = null;
+            }
         }
+        #endregion
 
         // 유틸리티
         #region Utilities

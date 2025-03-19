@@ -24,8 +24,10 @@ namespace Seti
         private DataComparison_Board comparison_Board;
         private DataComparison_Boots comparison_Boots;
 
+        // 이벤트
         public UnityAction<bool> OnCheckUnit;
 
+        // 리플렉션
         private readonly string[] targetFields_Board = {
         "maxSpeed", "turnSpeed", "tiltSpeed", "reverseSpeed",
         "acceleration", "momentum", "downForce", "brakeCoefficient"
@@ -103,8 +105,8 @@ namespace Seti
                 }
             }
 
-            bool isAnyOpen = Array.Exists(layoutUnitArray, element => element.activeSelf);
-            OnCheckUnit?.Invoke(isAnyOpen);
+            bool isAnyOn = Array.Exists(layoutUnitArray, element => element.activeSelf);
+            OnCheckUnit?.Invoke(isAnyOn);
         }
 
         private void Comparison_Boots(RidingGear gear, Parts parts)

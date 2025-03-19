@@ -5,7 +5,7 @@ namespace Seti
     /// <summary>
     /// Abstract NPC
     /// </summary>
-    public abstract class NPC : MonoBehaviour
+    public abstract class NPC : Character
     {
         // ÇÊµå
         #region Variables

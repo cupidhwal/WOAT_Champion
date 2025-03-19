@@ -7,9 +7,6 @@ namespace Seti
     /// </summary>
     public class AI : Actor
     {
-        protected override Condition_Actor CreateState()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override Condition_Actor CreateState() => gameObject.AddComponent<Condition_AI>();
     }
 }

@@ -30,6 +30,9 @@ MonoBehaviour:
       type: {class: Look, ns: Seti, asm: Assembly-CSharp}
       data:
         strategies: []
+        headXRotation: 0
+        headYRotation: 0
+        bodyYRotation: 0
     - rid: 5694582337867087956
       type: {class: Move, ns: Seti, asm: Assembly-CSharp}
       data:

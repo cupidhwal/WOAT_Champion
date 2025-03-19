@@ -12,6 +12,8 @@ namespace Seti
         // 필드
         #region Variables
         [SerializeField]
+        private TextMeshProUGUI genTag;
+        [SerializeField]
         private TextMeshProUGUI generation;
         [SerializeField]
         private TextMeshProUGUI text_default;
@@ -30,14 +32,20 @@ namespace Seti
 
         // 라이프 사이클
         #region Life Cycle
-        private void Start()
+        private void OnEnable()
         {
+            layout.OnCheckUnit += ToggleTag;
             layout.OnCheckUnit += ToggleText;
             layout.OnCheckUnit += ToggleButton;
+
+            genTag.gameObject.SetActive(false);
+            objectName.text = string.Empty;
+            generation.text = string.Empty;
         }
 
         private void OnDisable()
         {
+            layout.OnCheckUnit -= ToggleTag;
             layout.OnCheckUnit -= ToggleText;
             layout.OnCheckUnit -= ToggleButton;
 
@@ -88,6 +96,7 @@ namespace Seti
         }
 
         // 토글
+        private void ToggleTag(bool _) => genTag.gameObject.SetActive(true);
         private void ToggleText(bool flag) => text_default.gameObject.SetActive(!flag);
         private void ToggleButton(bool flag) => button_Change.gameObject.SetActive(flag);
     }
