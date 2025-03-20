@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ceabea7554cb246a85b045d3f85284, type: 3}
+  m_Name: Scenario_00_1
+  m_EditorClassIdentifier: 
+  id: 1
+  title: "\uB450 \uBC88\uC9F8 \uD50C\uB9B0\uB290"
+  dialogues:
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uB108......! \uB108 \uBB50\uC57C! \uC5B4\uB5BB\uAC8C \uB41C \uAC70\uC57C!
+      \uB124\uAC00 \uC65C, \uC544\uB2C8, \uC5B4\uB5BB\uAC8C \uC5EC\uAE30\uC5D0 \uC788\uB294
+      \uAC70\uC57C?"
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uB124\uAC00 \uB0A0 \uB370\uB9AC\uACE0 \uB3CC\uC544\uC628 \uAC70 \uC544\uB2C8\uC5C8\uC5B4?"
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uADF8\uB7F4 \uB9AC\uAC00 \uC5C6\uC796\uC544! \uB09C \uACBD\uACC4\uB97C
+      \uC9C0\uCF1C\uC57C \uD558\uB2C8\uAE4C!"
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uADF8\uB807\uB2E4\uBA74 \uC815\uB9D0 \uC774\uC0C1\uD55C\uB370."
+    nextType: 0
+  - character: 0
+    name: ' '
+    sentence: "\uB098\uB294 \uB9C8\uACBD\uC5D0\uC11C \uC8FD\uC74C\uC744 \uACBD\uD5D8\uD55C
+      \uC77C\uACFC \uC885\uC804\uC758 \uBD80\uD65C\uC5D0 \uB300\uD574 \uD50C\uB9B0\uB290\uC5D0\uAC8C
+      \uC774\uC57C\uAE30\uD588\uB2E4."
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uADF8\uB7F0 \uC774\uC57C\uAE30\uB294 \uCC98\uC74C \uB4E4\uC5B4. \uB9C8\uACBD\uC5D0
+      \uB4E4\uC5B4\uAC04 \uC0AC\uB78C\uC774 \uC8FD\uC74C\uC5D0\uC11C \uBD80\uD65C\uD55C\uB2E4\uB2C8."
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uD639\uC2DC \uC774\uAC83 \uB54C\uBB38\uC77C\uAE4C?"
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uC73C\uC6E9. \uADF8\uB807\uAC8C \uB054\uCC0D\uD558\uAC8C \uC0DD\uAE34
+      \uBB3C\uAC74\uC740 \uCC98\uC74C \uBD10! \uC124\uB9C8 \uB9C8\uACBD\uC5D0\uC11C
+      \uC8FC\uC6CC \uC628 \uAC70\uC57C?"
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uC544\uB2C8. \uC774\uAC74 \uB2C8\uD2B8\uD558\uBCA4\uC5D0 \uC624\uAE30
+      \uC804\uBD80\uD130 \uB0B4\uAC00 \uAC00\uC9C0\uACE0 \uC788\uC5C8\uC5B4. \uC774\uAC8C
+      \uB9C8\uACBD\uC758 \uBB3C\uAC74\uC77C \uAC70\uB77C\uB294 \uC9D0\uC791\uC740
+      \uD588\uC9C0\uB9CC \uB9D0\uC774\uC9C0."
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uADF8\uB798, \uC5B4\uCA4C\uBA74 \uADF8 \uAD34\uC0C1\uD55C \uAC83
+      \uB54C\uBB38\uC77C\uC9C0\uB3C4 \uBAA8\uB974\uACA0\uB2E4. \uBB50, \uADF8\uB807\uAC8C
+      \uAD81\uAE08\uD558\uBA74 \uC880 \uB354 \uC8FD\uC5B4\uBCF4\uC9C0\uADF8\uB798?"
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uC7AC\uC218 \uC5C6\uB294 \uB144. \uBB38\uC774\uB098 \uC5F4\uC5B4."
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uC544, \uB9DE\uB2E4! \uB108 \uB9D0\uC774\uC57C. \uC5B4\uCC28\uD53C
+      \uC8FD\uC5B4\uB3C4 \uBD80\uD65C\uD558\uB294 \uBAB8\uC774\uACE0 \uB610 \uB2E4\uC2DC
+      \uB9C8\uACBD\uC5D0 \uB4E4\uC5B4\uAC08 \uC0DD\uAC01\uC774\uB77C\uBA74, \uBD80\uD0C1\uC774
+      \uC788\uC5B4."
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uBB54\uB370?"
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uB9C8\uC744 \uC8FC\uBBFC \uD55C \uBA85\uC774 \uC548 \uBCF4\uC5EC.
+      \uB2E4\uB978 \uC0AC\uB78C\uB4E4\uB3C4 \uB2E4 \uCC3E\uC544\uBD24\uB2E4\uB294\uB370
+      \uB9D0\uC774\uC57C. \uB2C8\uD2B8\uD558\uBCA4 \uAD6C\uC11D\uAD6C\uC11D\uC744
+      \uC804\uBD80!"
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uC5B4\uCA4C\uBA74 \uB9C8\uACBD\uC5D0 \uB4E4\uC5B4\uAC04 \uAC74\uC9C0\uB3C4
+      \uBAB0\uB77C. \uC5B4\uB5BB\uAC8C \uADF8\uB7AC\uB294\uC9C0\uB294 \uBAA8\uB974\uACA0\uC9C0\uB9CC."
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uADF8\uB7FC \uB124\uAC00 \uB354 \uC798 \uC54C\uACA0\uC9C0."
+    nextType: 0
+  - character: 2
+    name: "\uD50C\uB9B0\uB290"
+    sentence: "\uB098, \uB098\uB77C\uACE0 \uD558\uB8E8 \uC885\uC77C \uACBD\uACC4\uC5D0
+      \uBD99\uC5B4 \uC788\uB294 \uAC74 \uC544\uB2C8\uB780 \uB9D0\uC774\uC57C!"
+    nextType: 0
+  - character: 1
+    name: "\uC5D0\uBC14"
+    sentence: "\uD37D\uC774\uB098. \uC5B4\uCA0C\uB4E0, \uACB8\uC0AC\uACB8\uC0AC \uD589\uBC29\uBD88\uBA85\uB41C
+      \uC0AC\uB78C\uC744 \uCC3E\uC544\uBD10\uB2EC\uB77C\uB294 \uB9D0\uC774\uC9C0?
+      \uC54C\uC558\uB2E4."
+    nextType: 0

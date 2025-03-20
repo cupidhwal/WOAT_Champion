@@ -48,8 +48,8 @@ namespace Seti
         }
         public bool OpenDialogue(int index)
         {
-            ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
-            if (data == null) return false;
+            //ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
+            //if (data == null) return false;
 
             //if (Manager_Data.Instance.DialogueData.CheckSeens[index])
             //    return false;
@@ -113,14 +113,14 @@ namespace Seti
         }
         private void DisableComposition(string stageName, int dialogueIndex, GameObject target)
         {
-            ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
-            if (data == null) return;
+            //ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
+            //if (data == null) return;
 
-            ScenarioProgress progress = data.dialogueDatas.FirstOrDefault(d => d.ScenarioName == stageName);
-            if (!data.dialogueDatas.Contains(progress) || !progress.CheckSeens[dialogueIndex])
-            {
-                target.SetActive(false);
-            }
+            //ScenarioProgress progress = data.dialogueDatas.FirstOrDefault(d => d.ScenarioName == stageName);
+            //if (!data.dialogueDatas.Contains(progress) || !progress.CheckSeens[dialogueIndex])
+            //{
+            //    target.SetActive(false);
+            //}
         }
 
         // 기타 메서드

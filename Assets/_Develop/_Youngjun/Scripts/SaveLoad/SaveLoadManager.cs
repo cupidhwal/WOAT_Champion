@@ -24,8 +24,8 @@ namespace Noah
         //public string relicSavePath = "/RelicData.json";
         //public RelicSaveData relicSaveData = new RelicSaveData();
 
-        public string scenarioSaveDataPath = "/scenarioData.json";
-        public ScenarioData scenarioSaveData = new();
+        //public string scenarioSaveDataPath = "/scenarioData.json";
+        //public ScenarioData scenarioSaveData = new();
 
         //public string upgradeGoldSavePath = "/UpgradeGold.json";
         //public Gold upgradeGold = new Gold();
@@ -55,7 +55,7 @@ namespace Noah
             //playerStats.ResetData();
             //playerItem.ResetData();
             //relicSaveData.ResetData();
-            scenarioSaveData.ResetData();
+            //scenarioSaveData.ResetData();
         }
 
         void AddDictionary()
@@ -64,7 +64,7 @@ namespace Noah
             //dataGroupDic.Add(upgradeCountSavePath, false);
             //dataGroupDic.Add(playerItemSavePath, false);
             //dataGroupDic.Add(relicSavePath, false);
-            dataGroupDic.Add(scenarioSaveDataPath, false);
+            //dataGroupDic.Add(scenarioSaveDataPath, false);
         }
 
         public bool IsLoadData(string _path)
@@ -159,7 +159,7 @@ namespace Noah
             //LoadData(upgradeCountSavePath, ref upgradeCount);
             //LoadData(playerItemSavePath, ref playerItem);
             //LoadData(relicSavePath, ref relicSaveData);
-            LoadData(scenarioSaveDataPath, ref scenarioSaveData);
+            //LoadData(scenarioSaveDataPath, ref scenarioSaveData);
 
             //LoadData(upgradeGoldSavePath, ref upgradeGold);
         }
