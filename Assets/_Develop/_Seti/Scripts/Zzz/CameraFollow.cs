@@ -18,7 +18,7 @@ namespace Seti
         {
             cinemachineCamera = GetComponent<CinemachineCamera>();
             //cinemachineCamera.Lens.NearClipPlane = nearClipPlane;
-            cinemachineCamera.Follow = InitializeManager.Instance.Player.transform;
+            cinemachineCamera.Follow = Manager_Initialize.Instance.Player.transform;
         }
         #endregion
     }

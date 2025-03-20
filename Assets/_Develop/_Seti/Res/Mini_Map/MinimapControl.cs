@@ -16,7 +16,7 @@ namespace Seti
         private void Start()
         {
             if (!player)
-                player = InitializeManager.Instance.Player;
+                player = Manager_Initialize.Instance.Player;
             playerIcon = transform.GetChild(0);
         }
 

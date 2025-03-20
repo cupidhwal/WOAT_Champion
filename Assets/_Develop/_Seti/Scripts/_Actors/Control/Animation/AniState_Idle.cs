@@ -25,20 +25,13 @@ namespace Seti
         // 상태 전환 조건 메서드
         public override Type CheckTransitions()
         {
-            switch (context.Actor.Condition.CurrentAction)
+            return context.Actor.Condition.CurrentAction switch
             {
-                case Action.Walk:
-                    return typeof(AniState_Move);
-
-                case Action.Run:
-                    return typeof(AniState_Move);
-
-                case Action.Dash:
-                    return typeof(AniState_Dash);
-
-                default:
-                    return null;
-            }
+                Action.Walk => typeof(AniState_Move),
+                Action.Run => typeof(AniState_Move),
+                Action.Dash => typeof(AniState_Dash),
+                _ => null,
+            };
         }
 
         // 상태 실행 중

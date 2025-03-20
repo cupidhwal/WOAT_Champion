@@ -4859,6 +4859,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1459759673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1459759675}
+  - component: {fileID: 1459759674}
+  m_Layer: 0
+  m_Name: FSM_Scenario
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1459759674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459759673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d792e20525f044390fa8863ea61969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  elapsed: 0
+  ableStates:
+  - {fileID: 11400000, guid: 3f3db9e456ef4a5478eedaaf5c504fef, type: 2}
+  - {fileID: 11400000, guid: 7ce512d4317e09941aaf068f08fbd1af, type: 2}
+  - {fileID: 11400000, guid: 49489e9312757eb4fb8ac0d546ea85ae, type: 2}
+  - {fileID: 11400000, guid: da01e29dbe6dc674fa8e80fbbb4a3b43, type: 2}
+--- !u!4 &1459759675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459759673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477559591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6966,6 +7017,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7897702860000358994, guid: 96639622c5e801146bf9565ad4d08fa6, type: 3}
+      propertyPath: initialChannel
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7235,13 +7290,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   core: {fileID: 11400000, guid: 44cdb6e39103207419888a8d27c15f5f, type: 2}
   onPower: 0
-  maxSpeed: 36.449997
-  turnSpeed: 2.7777777
-  tiltSpeed: 3.7777777
-  reverseSpeed: 14.579999
-  acceleration: 630
-  momentum: 3150
-  downForce: 1260
+  maxSpeed: 20.249998
+  turnSpeed: 4
+  tiltSpeed: 5
+  reverseSpeed: 8.099999
+  acceleration: 450
+  momentum: 1800
+  downForce: 720
   brakeCoefficient: 0.5
   boardDirection: 0
 --- !u!114 &7113836022741793667
@@ -7474,13 +7529,14 @@ SceneRoots:
   - {fileID: 8658983414656737491}
   - {fileID: 3134748941347719077}
   - {fileID: 3632120273447438312}
+  - {fileID: 1459759675}
   - {fileID: 949191645}
   - {fileID: 318626320}
   - {fileID: 435921587}
   - {fileID: 2051762069}
   - {fileID: 1457179012}
   - {fileID: 1779731770}
-  - {fileID: 3752473816263500637}
   - {fileID: 9117291981066420586}
+  - {fileID: 3752473816263500637}
   - {fileID: 222816305}
   - {fileID: 7113836022741793665}

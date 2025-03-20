@@ -11,7 +11,7 @@ namespace Seti
 
         public override void Execute(GameObject _)
         {
-            InitializeManager.Instance.Player.transform.position = targetPos;
+            Manager_Initialize.Instance.Player.transform.position = targetPos;
         }
     }
 }

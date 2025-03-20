@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    [CreateAssetMenu(fileName = "Core_Boots", menuName = "Scriptable Objects/Core_Boots")]
+    [CreateAssetMenu(fileName = "Core", menuName = "Gear/Core - Boots")]
     public class Core_Boots : Core_Gear
     {
         public Propulsor_Electronic propulsor;

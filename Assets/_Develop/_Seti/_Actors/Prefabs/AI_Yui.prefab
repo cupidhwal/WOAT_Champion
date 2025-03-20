@@ -4111,6 +4111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStance: 0
   currentAction: 0
+  currentInteraction: 0
   inAction: 0
 --- !u!114 &5796632149804778799
 MonoBehaviour:

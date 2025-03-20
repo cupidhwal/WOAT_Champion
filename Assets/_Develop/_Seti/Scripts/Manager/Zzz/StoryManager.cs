@@ -187,7 +187,7 @@ namespace Seti
             base.Awake();
 
             // 초기화
-            InitializeManager.Instance.Set_Second += Initialize;
+            Manager_Initialize.Instance.Set_Second += Initialize;
         }
 
         private void Initialize()

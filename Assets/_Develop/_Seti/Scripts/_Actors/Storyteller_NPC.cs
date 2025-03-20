@@ -64,7 +64,7 @@ namespace Seti
         protected virtual void Start()
         {
             // 초기화
-            player = InitializeManager.Instance.Player;
+            player = Manager_Initialize.Instance.Player;
         }
         #endregion
 

@@ -5,6 +5,7 @@ namespace Seti
     /// <summary>
     /// Player
     /// </summary>
+    [RequireComponent(typeof(Condition_Player))]
     public class Player : Actor
     {
         // 필드
@@ -20,8 +21,5 @@ namespace Seti
         private NPC NPC;
         public NPC CurrentNPC => NPC;
         public void SetNPC(NPC npc) => NPC = npc;
-
-        // 오버라이드
-        protected override Condition_Actor CreateState() => gameObject.AddComponent<Condition_Player>();
     }
 }

@@ -12,13 +12,15 @@ namespace Seti
         #region Variables
         [Header("Actor")]
         [SerializeField]
+        private Actor hostActor = null;
+        [SerializeField]
         private List<Actor> waitingActors = new();
 
         [Header("Channel")]
         [SerializeField]
         private GameObject channel;
         [SerializeField]
-        private int initialChannel = 10;
+        private int initialChannel = 5;
 
         // Pooling
         private readonly Queue<GameObject> channels = new();
@@ -44,14 +46,17 @@ namespace Seti
             actor.OnMeetAnother += OnNotify;
         }
 
-        // 이벤트 신호 수신
+        // 이벤트 신호 수신 (호스트 지정)
         public void OnNotify(Actor actor)
         {
             if (!waitingActors.Contains(actor))
                 waitingActors.Add(actor);
 
-            // 액터가 2명 이상이라면 채널을 생성
-            if (waitingActors.Count >= 2)
+            if (hostActor == null)
+                hostActor = actor;
+
+            // 채널 개설은 호스트가 담당
+            if (waitingActors.Count >= 2 && hostActor == actor)
             {
                 CreateChannel();
             }
@@ -65,6 +70,7 @@ namespace Seti
 
             AddChannel(waitingActors[0].transform);
             waitingActors.Clear();
+            hostActor = null;
         }
         private GameObject AddChannel(Transform transform)
         {
@@ -74,12 +80,11 @@ namespace Seti
             }
             result.transform.position = transform.position;
             result.SetActive(true);
-
             return result;
         }
         public void DelChannel(GameObject gameObject)
         {
-            if (gameObject.GetComponent<ScenarioChannel>())
+            if (gameObject.GetComponent<InteractionChannel>())
             {
                 channels.Enqueue(gameObject);
                 gameObject.SetActive(false);

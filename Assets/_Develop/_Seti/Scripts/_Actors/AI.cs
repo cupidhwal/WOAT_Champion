@@ -5,8 +5,8 @@ namespace Seti
     /// <summary>
     /// AI Actor
     /// </summary>
+    [RequireComponent(typeof(Condition_AI))]
     public class AI : Actor
     {
-        protected override Condition_Actor CreateState() => gameObject.AddComponent<Condition_AI>();
     }
 }

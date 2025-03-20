@@ -7,28 +7,20 @@ namespace Seti
     /// </summary>
     public class NPC_MacroMECH : NPC
     {
-        // 필드
-        #region Variables
-        [SerializeField]
-        protected Player player;
-        #endregion
-
         // 이벤트 메서드
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.TryGetComponent<Player>(out var player))
             {
-                player = other.GetComponent<Player>();
                 player.SetNPC(this);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.TryGetComponent<Player>(out var player))
             {
                 player.SetNPC(null);
-                player = null;
             }
         }
     }

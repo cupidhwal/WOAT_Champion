@@ -20,7 +20,15 @@ namespace Seti
         Walk,
         Run,
         Dash,
-        Drive
+        Drive,
+    }
+
+    public enum Interaction
+    {
+        Idle,
+        Dialogue,
+        Choice,
+        Action
     }
 
     // 세대 추가 : Parts

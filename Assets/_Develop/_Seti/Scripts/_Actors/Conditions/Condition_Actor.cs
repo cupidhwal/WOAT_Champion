@@ -16,6 +16,8 @@ namespace Seti
         [SerializeField]
         private Action currentAction;
         [SerializeField]
+        private Interaction currentInteraction;
+        [SerializeField]
         protected bool inAction = false;
 
         // 일반
@@ -25,12 +27,14 @@ namespace Seti
         // 이벤트
         public UnityAction OnStanceChange;
         public UnityAction OnActionChange;
+        public UnityAction OnInteractionChange;
         #endregion
 
         // 속성
         #region Properties
         public Stance CurrentStance => currentStance;
         public Action CurrentAction => currentAction;
+        public Interaction CurrentInteraction => currentInteraction;
         public bool InAction => inAction;
         public bool IsGrounded { get; protected set; } = true;
         #endregion
@@ -53,30 +57,13 @@ namespace Seti
 
         public void StanceChange(Stance stance)
         {
-            switch (stance)
-            {
-                case Stance.Normal:
-                    currentStance = Stance.Normal;
-                    break;
-
-                case Stance.Board:
-                    currentStance = Stance.Board;
-                    break;
-
-                case Stance.Boots:
-                    currentStance = Stance.Boots;
-                    break;
-            }
+            currentStance = stance;
             OnStanceChange?.Invoke();
         }
 
         public void ActionChange(Action action)
         {
-            if (currentStance == Stance.Normal)
-            {
-                currentAction = action;
-            }
-            else
+            if (currentStance == Stance.Board)
             {
                 currentAction = action switch
                 {
@@ -84,7 +71,17 @@ namespace Seti
                     _ => Action.Drive,
                 };
             }
+            else
+            {
+                currentAction = action;
+            }
             OnActionChange?.Invoke();
+        }
+
+        public void InteractionChange(Interaction interaction)
+        {
+            currentInteraction = interaction;
+            OnInteractionChange?.Invoke();
         }
 
         // 이벤트 메서드

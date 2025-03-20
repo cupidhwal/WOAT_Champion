@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Seti.Controller_FSM;
 
 namespace Seti
 {
@@ -18,7 +17,6 @@ namespace Seti
         #endregion
 
         // 메서드
-        #region Methods
         public void SetMachineAndContext(StateMachine<T> stateMachine, T context)
         {
             this.stateMachine = stateMachine;
@@ -40,7 +38,6 @@ namespace Seti
 
         // 상태 실행 중
         public abstract void Update(float deltaTime);
-        #endregion
     }
 
     public abstract class MonoState<T> : State<T> where T : MonoBehaviour
@@ -84,7 +81,6 @@ namespace Seti
         #endregion
 
         // 생성자
-        #region Constructor
         public StateMachine(T context, State<T> initialState)
         {
             this.context = context;
@@ -92,10 +88,7 @@ namespace Seti
             CurrentState = initialState;
             CurrentState.OnEnter();
         }
-        #endregion
 
-        // 메서드
-        #region Methods
         // State 등록
         public void AddState(State<T> state)
         {
@@ -144,25 +137,5 @@ namespace Seti
             OnStateChanged?.Invoke(CurrentState);
             return CurrentState as R;
         }
-        #endregion
     }
 }
-
-/*
-외부 구독 예시
-public class FSMObserver : MonoBehaviour
-{
-    private StateMachine<Actor> stateMachine;
-
-    private void Start()
-    {
-        stateMachine = new StateMachine<Actor>(this, new IdleState());
-        stateMachine.OnStateChanged += HandleStateChanged; // 이벤트 구독
-    }
-
-    private void HandleStateChanged(State<Actor> newState)
-    {
-        Debug.Log($"State changed to: {newState.GetType().Name}");
-    }
-}
- */

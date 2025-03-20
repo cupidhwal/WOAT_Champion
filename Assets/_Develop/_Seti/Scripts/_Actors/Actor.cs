@@ -101,9 +101,6 @@ namespace Seti
             Manager_Channel.Instance.Register(this);
         }
 
-        // 추상화
-        protected abstract Condition_Actor CreateState();
-
         public void Accept_StanceChange()
         {
             Debug.Log("다른 액터의 상태 변화 수신!");
@@ -126,7 +123,7 @@ namespace Seti
                 OnMeetAnother?.Invoke(otherActor);
             }
 
-            if (other.TryGetComponent<RidingGear>(out var gear))
+            if (ComponentUtility.TryGetComponentInParent<RidingGear>(other.transform, out var gear))
             {
                 gearNear = gear;
             }
@@ -134,7 +131,7 @@ namespace Seti
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.GetComponent<RidingGear>())
+            if (other.GetComponentInParent<RidingGear>())
             {
                 gearNear = null;
             }
