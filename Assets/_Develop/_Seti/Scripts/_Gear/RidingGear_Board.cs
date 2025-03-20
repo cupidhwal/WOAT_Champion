@@ -13,6 +13,8 @@ namespace Seti
         // 필드
         #region Variables
         [Header("Spec : Board")]
+        [SerializeField]
+        protected bool onPower = false;
         [SerializeField, ReadOnly]
         protected float maxSpeed;
         [SerializeField, ReadOnly]
@@ -41,6 +43,7 @@ namespace Seti
         // 속성
         #region Properties
         public Core_Board Core => core as Core_Board;
+        public bool OnPower => onPower;
         public bool BoardDir
         {
             get

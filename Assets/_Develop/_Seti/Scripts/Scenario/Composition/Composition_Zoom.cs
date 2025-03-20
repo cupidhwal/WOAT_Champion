@@ -19,7 +19,7 @@ namespace Seti
 
         public override void Execute(GameObject obj)
         {
-            StoryManager.Instance.CorExcutor(CameraCor(durationExcute, presentZoomEff));
+            Manager_Scenario.Instance.CorExcutor(CameraCor(durationExcute, presentZoomEff));
         }
 
         // 반복기
@@ -27,21 +27,21 @@ namespace Seti
         // 카메라 연출 : Zoom
         IEnumerator CameraCor(float excuteDuration, float presentZoomEff)
         {
-            StoryManager.Instance.IsComposition = true;
+            Manager_Scenario.Instance.IsComposition = true;
 
             // 타겟 지점으로 카메라 이동
             float elapsed = 0f;
             while (elapsed < excuteDuration)
             {
                 elapsed += Time.deltaTime;
-                StoryManager.Instance.Cinemachine.Lens.OrthographicSize = Mathf.Lerp(StoryManager.Instance.Cinemachine.Lens.OrthographicSize,
+                Manager_Scenario.Instance.Cinemachine.Lens.OrthographicSize = Mathf.Lerp(Manager_Scenario.Instance.Cinemachine.Lens.OrthographicSize,
                                                                                      presentZoomEff,
                                                                                      sharpnessExcute * Time.deltaTime);
                 yield return null;
             }
-            StoryManager.Instance.Cinemachine.Lens.OrthographicSize = presentZoomEff;
+            Manager_Scenario.Instance.Cinemachine.Lens.OrthographicSize = presentZoomEff;
 
-            StoryManager.Instance.IsComposition = false;
+            Manager_Scenario.Instance.IsComposition = false;
             yield break;
         }
         #endregion

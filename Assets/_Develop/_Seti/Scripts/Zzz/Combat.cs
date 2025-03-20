@@ -48,7 +48,7 @@ namespace Seti
 
             trigger.enabled = false;
 
-            StoryManager.Instance.OpenDialogue(2);
+            Manager_Scenario.Instance.OpenDialogue(2);
         }
 
         // Tutotial 끝 / 대화 시작

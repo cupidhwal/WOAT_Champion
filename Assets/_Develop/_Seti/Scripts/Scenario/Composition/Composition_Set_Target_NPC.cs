@@ -19,7 +19,7 @@ namespace Seti
         public override void Execute(GameObject obj)
         {
             GameObject target = targetRoot.GetChild(4).GetChild(targetNPCIndex).gameObject;
-            StoryManager.Instance.CurrentComp.target = target;
+            Manager_Scenario.Instance.CurrentComp.target = target;
         }
     }
 }

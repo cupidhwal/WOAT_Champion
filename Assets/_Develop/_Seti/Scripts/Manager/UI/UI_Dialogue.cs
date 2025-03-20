@@ -13,7 +13,7 @@ namespace Seti
     /// 대화 데이터 파일 읽기
     /// 대화 데이터 UI 적용
     /// </summary>
-    public class DialogueUI : MonoBehaviour
+    public class UI_Dialogue : MonoBehaviour
     {
         #region Variables
         // Current
@@ -66,13 +66,13 @@ namespace Seti
         public void StartDialogue(int dialogIndex)
         {
             //현재 대화씬(dialogIndex) 내용을 큐에 입력
-            foreach (var dialogue in DataManager.Instance.GetDialogData().Dialogues.dialogues)
-            {
-                if (dialogue.number == dialogIndex)
-                {
-                    dialogues.Enqueue(dialogue);
-                }
-            }
+            //foreach (var dialogue in Manager_Data.Instance.GetDialogData().Dialogues.dialogues)
+            //{
+            //    if (dialogue.number == dialogIndex)
+            //    {
+            //        dialogues.Enqueue(dialogue);
+            //    }
+            //}
 
             //첫번째 대화를 보여준다
             DrawNextDialogue();
@@ -90,29 +90,29 @@ namespace Seti
             }
 
             //dialogs에서 하나 꺼내온다
-            Dialogue dialogue = dialogues.Dequeue();
-            currentNumber = dialogue.number;
+            //Dialogue dialogue = dialogues.Dequeue();
+            //currentNumber = dialogue.number;
 
-            if (dialogue.character == 1)
-            {
-                npcImage.SetActive(true);
-                npcImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/MainCharacter_Stand");
-            }
-            else //dialog.character <= 0
-            {
-                npcImage.SetActive(false);
-            }
+            //if (dialogue.character == 1)
+            //{
+            //    npcImage.SetActive(true);
+            //    npcImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/MainCharacter_Stand");
+            //}
+            //else //dialog.character <= 0
+            //{
+            //    npcImage.SetActive(false);
+            //}
 
-            nextButton.gameObject.SetActive(false);
+            //nextButton.gameObject.SetActive(false);
 
-            nameText.text = dialogue.name;
+            //nameText.text = dialogue.name;
 
-            StopAllCoroutines();
-            StartCoroutine(TypingSentence(dialogue.sentence));
+            //StopAllCoroutines();
+            //StartCoroutine(TypingSentence(dialogue.sentence));
 
-            // 대화 도중 연출 처리
-            if (dialogue.nextType == NextType.Composition)
-                StoryManager.Instance.SelectComposition(dialogue.number, dialogue.order);
+            //// 대화 도중 연출 처리
+            //if (dialogue.nextType == NextType.Composition)
+            //    Manager_Scenario.Instance.SelectComposition(dialogue.number, dialogue.order);
         }
 
         //텍스트 타이핑 연출
@@ -143,12 +143,12 @@ namespace Seti
 
         private void Seen()
         {
-            DataManager.Instance.DialogueData.CheckSeens[currentNumber] = true;
+            //Manager_Data.Instance.DialogueData.CheckSeens[currentNumber] = true;
 
-            if (DataManager.Instance.DialogueData.CheckSeens[^1])
-                DataManager.Instance.DialogueData.SeenCompleted = true;
+            //if (Manager_Data.Instance.DialogueData.CheckSeens[^1])
+            //    Manager_Data.Instance.DialogueData.SeenCompleted = true;
 
-            SaveLoadManager.Instance.SaveScenario(DataManager.Instance.DialogueData);
+            //SaveLoadManager.Instance.SaveScenario(Manager_Data.Instance.DialogueData);
         }
     }
 }

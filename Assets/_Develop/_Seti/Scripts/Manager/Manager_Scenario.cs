@@ -10,7 +10,7 @@ namespace Seti
     /// <summary>
     /// 게임 스토리 총괄 디렉터
     /// </summary>
-    public class StoryManager : Singleton<StoryManager>
+    public class Manager_Scenario : Singleton<Manager_Scenario>
     {
         // 필드
         #region Variables
@@ -20,10 +20,6 @@ namespace Seti
         private int currentIndex;
         [SerializeField]
         private List<string> dialogueList = new();
-
-        // 참조
-        private UIManager uiManager;
-        private Condition_Player condition_Player;
 
         // 연출
         [Header("Composition")]
@@ -35,12 +31,10 @@ namespace Seti
 
         // 속성
         #region Properties
-        public Player Player { get; private set; }
         public CinemachineCamera Cinemachine { get; private set; }
         public Composition CurrentComp => currentComposition;
         public GameObject TempTarget { get; private set; }
         public string CurrentDialogue { get; private set; }
-        public string StageName { get; private set; }
         public bool IsDialogue { get; private set; } = false;
         public bool IsComposition { get; set; } = false;
         #endregion
@@ -50,29 +44,29 @@ namespace Seti
         {
             currentIndex = index;
             CurrentDialogue = dialogueList[currentIndex];
-            DataManager.Instance.GetDialogData();
+            Manager_Data.Instance.GetDialogData();
         }
         public bool OpenDialogue(int index)
         {
             ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
             if (data == null) return false;
 
-            if (DataManager.Instance.DialogueData.CheckSeens[index])
-                return false;
+            //if (Manager_Data.Instance.DialogueData.CheckSeens[index])
+            //    return false;
 
-            uiManager.OpenDialogueUI(index);
+            //uiManager.OpenDialogueUI(index);
             //condition_Player.PlayerSetActive(false);
+
             return true;
         }
         public void NextDialogue()
         {
             if (IsComposition) return;
 
-            uiManager.NextDialogueUI();
+            //uiManager.NextDialogueUI();
         }
 
         // 연출
-        public void SetTarget(GameObject target) => TempTarget = target;
         public void CorStopper() => StopAllCoroutines();
         public void CorExcutor(IEnumerator cor) => StartCoroutine(cor);
         public void SelectComposition(int number, int order)
@@ -90,28 +84,28 @@ namespace Seti
             // 마을 포탈
             //GameObject portals = StageManager.Instance.CurrentStage.transform.GetChild(0).gameObject;
             GameObject portals = gameObject;
-            switch (DataManager.Instance.deathCount)
-            {
-                case 1:
-                    DisableComposition("Stage000", 1, portals);
-                    break;
+            //switch (Manager_Data.Instance.deathCount)
+            //{
+            //    case 1:
+            //        DisableComposition("Stage000", 1, portals);
+            //        break;
 
-                case 2:
-                    DisableComposition("Stage000", 2, portals);
-                    break;
+            //    case 2:
+            //        DisableComposition("Stage000", 2, portals);
+            //        break;
 
-                case 3:
-                    DisableComposition("Stage000", 3, portals);
-                    break;
+            //    case 3:
+            //        DisableComposition("Stage000", 3, portals);
+            //        break;
 
-                case 4:
-                    DisableComposition("Stage000", 4, portals);
-                    break;
+            //    case 4:
+            //        DisableComposition("Stage000", 4, portals);
+            //        break;
 
-                case 5:
-                    DisableComposition("Stage000", 5, portals);
-                    break;
-            }
+            //    case 5:
+            //        DisableComposition("Stage000", 5, portals);
+            //        break;
+            //}
 
             // 미니맵
             GameObject miniMap = FindAnyObjectByType<Mini_Map>().gameObject;
@@ -136,47 +130,30 @@ namespace Seti
             if (IsDialogue) return;
 
             //StageName = StageManager.Instance.CurrentStage.name.Replace("(Clone)", "").Trim();
-            switch (StageName)
-            {
-                case "Stage_T":
-                    SetDialogue(0);
-                    OpenDialogue(0);
-                    break;
+            //switch (StageName)
+            //{
+            //    case "Stage_T":
+            //        SetDialogue(0);
+            //        OpenDialogue(0);
+            //        break;
 
-                case "Stage000":
-                    SetDialogue(1);
-                    DialogueData townData = DataManager.Instance.GetDialogData();
-                    switch (DataManager.Instance.deathCount)
-                    {
-                        case 1:
-                            if (townData != null && !townData.CheckSeens[0])
-                                OpenDialogue(0);
-                            break;
+            //    case "Stage000":
+            //        SetDialogue(1);
+            //        break;
 
-                        case 5:
-                            if (townData != null && !townData.CheckSeens[5])
-                                OpenDialogue(5);
-                            break;
+            //    case "Stage001":
+            //        SetDialogue(2);
+            //        OpenDialogue(0);
+            //        break;
 
-                        default:
-                            //condition_Player.PlayerSetActive(true);
-                            break;
-                    }
-                    break;
+            //    case "Stage003":
+            //        SetDialogue(3);
+            //        break;
 
-                case "Stage001":
-                    SetDialogue(2);
-                    OpenDialogue(0);
-                    break;
-
-                case "Stage003":
-                    SetDialogue(3);
-                    break;
-
-                case "Stage004":
-                    SetDialogue(4);
-                    break;
-            }
+            //    case "Stage004":
+            //        SetDialogue(4);
+            //        break;
+            //}
         }
         #endregion
 
@@ -193,27 +170,10 @@ namespace Seti
         private void Initialize()
         {
             // 참조
-            Player = FindAnyObjectByType<Player>();
-            if (!Player)
-            {
-                Debug.LogWarning("No Player, No Game.");
-                return;
-            }
-            condition_Player = Player.GetComponent<Condition_Player>();
             Cinemachine = FindAnyObjectByType<CinemachineCamera>();
-
-            //StageManager.Instance.stageEndEvent += SwitchCurrentStage;
-
-            // 대화 이벤트 관리
-            UIManager.Instance.dialogueUI.OnDialogueEnter += OnDialogue;
-            UIManager.Instance.dialogueUI.OnDialogueEnd += OffDialogue;
 
             CurrentDialogue = dialogueList[currentIndex];
         }
-
-        private void OnDialogue() => IsDialogue = true;
-
-        private void OffDialogue() => IsDialogue = false;
 
         private void OnValidate()
         {

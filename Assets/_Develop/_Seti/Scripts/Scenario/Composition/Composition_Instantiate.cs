@@ -17,7 +17,7 @@ namespace Seti
 
         public override void Execute(GameObject _)
         {
-            StoryManager.Instance.CorExcutor(InstantiateCor(delayExcute));
+            Manager_Scenario.Instance.CorExcutor(InstantiateCor(delayExcute));
         }
 
         // 반복기

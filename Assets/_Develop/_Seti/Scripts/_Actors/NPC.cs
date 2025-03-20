@@ -5,7 +5,7 @@ namespace Seti
     /// <summary>
     /// Abstract NPC
     /// </summary>
-    public abstract class NPC : Character
+    public abstract class NPC : Actor
     {
         // 필드
         #region Variables
@@ -21,8 +21,9 @@ namespace Seti
         public Type_Interaction[] InteractionType => interactionType;
 
         // 추상화
-        public virtual void Interact()
+        public virtual void Interact(Actor actor)
         {
+            actor.Condition.InteractionChange(Interaction.Choice);
             Manager_UI.Instance.Selector(interactionType);
         }
     }

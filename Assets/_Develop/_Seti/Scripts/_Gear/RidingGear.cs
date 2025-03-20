@@ -19,8 +19,6 @@ namespace Seti
         [Header("Core")]
         [SerializeField]
         protected Core_Gear core;
-        [SerializeField]
-        protected bool onPower = false;
 
         //[Header("Parts : 笼加何")]
         //[SerializeField]
@@ -34,11 +32,6 @@ namespace Seti
 
         // 捞亥飘
         protected UnityAction OnSpecUpdate;
-        #endregion
-
-        // 加己
-        #region Properties
-        public bool OnPower => onPower;
         #endregion
 
         // Spec

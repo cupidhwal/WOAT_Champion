@@ -198,17 +198,17 @@ namespace Noah
 
         public void SaveScenario(DialogueData dialogueData)
         {
-            scenarioSaveData.deathCount = DataManager.Instance.deathCount;
-            scenarioSaveData.sinEvent = DataManager.Instance.sinEvent;
-            scenarioSaveData.flynneEvent = DataManager.Instance.flynneEvent;
-            ScenarioProgress data = scenarioSaveData.dialogueDatas.FirstOrDefault(dialogue => dialogue.ScenarioName == dialogueData.name);
-            if (data == null)
-            {
-                data = new(dialogueData);
-                scenarioSaveData.dialogueDatas.Add(data);
-            }
-            data.SetData(dialogueData);
-            Save(scenarioSaveDataPath, scenarioSaveData);
+            //scenarioSaveData.deathCount = Manager_Data.Instance.deathCount;
+            //scenarioSaveData.sinEvent = Manager_Data.Instance.sinEvent;
+            //scenarioSaveData.flynneEvent = Manager_Data.Instance.flynneEvent;
+            //ScenarioProgress data = scenarioSaveData.dialogueDatas.FirstOrDefault(dialogue => dialogue.ScenarioName == dialogueData.name);
+            //if (data == null)
+            //{
+            //    data = new(dialogueData);
+            //    scenarioSaveData.dialogueDatas.Add(data);
+            //}
+            //data.SetData(dialogueData);
+            //Save(scenarioSaveDataPath, scenarioSaveData);
         }
         public void CheckTutorial(bool flag) => isTutorial = flag;
 

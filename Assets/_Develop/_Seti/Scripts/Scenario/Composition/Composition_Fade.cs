@@ -24,15 +24,15 @@ namespace Seti
 
         public override void Execute(GameObject _)
         {
-            StoryManager.Instance.CorExcutor(Fade());
+            Manager_Scenario.Instance.CorExcutor(Fade());
         }
 
         IEnumerator Fade()
         {
-            StoryManager.Instance.IsComposition = true;
+            Manager_Scenario.Instance.IsComposition = true;
 
             // Set
-            Image fadeImage = StoryManager.Instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+            Image fadeImage = Manager_Scenario.Instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
             if (activeFlag == ActiveFlag.Out)
                 fadeImage.gameObject.SetActive(true);
 
@@ -68,7 +68,7 @@ namespace Seti
             if (activeFlag == ActiveFlag.In)
                 fadeImage.gameObject.SetActive(false);
 
-            StoryManager.Instance.IsComposition = false;
+            Manager_Scenario.Instance.IsComposition = false;
             yield break;
         }
     }

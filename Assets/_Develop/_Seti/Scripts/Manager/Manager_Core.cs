@@ -8,8 +8,8 @@ namespace Seti
     /// </summary>
     public class Manager_Core : Singleton<Manager_Core>
     {
-        [Header("RidingGear : Board")]
-        public List<RidingGear_Board> boards = new();
+        //[Header("RidingGear : Board")]
+        //public List<RidingGear_Board> boards = new();
 
         //[Header("RidingGear : Boots")]
     }

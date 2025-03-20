@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace Seti
 {
     /// <summary>
-    /// Dialog 데이터 리스트
+    /// Dialogue 데이터 리스트
     /// </summary>
     [Serializable]
-    [XmlRoot("Dialogues")]
     public class Dialogues
     {
-        [XmlElement("Dialogue")]
+        public int id;
+        public string title;
         public List<Dialogue> dialogues;
     }
 
@@ -21,22 +20,9 @@ namespace Seti
     [Serializable]
     public class Dialogue
     {
-        [XmlElement("number")]
-        public int number;
-
-        [XmlElement("order")]
-        public int order;
-
-        [XmlElement("character")]
         public int character;
-
-        [XmlElement("name")]
         public string name;
-
-        [XmlElement("sentence")]
         public string sentence;
-
-        [XmlElement("nextType")]
         public NextType nextType;
     }
 
@@ -45,6 +31,5 @@ namespace Seti
         None = -1,
         Quest,
         Composition,
-        Shop,
     }
 }

@@ -101,6 +101,12 @@ namespace Seti
             Manager_Channel.Instance.Register(this);
         }
 
+        // 상호작용
+        [SerializeField]
+        private NPC NPC;
+        public NPC CurrentNPC => NPC;
+        public void SetNPC(NPC npc) => NPC = npc;
+
         public void Accept_StanceChange()
         {
             Debug.Log("다른 액터의 상태 변화 수신!");
@@ -115,7 +121,7 @@ namespace Seti
 
         // 이벤트 메서드
         #region Event Methods
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<Actor>(out var otherActor))
             {
@@ -129,7 +135,7 @@ namespace Seti
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
             if (other.GetComponentInParent<RidingGear>())
             {

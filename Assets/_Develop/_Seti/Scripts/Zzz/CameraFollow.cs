@@ -7,6 +7,12 @@ namespace Seti
     {
         // ÇÊµå
         #region Variables
+        [Header("Root : View")]
+        [SerializeField]
+        private Transform firstPerson;
+        [SerializeField]
+        private Transform thirdPerson;
+
         private CinemachineCamera cinemachineCamera;
         //[SerializeField]
         //private float nearClipPlane = 0.3f;
@@ -17,8 +23,6 @@ namespace Seti
         private void Start()
         {
             cinemachineCamera = GetComponent<CinemachineCamera>();
-            //cinemachineCamera.Lens.NearClipPlane = nearClipPlane;
-            cinemachineCamera.Follow = Manager_Initialize.Instance.Player.transform;
         }
         #endregion
     }

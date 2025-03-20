@@ -22,7 +22,7 @@ namespace Seti
             {
                 if (target == null)
                 {
-                    target = StoryManager.Instance.TempTarget;
+                    target = Manager_Scenario.Instance.TempTarget;
                 }
                 return target;
             }

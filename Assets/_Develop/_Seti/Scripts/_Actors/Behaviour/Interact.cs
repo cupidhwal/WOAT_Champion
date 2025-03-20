@@ -50,16 +50,11 @@ namespace Seti
         // 메서드
         void ESC()
         {
-            if (Manager_UI.Instance)
-            {
-                Manager_UI.Instance.Close();
-            }
+            Manager_UI.Instance.Close();
         }
 
         void OnInteraction()
         {
-            Player player = actor as Player;
-
             //if (StoryManager.Instance.IsDialogue)
             //{
             //    StoryManager.Instance.NextDialogue();
@@ -72,9 +67,9 @@ namespace Seti
             //    return;
             //}
 
-            if (player.CurrentNPC != null)
+            if (actor.CurrentNPC != null)
             {
-                player.CurrentNPC.Interact();
+                actor.CurrentNPC.Interact(actor);
                 return;
             }
         }

@@ -15,11 +15,5 @@ namespace Seti
         private ViewType viewType;
         public ViewType View => viewType;
         #endregion
-
-        // 상호작용
-        [SerializeField]
-        private NPC NPC;
-        public NPC CurrentNPC => NPC;
-        public void SetNPC(NPC npc) => NPC = npc;
     }
 }

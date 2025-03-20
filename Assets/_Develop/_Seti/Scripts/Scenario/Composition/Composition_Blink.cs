@@ -9,7 +9,7 @@ namespace Seti
         [SerializeField]
         float delayExcute = 1f;
 
-        public override void Execute(GameObject obj) => StoryManager.Instance.CorExcutor(Delay(obj));
+        public override void Execute(GameObject obj) => Manager_Scenario.Instance.CorExcutor(Delay(obj));
 
         IEnumerator Delay(GameObject obj)
         {

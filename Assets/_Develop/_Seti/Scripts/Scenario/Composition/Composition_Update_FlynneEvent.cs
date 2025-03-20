@@ -11,7 +11,7 @@ namespace Seti
 
         public override void Execute(GameObject obj)
         {
-            DataManager.Instance.flynneEvent[eventIndex] = true;
+            //Manager_Data.Instance.flynneEvent[eventIndex] = true;
         }
     }
 }

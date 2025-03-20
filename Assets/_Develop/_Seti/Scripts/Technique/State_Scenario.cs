@@ -16,7 +16,7 @@ namespace Seti
 
         public override void OnExit()
         {
-            Debug.Log($"{name} 상태 종료!");
+            //Debug.Log($"{name} 상태 종료!");
         }
 
         public override void OnUpdate(float deltaTime)

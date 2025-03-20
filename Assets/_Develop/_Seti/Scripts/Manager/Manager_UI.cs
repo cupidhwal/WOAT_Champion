@@ -17,17 +17,23 @@ namespace Seti
         [Header("UI")]
         [SerializeField]
         private UI_MacroMECH_Manager macroMechUI;
+        [SerializeField]
+        private UI_Dialogue dialogueUI;
         #endregion
 
         // 속성
-        public UI_Selector UI_Selector => selectorUI;
+        public Stack<GameObject> StackUI => stackUI;
+        public UI_Selector SelectorUI => selectorUI;
         public UI_MacroMECH_Manager MacroMECH => macroMechUI;
+        public UI_Dialogue DialogueUI => dialogueUI;
 
         // 라이프 사이클
         private void Start()
         {
             selectorUI.gameObject.SetActive(true);
             selectorUI.ReadyToSelect();
+
+            Manager_Initialize.Instance.Player.Condition.OnActionChange += CloseAll;
         }
 
         // 메서드
@@ -57,6 +63,21 @@ namespace Seti
                     selectorUI.Close();
                 }
                 temp.SetActive(false);
+
+                if (stackUI.Count == 0)
+                {
+                    Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Idle);
+                }
+            }
+        }
+
+        private void CloseAll()
+        {
+            int count = stackUI.Count;
+            while (count > 0)
+            {
+                Close();
+                count--;
             }
         }
     }

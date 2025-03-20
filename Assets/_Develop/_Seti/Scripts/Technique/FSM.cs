@@ -51,7 +51,11 @@ namespace Seti
         {
             player = Manager_Initialize.Instance.Player;
 
-            AddState(ableStates[0]);
+            foreach (var state in ableStates)
+            {
+                AddState(state);
+            }
+
             CurrentState = ableStates[0];
             CurrentState.OnEnter();
         }
@@ -59,10 +63,10 @@ namespace Seti
         private void Update()
         {
             elapsed += Time.deltaTime;
-            CurrentState?.OnUpdate(Time.deltaTime);
+            CurrentState.OnUpdate(Time.deltaTime);
 
             // 현재 상태의 전환 조건 검사
-            var nextStateType = CurrentState?.CheckTransition();
+            var nextStateType = CurrentState.CheckTransition();
             if (nextStateType != null && states.ContainsKey(nextStateType))
                 ChangeState(nextStateType);
         }

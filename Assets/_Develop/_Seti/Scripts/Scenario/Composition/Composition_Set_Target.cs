@@ -19,7 +19,7 @@ namespace Seti
         {
             //GameObject target = StageManager.Instance.CurrentStage.transform.GetChild(targetChildIndex).gameObject;
             GameObject target = obj;
-            StoryManager.Instance.CurrentComp.target = target;
+            Manager_Scenario.Instance.CurrentComp.target = target;
         }
     }
 }

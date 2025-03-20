@@ -23,7 +23,7 @@ namespace Seti
 
         public override void Execute(GameObject obj)
         {
-            StoryManager.Instance.CorExcutor(CameraCor(obj.transform, durationExcute, durationStay, durationComeback));
+            Manager_Scenario.Instance.CorExcutor(CameraCor(obj.transform, durationExcute, durationStay, durationComeback));
         }
 
         // 반복기
@@ -31,20 +31,20 @@ namespace Seti
         // 카메라 연출 : target까지 excuteDuration 안에 도달했다가 stayDuration 동안 머물고 comebackDuration 안에 돌아오는 연출
         IEnumerator CameraCor(Transform target, float excuteDuration, float stayDuration = 1f, float comebackDuration = 1f)
         {
-            StoryManager.Instance.IsComposition = true;
+            Manager_Scenario.Instance.IsComposition = true;
 
             // Offset
-            Vector3 offset = StoryManager.Instance.Cinemachine.transform.position - StoryManager.Instance.Player.transform.position;
+            Vector3 offset = Manager_Scenario.Instance.Cinemachine.transform.position - Manager_Initialize.Instance.Player.transform.position;
 
             // 플레이어 타게팅 해제
-            StoryManager.Instance.Cinemachine.Target.TrackingTarget = null;
+            Manager_Scenario.Instance.Cinemachine.Target.TrackingTarget = null;
 
             // 타겟 지점으로 카메라 이동
             float elapsed = 0f;
             while (elapsed < excuteDuration)
             {
                 elapsed += Time.deltaTime;
-                StoryManager.Instance.Cinemachine.transform.position = Vector3.Lerp(StoryManager.Instance.Cinemachine.transform.position,
+                Manager_Scenario.Instance.Cinemachine.transform.position = Vector3.Lerp(Manager_Scenario.Instance.Cinemachine.transform.position,
                                                                                     target.position + offset,
                                                                                     sharpnessExcute * Time.deltaTime);
 
@@ -59,16 +59,16 @@ namespace Seti
             while (elapsed < comebackDuration)
             {
                 elapsed += Time.deltaTime;
-                StoryManager.Instance.Cinemachine.transform.position = Vector3.Lerp(StoryManager.Instance.Cinemachine.transform.position,
-                                                                                    StoryManager.Instance.Player.transform.position + offset,
+                Manager_Scenario.Instance.Cinemachine.transform.position = Vector3.Lerp(Manager_Scenario.Instance.Cinemachine.transform.position,
+                                                                                    Manager_Initialize.Instance.Player.transform.position + offset,
                                                                                     sharpnessComeback * Time.deltaTime);
 
                 yield return null;
             }
 
             // 플레이어 타게팅 재설정
-            StoryManager.Instance.Cinemachine.Target.TrackingTarget = StoryManager.Instance.Player.transform;
-            StoryManager.Instance.IsComposition = false;
+            Manager_Scenario.Instance.Cinemachine.Target.TrackingTarget = Manager_Initialize.Instance.Player.transform;
+            Manager_Scenario.Instance.IsComposition = false;
             yield break;
         }
         #endregion

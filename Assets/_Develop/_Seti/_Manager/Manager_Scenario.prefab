@@ -135,7 +135,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1475048015989652965
 MonoBehaviour:
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 7785284300407045005}
   - component: {fileID: 2403669457776184626}
   m_Layer: 0
-  m_Name: StoryManager
+  m_Name: Manager_Scenario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

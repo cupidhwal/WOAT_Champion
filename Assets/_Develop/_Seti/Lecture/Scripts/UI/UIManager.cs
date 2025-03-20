@@ -14,7 +14,7 @@ namespace Seti
         public PlayerStatusUI playerStatusUI;
         public PlayerEquipmentUI playerEquipmentUI;
         public PlayerInventoryUI playerInventoryUI;
-        public DialogueUI dialogueUI;
+        public UI_Dialogue dialogueUI;
 
         public int itemID = 0;
         #endregion

@@ -8,15 +8,10 @@ namespace Seti
     /// <summary>
     /// 게임에서 사용하는 데이터들을 관리하는 클래스
     /// </summary>
-    public class DataManager : PersistentSingleton<DataManager>
+    public class Manager_Data : Singleton<Manager_Data>
     {
         // 필드
         #region Variables
-        [Header("Data : Player")]
-        public int deathCount;
-        public bool[] sinEvent = new bool[6];
-        public bool[] flynneEvent = new bool[6];
-
         [Header("Data : Dialogue")]
         public List<DialogueData> dialogueDatas;
 
@@ -31,7 +26,8 @@ namespace Seti
         // 대화 데이터 가져오기
         public DialogueData GetDialogData()
         {
-            string dataName = StoryManager.Instance.StageName;
+            //string dataName = Manager_Scenario.Instance.StageName;
+            string dataName = string.Empty;
 
             dialogueDatas ??= new();
 
@@ -46,23 +42,21 @@ namespace Seti
             }
 
             // 새로운 대화 데이터 생성
-            dialogueData = ScriptableObject.CreateInstance<DialogueData>();
-            dialogueData.LoadData();
-            dialogueData.name = dataName;
+            //dialogueData = ScriptableObject.CreateInstance<DialogueData>();
+            //dialogueData.LoadData();
+            //dialogueData.name = dataName;
 
             // 세이브 데이터 읽어오기
-            ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
-            if (data != null)
-            {
-                ScenarioProgress progress = data.dialogueDatas.FirstOrDefault(dialogue => dialogue.ScenarioName == dataName);
-                if (progress != null)
-                {
-                    dialogueData.CheckSeens = progress.CheckSeens;
-                    dialogueData.SeenCompleted = progress.SeenCompleted;
-                }
-                deathCount = data.deathCount;
-                sinEvent = data.sinEvent;
-    }
+            //ScenarioData data = SaveLoadManager.Instance.scenarioSaveData;
+            //if (data != null)
+            //{
+            //    ScenarioProgress progress = data.dialogueDatas.FirstOrDefault(dialogue => dialogue.ScenarioName == dataName);
+            //    if (progress != null)
+            //    {
+            //        dialogueData.CheckSeens = progress.CheckSeens;
+            //        dialogueData.SeenCompleted = progress.SeenCompleted;
+            //    }
+            //}
             dialogueDatas.Add(dialogueData);
 
             return dialogueData;

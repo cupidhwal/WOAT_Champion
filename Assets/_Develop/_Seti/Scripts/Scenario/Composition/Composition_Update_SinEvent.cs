@@ -11,7 +11,7 @@ namespace Seti
 
         public override void Execute(GameObject obj)
         {
-            DataManager.Instance.sinEvent[eventIndex] = true;
+            //Manager_Data.Instance.sinEvent[eventIndex] = true;
         }
     }
 }

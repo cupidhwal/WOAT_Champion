@@ -16,7 +16,7 @@ namespace Seti
 
         public void Open_Root()
         {
-            Manager_UI.Instance.UI_Selector.Open_Root(root);
+            Manager_UI.Instance.SelectorUI.Open_Root(root);
         }
 
         public void SetNode(Type_Interaction type)

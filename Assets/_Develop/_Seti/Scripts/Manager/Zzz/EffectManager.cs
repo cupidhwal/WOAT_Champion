@@ -21,7 +21,7 @@ namespace Seti
         //이펙트 플레이
         public GameObject EffectOneShot(int index, Vector3 position)
         {
-            EffectClip clip = DataManager.Instance.GetEffectData().GetClip(index);
+            EffectClip clip = Manager_Data.Instance.GetEffectData().GetClip(index);
             if(clip == null)
             {
                 return null;

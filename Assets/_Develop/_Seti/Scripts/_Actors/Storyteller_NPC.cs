@@ -39,21 +39,21 @@ namespace Seti
         // 오버라이드
         public override void StoryEnter()
         {
-            if (StoryManager.Instance.IsDialogue)
+            if (Manager_Scenario.Instance.IsDialogue)
             {
-                StoryManager.Instance.NextDialogue();
+                Manager_Scenario.Instance.NextDialogue();
             }
             else
             {
                 foreach (var dialogue in dialogueVariables)
                 {
-                    if (DataManager.Instance.deathCount < dialogue.criteria_Death)
-                        continue;
+                    //if (Manager_Data.Instance.deathCount < dialogue.criteria_Death)
+                    //    continue;
 
-                    if (DataManager.Instance.sinEvent.Count(value => value) < dialogue.criteria_SinEvent)
-                        continue;
+                    //if (Manager_Data.Instance.sinEvent.Count(value => value) < dialogue.criteria_SinEvent)
+                    //    continue;
 
-                    if (StoryManager.Instance.OpenDialogue(dialogue.dialogueNumber))
+                    if (Manager_Scenario.Instance.OpenDialogue(dialogue.dialogueNumber))
                         return;
                 }
             }

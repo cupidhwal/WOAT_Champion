@@ -27,25 +27,25 @@ namespace Seti
         {
             int index = -1;
             float delay = 0;
-            DialogueData dialogueData = DataManager.Instance.GetDialogData();
+            DialogueData dialogueData = Manager_Data.Instance.GetDialogData();
             foreach (var data in triggers)
             {
                 // 기독 여부 체크
-                if (dialogueData.CheckSeens[data.dialogueNumber])
-                    continue;
+                //if (dialogueData.CheckSeens[data.dialogueNumber])
+                //    continue;
 
                 // 원흉 이벤트 체크
                 if (data.targetSinEvent >= 0)
                 {
-                    if (DataManager.Instance.deathCount < data.deathCount)
-                        continue;
+                    //if (Manager_Data.Instance.deathCount < data.deathCount)
+                    //    continue;
 
-                    if (!DataManager.Instance.sinEvent[data.targetSinEvent])
-                    {
-                        index = data.dialogueNumber;
-                        delay = data.dialogueDelay;
-                        break;
-                    }
+                    //if (!Manager_Data.Instance.sinEvent[data.targetSinEvent])
+                    //{
+                    //    index = data.dialogueNumber;
+                    //    delay = data.dialogueDelay;
+                    //    break;
+                    //}
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace Seti
         IEnumerator DialogueCor(int dialogueNumber, float delay)
         {
             yield return new WaitForSeconds(delay);
-            StoryManager.Instance.OpenDialogue(dialogueNumber);
+            Manager_Scenario.Instance.OpenDialogue(dialogueNumber);
             yield break;
         }
     }

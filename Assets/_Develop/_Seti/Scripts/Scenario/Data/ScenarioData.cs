@@ -15,15 +15,15 @@ namespace Seti
         public ScenarioProgress(DialogueData data)
         {
             ScenarioName = data.name;
-            CheckSeens = data.GetSeenList();
-            SeenCompleted = data.SeenCompleted;
+            //CheckSeens = data.GetSeenList();
+            //SeenCompleted = data.SeenCompleted;
         }
 
         public void SetData(DialogueData data)
         {
             ScenarioName = data.name;
-            CheckSeens = data.GetSeenList();
-            SeenCompleted = data.SeenCompleted;
+            //CheckSeens = data.GetSeenList();
+            //SeenCompleted = data.SeenCompleted;
         }
     }
 

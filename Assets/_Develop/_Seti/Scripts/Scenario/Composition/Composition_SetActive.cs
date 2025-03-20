@@ -40,7 +40,7 @@ namespace Seti
 
         public override void Execute(GameObject obj)
         {
-            StoryManager.Instance.CorExcutor(Delay(obj));
+            Manager_Scenario.Instance.CorExcutor(Delay(obj));
         }
 
         IEnumerator Delay(GameObject obj)

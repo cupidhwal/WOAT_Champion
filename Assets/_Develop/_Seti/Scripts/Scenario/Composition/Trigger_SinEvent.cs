@@ -29,7 +29,7 @@ namespace Seti
                 {
                     Instantiate(eventObject, transform.position, Quaternion.identity);
                 }
-                StoryManager.Instance.OpenDialogue(dialogueNumber);
+                Manager_Scenario.Instance.OpenDialogue(dialogueNumber);
 
                 gameObject.SetActive(false);
             }

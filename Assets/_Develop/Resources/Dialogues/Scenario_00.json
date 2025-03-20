@@ -1,0 +1,652 @@
+{
+  "Scenario": [
+    {
+      "id": 0,
+      "title": "첫 번째 부활",
+      "dialogues": [
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "여기는...... 니트하벤인가? 나는 분명히 죽었는데...... 왜?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "혹시 플린느가 날 데리고 돌아온 게 아닐까? 그래서 무사히 살아남을 수 있었던 거라면.......",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "플린느를 찾아가보자.",
+          "nextType": "None"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "두 번째 플린느",
+      "dialogues": [
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "너......! 너 뭐야! 어떻게 된 거야! 네가 왜, 아니, 어떻게 여기에 있는 거야?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "네가 날 데리고 돌아온 거 아니었어?",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그럴 리가 없잖아! 난 경계를 지켜야 하니까!",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그렇다면 정말 이상한데.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "나는 마경에서 죽음을 경험한 일과 종전의 부활에 대해 플린느에게 이야기했다.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그런 이야기는 처음 들어. 마경에 들어간 사람이 죽음에서 부활한다니.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "혹시 이것 때문일까?",
+          "nextType": "Composition"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "으웩. 그렇게 끔찍하게 생긴 물건은 처음 봐! 설마 마경에서 주워 온 거야?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "아니. 이건 니트하벤에 오기 전부터 내가 가지고 있었어. 이게 마경의 물건일 거라는 짐작은 했지만 말이지.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그래, 어쩌면 그 괴상한 것 때문일지도 모르겠다. 뭐, 그렇게 궁금하면 좀 더 죽어보지그래?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "재수 없는 년. 문이나 열어.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "아, 맞다! 너 말이야. 어차피 죽어도 부활하는 몸이고 또 다시 마경에 들어갈 생각이라면, 부탁이 있어.",
+          "nextType": "Composition"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "뭔데?",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "마을 주민 한 명이 안 보여. 다른 사람들도 다 찾아봤다는데 말이야. 니트하벤 구석구석을 전부!",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "어쩌면 마경에 들어간 건지도 몰라. 어떻게 그랬는지는 모르겠지만.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그럼 네가 더 잘 알겠지.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "나, 나라고 하루 종일 경계에 붙어 있는 건 아니란 말이야!",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "퍽이나. 어쨌든, 겸사겸사 행방불명된 사람을 찾아봐달라는 말이지? 알았다.",
+          "nextType": "Composition"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "세 번째 플린느",
+      "dialogues": [
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그러고 보니 찾았어. 행방불명 됐다던 사람 말이야.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "......죽었어?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그래.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "그래도 플린느는 주민들에 대한 애착이 있던 모양인지, 진실한 태도로 십자가를 그리며 고인의 명복을 빌었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "나는 잠시 그녀를 기다린 뒤 이 사건에 대한 내 생각을 밝혔다. 그녀의 낯빛이 하얗게 질려갔다.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그래....... 또 그랬단 거지.......",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "또?",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그게 사실은, 또 행방불명자가 나왔는데....... 그 사람은 바로 발견됐어.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "이미 죽은 상태였다는 말이구나.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "응. 예전에는 이런 일이 한 번도 없었는데. 뭔가 사건이 벌어지고 있는 것 같아.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "있잖아, 너만 괜찮다면 그 살인마를 잡아주지 않을래?",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "마경은 이미 악귀들로도 충분히 위험한데, 주민들을 위협하는 살인마까지 돌아다니는 걸 보고만 있을 수는 없어.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그런 거라면 얼마든지. 나도 더 깊은 곳으로 들어가려면 그놈을 죽여야 할 테니까.",
+          "nextType": "Composition"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "네 번째 플린느",
+      "dialogues": [
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "......어떻게 됐어?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "놈이 남긴 흔적 같은 걸 하나 더 발견했어. 피가 튀어 있었는데...... 그 흔적을 지우려던 모양이야.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "나는 플린느에게 원흉이 보여준 두 번째 광경에 대해 이야기했다. 그녀는 내 이야기를 들으며 몸을 떨었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그 피는 그놈 자신의 피일 거야. 생각해 봐.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "넌 그게 누구 피인지가 중요해? 어쨌거나 사망자는 계속 늘고 있단 말이야.......",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "......따지고 보면 그녀의 말이 맞다. 지금 중요한 건 놈의 범행을 밝히는 게 아니라, 놈을 처단하는 거니까.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "미안. 내가 잠깐 어떻게 됐나보다.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "있잖아, 너 말이야. 이제 마경에 그만 들어가면 안 돼?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그럴 수는 없어. 난 악귀의 심장을 가져가야 한다니까. 그것도 오래도록 썩지 않는 걸로.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "나, 나는...... 걱정돼서 그래. 네가, 앞으로도 계속 그렇게 부활할 수 있을 거라는 보장도 없을 텐데.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "너에게도 소중한 사람이 있을 거 아니야? 가족이라든가. 고향에는 말이야.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "가족이라....... 양아버지가 계시긴 하는데.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "거봐. 그러니까 이제 그만 포기하고....... 네가 더 이상 들어가지 않겠다면, 마경으로 통하는 문은 닫아버릴 거야. 영원히.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그러면 저 안에 살인마가 있든 말든...... 더 이상 니트하벤과는 상관 없는 일이 되겠지.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "하....... 플린느. 그렇게 안 봤는데, 생각보다 순진하네.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "내가 재미있는 사실 하나 알려줄까?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "다 양아버지야. 마경에서 악귀의 심장을 가져오라고 날 시킨 사람도, 그런 나에게 원흉을 쥐어준 사람도.......",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그리고 그 사람이 내게 말했지. 빈 손으로 돌아오면 내 목숨도 없다고.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "내 양아버지는 조국의 권력자이기 때문에, 난 어느 쪽이든 죽어.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "아니지....... 차라리 마경을 탐사하는 편이 낫지. 운 좋게 심장을 구해갈 수 있다면 목숨은 부지할 수 있을 테니까.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "플린느는 하얗게 질린 얼굴이었고, 더는 말이 없었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "......알았으면 그만 문 열어.",
+          "nextType": "Composition"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "다섯 번째 플린느",
+      "dialogues": [
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "이제...... 나밖에 안 남았어.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": ".......",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "저길 봐. 너도 기억하겠지만, 원래 저 자리엔 상인들이 있었어. 하지만 이젠 그마저도 없지....... 다 죽은 거야.",
+          "nextType": "Composition"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": ".......",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "너무 무덤덤한 거 아니야? 결국엔 외지인이다, 이거니?",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "나와 플린느 사이에 잠시 침묵이 오간 뒤, 그녀가 말했다.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "있잖아, 괜찮다면 네 고향 얘기를 해줄래?",
+          "nextType": "Composition"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "......들어봐야 좋을 것 하나 없을 텐데.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그래도 듣고 싶어.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "넌 참 이상한 애야. 내 이야기를 궁금해한 사람은 단 한 명도 없었는데.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "사실, 난 마경에 처음 온 게 아니야. 어렸을 때 아버지...... 친아버지를 따라서 마경 곳곳을 들쑤시고 다녔지.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "물론 지금의 마경은 내가 기억하던 곳과는 완전히 다른 것 같지만. 그때의 마경은 그냥 위험한 야생림 정도일 뿐이었어.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "아무튼, 그러다 아버지께서 돌아가시자 양아버지가 날 거둔 거야.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "쓸모가 있었던 거지, 내가. 야만인의 딸이고, 마경을 탐험한 경험도 있었으니까.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "불만은 없었어. 그런 양아버지의 슬하에 있었기 때문에 적어도 난 살아남을 수 있었으니까.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "......있잖아, 에바. 나랑 같이 도망치지 않을래?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "뭐......?",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "넌 이러나저러나 죽은 목숨이라면서? 이젠 나도 지켜야 할 주민이 한 명도 남지 않게 됐으니까.......",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "여기에서 우리가 그냥 도망친다고 해도 아무도 뭐라고 안 할 거야. 그럴 사람도 없으니까.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그리고 네 이야기를 들어보니까, 네 주변 사람들에게는 별로 의리를 지킬 필요도 없을 것 같은걸.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "그러니까...... 응?",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "사실 그런 생각을 안 해본 건 아니었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "아니, 오히려 수도 없이 그런 생각만 했다....... 내가 왜 이런 고통을 겪고 있어야 하는가.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "내가 왜, 나를 도구로 사육했을 뿐인 그 사람에게 철저히 복종하기만 해야 하는가.......",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "그러나, 이 모든 생각은 언제나 하나의 결론으로 이어질 뿐이었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "미안하지만...... 안 돼.",
+          "nextType": "None"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "왜?",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "마경의 심장으로, 구해야 할 사람이 있으니까.",
+          "nextType": "Composition"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "......그렇구나. 알겠어.",
+          "nextType": "Composition"
+        },
+        {
+          "character": 2,
+          "name": "플린느",
+          "sentence": "죽지 말라고는 안 할게. 그 대신, 꼭 이겨.",
+          "nextType": "Composition"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "마지막 플린느",
+      "dialogues": [
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "플린느......?",
+          "nextType": "Composition"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "플린느의 시체. 토막난 그녀의 팔. 그것을 쥐고 있는 내 손. 입 안의 부드러운 이물감. 그리고...... 식도를 타고 흐르는 달콤한 액체.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "욱, 우웩.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "무의식적으로, 어렴풋이 짐작했던 사실. 그럴 리가 없다며 외면해왔던 현실. 그러나 비로소 깨닫는 마경의 진실.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "토막난 플린느의 팔에는 살점을 크게 한 입 베어 문 흔적이 적나라했고, 그 살점은 이물을 뱉은 내 입에서 나왔다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "변명의 여지가 없다.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "아, 아아아....... 아아아아아아아아아아아아아아.......",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "살인마는 나였다.",
+          "nextType": "Composition"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "그로부터 얼마나 지났을까.",
+          "nextType": "Composition"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "나는 자포자기했었다. 수차례 자살을 시도했고, 원흉을 버려도 보았다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "부질없었다. 니트하벤에서도 나는 부활할 수 있었고, 플린느의 시체만 점점 더 결손될 뿐이었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "원흉도 문득 돌아보면 반드시 내 손 안에 돌아와 있었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "그리고 몸에는 마경이 강요하듯 상기시키는 공복감이 남았다.",
+          "nextType": "None"
+        },
+        {
+          "character": 0,
+          "name": " ",
+          "sentence": "그래서 나는, 더 늦기 전에 플린느를 묻어주었다.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "이미 벗어날 수 없게 된 거구나.",
+          "nextType": "None"
+        },
+        {
+          "character": 1,
+          "name": "에바",
+          "sentence": "그렇다면 답은 하나뿐이지. 그렇지, 플린느?",
+          "nextType": "Composition"
+        }
+      ]
+    }
+  ]
+}

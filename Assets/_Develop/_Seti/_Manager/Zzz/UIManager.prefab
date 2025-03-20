@@ -162,29 +162,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 802069402460201308}
     m_Modifications:
-    - target: {fileID: 317118903568092848, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_fontSize
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 317118903568092848, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740226897820564974, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: xmlFile
-      value: Dialogue/Tutorial
-      objectReference: {fileID: 0}
     - target: {fileID: 1857381505977482920, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_Name
       value: UI_Dialogue
-      objectReference: {fileID: 0}
-    - target: {fileID: 1857381505977482920, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4346707196398616963, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_Pivot.x
@@ -196,15 +176,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_AnchorMin.y
@@ -212,11 +192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -252,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -265,22 +245,6 @@ PrefabInstance:
     - target: {fileID: 6091467119133501759, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7142271150694423070, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2934667151564277455}
-    - target: {fileID: 7142271150694423070, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DrawNextDialogue
-      objectReference: {fileID: 0}
-    - target: {fileID: 7142271150694423070, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Seti.DialogueUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018733890068302907, guid: c438a4a696ee2614c871ae7f70d4b8e4, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
