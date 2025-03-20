@@ -7,7 +7,7 @@ namespace Seti
     /// Dialogue 데이터 리스트
     /// </summary>
     [Serializable]
-    public class Dialogues
+    public class Scenario
     {
         public int id;
         public string title;
