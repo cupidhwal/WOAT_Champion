@@ -1,12 +1,5 @@
 namespace Seti
 {
-    // View type
-    public enum ViewType
-    {
-        Follow_Person,
-        QuaterView,
-    }
-
     public enum Stance
     {
         Normal,
@@ -52,6 +45,13 @@ namespace Seti
         Mechanic,
         Designer,
         Rider,
+    }
+
+    public enum Type_View
+    {
+        Follow_Third,
+        Follow_First,
+        QuaterView,
     }
 
     public enum Type_Quest

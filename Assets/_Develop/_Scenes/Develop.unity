@@ -4497,6 +4497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPerson: {fileID: 1868218157}
   thirdPerson: {fileID: 1332532262}
+  duration: 0.5
+  reception: 1
 --- !u!1 &1330030072
 GameObject:
   m_ObjectHideFlags: 0

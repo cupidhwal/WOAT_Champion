@@ -31,49 +31,7 @@ namespace Seti
         public virtual void Move(Vector2 moveInput)
         {
             dir = MoveDirection(moveInput);
-
-            if (!actor ||
-                !actor.Condition.InAction)
-            {
-                QuaterView_Move(Vector2.zero);
-                return;
-            }
-
-            if (actor is Player player)
-                switch (player.View)
-                {
-                    case ViewType.Follow_Person:
-                        Follow_Person_Move(moveInput);
-                        break;
-
-                    case ViewType.QuaterView:
-                        QuaterView_Move(moveInput);
-                        break;
-                }
-            else
-            {
-                QuaterView_Move(moveInput);
-            }
-        }
-
-        protected virtual void QuaterView_Move(Vector2 moveInput)
-        {
-            //if (actor.Condition.IsAttack || actor.Condition.IsMagic) return;
-
-            Vector3 moveDirection = new(dir.x, 0, dir.y);
-            QuaterView_Dir(moveDirection);
-        }
-        protected void QuaterView_Dir(Vector3 moveDirection)
-        {
-            float moveEff = actor.Condition.CurrentAction == Action.Run ? actor.Magnification_WalkToRun : 1;
-            Vector3 move = moveEff * actor.Rate_Movement * Time.deltaTime * moveDirection.normalized;
-            Vector3 QuaterView = Quaternion.Euler(0f, 45f, 0f) * move;
-
-            // Root Motion을 쓰지 않는 경우에만 실행
-            if (!actor.Controller_Animator.Animator.applyRootMotion)
-                actor.transform.Translate(QuaterView, Space.World);
-
-            Rotation(QuaterView);
+            Follow_Person_Move(dir);
         }
 
         protected void Rotation(Vector3 moveDirection)

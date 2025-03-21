@@ -76,9 +76,10 @@ namespace Seti
         {
             if (!channels.TryDequeue(out var result))
             {
-                result = Instantiate(channel, this.transform);
+                result = Instantiate(channel, transform);
             }
             result.transform.position = transform.position;
+            result.transform.SetParent(transform);
             result.SetActive(true);
             return result;
         }
@@ -86,6 +87,7 @@ namespace Seti
         {
             if (gameObject.GetComponent<InteractionChannel>())
             {
+                gameObject.transform.SetParent(transform);
                 channels.Enqueue(gameObject);
                 gameObject.SetActive(false);
             }

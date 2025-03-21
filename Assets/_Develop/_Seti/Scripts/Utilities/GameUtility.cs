@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,38 @@ namespace Seti
     // 게임 유틸리티
     public static class GameUtility
     {
+        // 일반 타이머
+        public static IEnumerator Interpolation(float a, float b, float duration, float reception, Action<float> onUpdate)
+        {
+            float startTime = Time.time;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed = Time.time - startTime;
+                float value = Mathf.Lerp(a, b, reception * (elapsed / duration));
+                onUpdate?.Invoke(value); // 여기서 값을 업데이트
+                yield return null;
+            }
+
+            onUpdate?.Invoke(b); // 마지막 값 보정
+        }
+        public static IEnumerator Interpolation(Vector3 a, Vector3 b, float duration, float reception, Action<Vector3> onUpdate)
+        {
+            float startTime = Time.time;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed = Time.time - startTime;
+                Vector3 value = Vector3.Lerp(a, b, reception * (elapsed / duration));
+                onUpdate?.Invoke(value); // 여기서 값을 업데이트
+                yield return null;
+            }
+
+            onUpdate?.Invoke(b); // 마지막 값 보정
+        }
+
         // 충돌 타이머
         public static IEnumerator Timer_Collision(Transform transform, LayerMask layer, float t)
         {

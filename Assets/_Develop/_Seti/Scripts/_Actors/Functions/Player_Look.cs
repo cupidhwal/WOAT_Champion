@@ -14,7 +14,9 @@ namespace Seti
         private bool keepGoing = false;
         [SerializeField]
         private bool attention = false;
+
         [Header("Properties")]
+        private float cameraProximity;      // 카메라 밀착도
         [SerializeField]
         private float mouseSensitivity;     // 마우스 감도
         [SerializeField]
@@ -25,12 +27,13 @@ namespace Seti
         private float headYRotation;        // head Y축 회전값
         private float bodyYRotation;        // body Y축 회전값
         private Vector2 lookInput;          // 마우스 입력
-        private InputSystem_Actions control;
 
         // 컴포넌트
+        private InputSystem_Actions control;
         private Player player;              // 플레이어
         private Rigidbody rb;               // 플레이어 Rigidbody
         private Transform headTransform;    // 플레이어의 머리 부분 Transform
+        private CameraFollow cameraFollow;
         #endregion
 
         // 라이프 사이클
@@ -39,11 +42,13 @@ namespace Seti
         {
             player = GetComponent<Player>();
             rb = GetComponent<Rigidbody>();
+            cameraFollow = FindAnyObjectByType<CameraFollow>();
 
             headTransform = transform.Find("Head_Root");
 
             control.Player.Look.Enable();
             control.Player.KeepGoing.Enable();
+            control.UI.ScrollWheel.Enable();
         }
 
         private void Update()
@@ -67,6 +72,7 @@ namespace Seti
             control.Player.Look.canceled += OnLookCanceled;
             control.Player.KeepGoing.started += OnKeepGoingStarted;
             control.Player.KeepGoing.canceled += OnKeepGoingCanceled;
+            control.UI.ScrollWheel.performed += OnScrollWheelPerformed;
         }
 
         private void OnDisable()
@@ -75,6 +81,7 @@ namespace Seti
             control.Player.Look.canceled -= OnLookCanceled;
             control.Player.KeepGoing.started -= OnKeepGoingStarted;
             control.Player.KeepGoing.canceled -= OnKeepGoingCanceled;
+            control.UI.ScrollWheel.performed -= OnScrollWheelPerformed;
         }
         #endregion
 
@@ -88,6 +95,17 @@ namespace Seti
         private void OnLookCanceled(InputAction.CallbackContext _) => lookInput = Vector2.zero;
         private void OnKeepGoingStarted(InputAction.CallbackContext _) => keepGoing = true;
         private void OnKeepGoingCanceled(InputAction.CallbackContext _) => keepGoing = false;
+        private void OnScrollWheelPerformed(InputAction.CallbackContext context)
+        {
+            Vector2 scroll = context.ReadValue<Vector2>();
+
+            cameraProximity -= scroll.y;
+            cameraProximity = Mathf.Clamp01(cameraProximity);
+
+            if (cameraProximity == 0)
+                cameraFollow.View_FirstPerson();
+            else cameraFollow.View_ThirdPerson();
+        }
         #endregion
 
         // 메서드
