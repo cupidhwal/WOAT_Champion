@@ -48,5 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c9c9af26ec90a48b98af2c4a7b4747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfUI: 
-  interactionType: 0
+  nameOfUI: "\uB300\uD654"
+  interactionType: 2
+  root: {fileID: 0}

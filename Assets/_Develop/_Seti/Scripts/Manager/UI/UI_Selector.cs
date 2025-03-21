@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Seti
@@ -13,9 +12,9 @@ namespace Seti
         #region Variables
         [Header("Unit : Selector")]
         [SerializeField]
-        private GameObject selectorNode;
-        [SerializeField]
         private GameObject selector;
+        [SerializeField]
+        private GameObject selectorNode;
 
         private readonly Queue<GameObject> choices = new();
         private readonly Stack<GameObject> selectors = new();
@@ -36,7 +35,7 @@ namespace Seti
                 // Node 생성
                 if (!choices.TryDequeue(out var choice))
                 {
-                    choice = Instantiate(selectorNode, transform);
+                    choice = Instantiate(selectorNode, transform.GetChild(1));
                 }
                 Selector_Node node = choice.GetComponent<Selector_Node>();
                 node.SetNode(Interactions[i]);
@@ -44,6 +43,9 @@ namespace Seti
                 // Selector 세팅
                 Selector sel = result.GetComponent<Selector>();
                 sel.Set(node);
+
+                if (Interactions.Length == 1)
+                    sel.Open();
             }
         }
 
@@ -60,6 +62,12 @@ namespace Seti
                 result.SetActive(true);
                 Selector sel = result.GetComponent<Selector>();
                 sel.Set(root.UI_Parts[i].GetComponent<UI_Target>());
+
+                if (root.UI_Parts.Count == 1)
+                {
+                    Manager_UI.Instance.Close();
+                    sel.Open();
+                }
             }
         }
 
@@ -77,18 +85,20 @@ namespace Seti
 
         private void CloseStack()
         {
-            for (int i = transform.GetChild(0).childCount - 1; i >= 0; i--)
+            Transform stack = transform.GetChild(0);
+            for (int i = stack.childCount - 1; i >= 0; i--)
             {
-                GameObject temp = transform.GetChild(0).GetChild(i).gameObject;
+                GameObject temp = stack.GetChild(i).gameObject;
                 temp.SetActive(false);
                 selectors.Push(temp);
             }
         }
         private void CloseQueue()
         {
-            for (int i = 1; i < transform.childCount; i++)
+            Transform queue = transform.GetChild(1);
+            for (int i = 0; i < queue.childCount; i++)
             {
-                GameObject temp = transform.GetChild(i).gameObject;
+                GameObject temp = queue.GetChild(i).gameObject;
                 choices.Enqueue(temp);
             }
         }

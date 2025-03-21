@@ -23,17 +23,13 @@ namespace Seti
         {
             nameOfUI = NameToKorean(type);
             interactionType = type;
-            root = SetRoot(type);
-        }
 
-        private UI_Root SetRoot(Type_Interaction type)
-        {
-            return type switch
+            root = type switch
             {
-                Type_Interaction.Trade => Manager_UI.Instance.MacroMECH,
+                Type_Interaction.Trade => Manager_UI.Instance.Trade,
                 Type_Interaction.Modify => Manager_UI.Instance.MacroMECH,
-                Type_Interaction.Dialogue => Manager_UI.Instance.MacroMECH,
-                _ => Manager_UI.Instance.MacroMECH
+                Type_Interaction.Dialogue => Manager_UI.Instance.Scenario,
+                _ => Manager_UI.Instance.Scenario
             };
         }
 

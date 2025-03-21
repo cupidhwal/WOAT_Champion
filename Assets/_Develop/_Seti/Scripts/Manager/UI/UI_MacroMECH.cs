@@ -67,6 +67,16 @@ namespace Seti
         }
 
         // Scroll View에서 모듈 클릭
-        public override void SetModule(Parts parts) => detail.SetModule(parts);
+        public override void SetTarget(object data)
+        {
+            if (data is Parts part)
+            {
+                detail.SetModule(part); // 그대로 사용
+            }
+            else
+            {
+                Debug.LogWarning("잘못된 타입 전달됨");
+            }
+        }
     }
 }

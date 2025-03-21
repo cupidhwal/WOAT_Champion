@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 1015322051270246939}
   - component: {fileID: 3243026045789627101}
   - component: {fileID: 5796632149804778799}
+  - component: {fileID: 4765093837407165260}
   m_Layer: 6
   m_Name: AI_Yui
   m_TagString: Actor
@@ -194,6 +195,9 @@ MonoBehaviour:
   dashSpeed: 20
   dashCooldown: 1
   dashDuration: 0.2
+  NPC: {fileID: 0}
+  aIType: 0
+  interactionType: 02000000
 --- !u!114 &3243026045789627101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +226,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654620e29c2ffbb44ad8b6c8e8916d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4765093837407165260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104075905330638603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883144f09c16ecb4b836959b8a8a802c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  datas: []
+  aIType: 0
 --- !u!1001 &44973313898850491
 PrefabInstance:
   m_ObjectHideFlags: 0

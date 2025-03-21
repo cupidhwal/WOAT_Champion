@@ -53,8 +53,8 @@ namespace Seti
                     //if (Manager_Data.Instance.sinEvent.Count(value => value) < dialogue.criteria_SinEvent)
                     //    continue;
 
-                    if (Manager_Scenario.Instance.OpenDialogue(dialogue.dialogueNumber))
-                        return;
+                    //if (Manager_Scenario.Instance.OpenDialogue(dialogue.dialogueNumber))
+                    //    return;
                 }
             }
         }

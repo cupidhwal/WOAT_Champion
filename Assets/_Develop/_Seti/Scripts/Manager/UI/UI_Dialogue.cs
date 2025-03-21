@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-using Noah;
 
 namespace Seti
 {
@@ -13,7 +12,7 @@ namespace Seti
     /// 대화 데이터 파일 읽기
     /// 대화 데이터 UI 적용
     /// </summary>
-    public class UI_Dialogue : MonoBehaviour
+    public class UI_Dialogue : UI_Target
     {
         #region Variables
         // Current
@@ -26,7 +25,6 @@ namespace Seti
         public GameObject dialogueSwitch;
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI sentenceText;
-        public GameObject npcImage;
         public Button nextButton;
 
         // 대화 관련
@@ -53,13 +51,16 @@ namespace Seti
         {
             dialogues.Clear();
 
-            npcImage.SetActive(false);
             nameText.text = "";
             sentenceText.text = "";
-
             nextButton.gameObject.SetActive(false);
 
             OnDialogueEnd += Seen;
+        }
+
+        public override void SetTarget(object data)
+        {
+            throw new System.NotImplementedException();
         }
 
         //대화 시작하기

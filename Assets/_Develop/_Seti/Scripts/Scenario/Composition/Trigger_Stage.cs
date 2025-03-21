@@ -63,7 +63,7 @@ namespace Seti
         IEnumerator DialogueCor(int dialogueNumber, float delay)
         {
             yield return new WaitForSeconds(delay);
-            Manager_Scenario.Instance.OpenDialogue(dialogueNumber);
+            //Manager_Scenario.Instance.OpenDialogue(dialogueNumber);
             yield break;
         }
     }

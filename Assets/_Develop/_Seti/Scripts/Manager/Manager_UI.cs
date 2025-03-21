@@ -16,16 +16,18 @@ namespace Seti
 
         [Header("UI")]
         [SerializeField]
-        private UI_MacroMECH_Manager macroMechUI;
+        private UI_Scenario scenarioUI;
         [SerializeField]
-        private UI_Dialogue dialogueUI;
+        private UI_Trade_Root tradeUI;
+        [SerializeField]
+        private UI_MacroMECH_Root macroMechUI;
         #endregion
 
         // 속성
-        public Stack<GameObject> StackUI => stackUI;
         public UI_Selector SelectorUI => selectorUI;
-        public UI_MacroMECH_Manager MacroMECH => macroMechUI;
-        public UI_Dialogue DialogueUI => dialogueUI;
+        public UI_Scenario Scenario => scenarioUI;
+        public UI_Trade_Root Trade => tradeUI;
+        public UI_MacroMECH_Root MacroMECH => macroMechUI;
 
         // 라이프 사이클
         private void Start()
@@ -36,15 +38,13 @@ namespace Seti
             Manager_Initialize.Instance.Player.Condition.OnActionChange += CloseAll;
         }
 
-        // 메서드
         // Node Selector 실행
         public void Selector(Type_Interaction[] Interactions)
         {
             if (selectorUI.gameObject.activeSelf) return;
 
-            selectorUI.gameObject.SetActive(true);
+            Open(selectorUI.gameObject);
             selectorUI.Open_Node(Interactions);
-            stackUI.Push(selectorUI.gameObject);
         }
 
         public void Open(GameObject selected)

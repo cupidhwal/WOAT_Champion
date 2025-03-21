@@ -3,10 +3,9 @@ using UnityEngine;
 namespace Seti
 {
     /// <summary>
-    /// MacroMECH NPC
+    /// Root : Mark, Scenario
     /// </summary>
-    public class NPC_MacroMECH : NPC
+    public class UI_Scenario : UI_Root
     {
-        
     }
 }

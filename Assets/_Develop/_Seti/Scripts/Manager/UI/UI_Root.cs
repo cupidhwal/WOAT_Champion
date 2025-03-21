@@ -9,7 +9,9 @@ namespace Seti
     public abstract class UI_Root : MonoBehaviour
     {
         // Link to Selector
-        protected List<GameObject> ui_Parts = new();
-        public List<GameObject> UI_Parts => ui_Parts;
+        [Header("UI : Elements")]
+        [SerializeField]
+        protected List<GameObject> uIParts = new();
+        public List<GameObject> UI_Parts => uIParts;
     }
 }

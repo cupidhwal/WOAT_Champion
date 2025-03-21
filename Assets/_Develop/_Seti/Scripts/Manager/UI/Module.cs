@@ -34,6 +34,6 @@ namespace Seti
         }
 
         // Scroll View에서 모듈 클릭
-        public void GetModuleInfo() => format.SetModule(parts);
+        public void GetModuleInfo() => format.SetTarget(parts);
     }
 }

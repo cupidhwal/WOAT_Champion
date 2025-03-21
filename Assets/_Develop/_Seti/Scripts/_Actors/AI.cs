@@ -6,7 +6,7 @@ namespace Seti
     /// AI Actor
     /// </summary>
     [RequireComponent(typeof(Condition_AI))]
-    public class AI : Actor
+    public class AI : NPC
     {
     }
 }

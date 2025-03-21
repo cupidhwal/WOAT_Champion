@@ -41,7 +41,6 @@ namespace Seti
     public enum Type_AI
     {
         Storyteller,
-        MacroMECH,
         Mechanic,
         Designer,
         Rider,

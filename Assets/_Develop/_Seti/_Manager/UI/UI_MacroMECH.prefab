@@ -2148,10 +2148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e91fc155c66b9d49a0ad38c4ccd700d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI_Receivers: {fileID: 8929796120846338757}
-  UI_Transducers: {fileID: 1411974937713897659}
-  UI_Propulsors: {fileID: 7800250398169616990}
-  gear: {fileID: 0}
+  uIParts:
+  - {fileID: 8929796120846338757}
+  - {fileID: 1411974937713897659}
+  - {fileID: 7800250398169616990}
 --- !u!1 &4489354071377302576
 GameObject:
   m_ObjectHideFlags: 0

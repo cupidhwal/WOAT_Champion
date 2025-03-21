@@ -367,7 +367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6091467119133501759
 RectTransform:
   m_ObjectHideFlags: 0
@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6b31b5290909843b747f1d69597400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfUI: "\uB300\uD654\uCC3D"
   dialogueSwitch: {fileID: 4346707196398616963}
   nameText: {fileID: 8974843791138050432}
   sentenceText: {fileID: 317118903568092848}

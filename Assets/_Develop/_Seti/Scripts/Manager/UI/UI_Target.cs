@@ -7,6 +7,6 @@ namespace Seti
     /// </summary>
     public abstract class UI_Target : UI_Node
     {
-        public abstract void SetModule(Parts parts);
+        public abstract void SetTarget(object data);
     }
 }

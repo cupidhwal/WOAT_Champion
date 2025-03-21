@@ -16,15 +16,10 @@ namespace Seti
         private UI_Node UI;
 
         // ¸Þ¼­µå
-        public void Set(Selector_Node node)
+        public void Set(UI_Node node)
         {
             UIName.text = node.UIName;
             UI = node;
-        }
-        public void Set(UI_Target target)
-        {
-            UIName.text = target.UIName;
-            UI = target;
         }
         public void Open()
         {
