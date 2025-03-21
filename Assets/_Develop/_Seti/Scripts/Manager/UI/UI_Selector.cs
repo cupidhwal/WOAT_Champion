@@ -18,11 +18,26 @@ namespace Seti
 
         private readonly Queue<GameObject> choices = new();
         private readonly Stack<GameObject> selectors = new();
+        private int popCount = 3;
+        #endregion
+
+        // 라이프 사이클
+        #region Life Cycle
+        private void OnEnable()
+        {
+            Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Choice);
+        }
         #endregion
 
         // 메서드
         public void Open_Node(Type_Interaction[] Interactions)
         {
+            if (Interactions.Length > 1)
+                Manager_UI.Instance.Open(gameObject);
+
+            if (popCount != 0)
+                CloseStack();
+
             for (int i = 0; i < Interactions.Length; i++)
             {
                 // Selector 생성
@@ -30,7 +45,7 @@ namespace Seti
                 {
                     result = Instantiate(selector, transform.GetChild(0));
                 }
-                result.SetActive(true);
+                else popCount++;
 
                 // Node 생성
                 if (!choices.TryDequeue(out var choice))
@@ -46,11 +61,15 @@ namespace Seti
 
                 if (Interactions.Length == 1)
                     sel.Open();
+                else result.SetActive(true);
             }
         }
 
         public void Open_Root(UI_Root root)
         {
+            if (root.UI_Parts.Count > 1 && !gameObject.activeSelf)
+                Manager_UI.Instance.Open(gameObject);
+
             Close();
 
             for (int i = 0; i < root.UI_Parts.Count; i++)
@@ -59,15 +78,14 @@ namespace Seti
                 {
                     result = Instantiate(selector, transform.GetChild(0));
                 }
-                result.SetActive(true);
+                else popCount++;
+
                 Selector sel = result.GetComponent<Selector>();
                 sel.Set(root.UI_Parts[i].GetComponent<UI_Target>());
 
                 if (root.UI_Parts.Count == 1)
-                {
-                    Manager_UI.Instance.Close();
                     sel.Open();
-                }
+                else result.SetActive(true);
             }
         }
 
@@ -77,20 +95,15 @@ namespace Seti
             CloseQueue();
         }
 
-        public void ReadyToSelect()
-        {
-            CloseStack();
-            gameObject.SetActive(false);
-        }
-
         private void CloseStack()
         {
             Transform stack = transform.GetChild(0);
-            for (int i = stack.childCount - 1; i >= 0; i--)
+            for (int i = popCount - 1; i >= 0; i--)
             {
                 GameObject temp = stack.GetChild(i).gameObject;
                 temp.SetActive(false);
                 selectors.Push(temp);
+                popCount--;
             }
         }
         private void CloseQueue()

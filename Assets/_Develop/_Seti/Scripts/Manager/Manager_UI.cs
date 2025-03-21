@@ -32,9 +32,6 @@ namespace Seti
         // 라이프 사이클
         private void Start()
         {
-            selectorUI.gameObject.SetActive(true);
-            selectorUI.ReadyToSelect();
-
             Manager_Initialize.Instance.Player.Condition.OnActionChange += CloseAll;
         }
 
@@ -43,7 +40,6 @@ namespace Seti
         {
             if (selectorUI.gameObject.activeSelf) return;
 
-            Open(selectorUI.gameObject);
             selectorUI.Open_Node(Interactions);
         }
 

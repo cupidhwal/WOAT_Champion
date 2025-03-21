@@ -12,16 +12,29 @@ namespace Seti
     {
         // 필드
         #region Variables
+        // 시나리오
+        [Header("Scenario : Common")]
+        [SerializeField]
+        private Scenario_Unit_Common designer;
+        [SerializeField]
+        private Scenario_Unit_Common mechanic;
+
         // 연출
         [Header("Composition")]
         [SerializeField]
         private Composition currentComposition;
         [SerializeField]
-        private List<CompositionsPerScene> compositionList;
+        private CompositionsPerScene[] compositionList;
         #endregion
 
         // 속성
         #region Properties
+        public Scenario_Unit_Common Designer => designer;
+        public Scenario_Unit_Common Mechanic => mechanic;
+
+
+
+
         public CinemachineCamera Cinemachine { get; private set; }
         public Composition CurrentComp => currentComposition;
         public GameObject TempTarget { get; private set; }
@@ -41,7 +54,7 @@ namespace Seti
         // 이벤트 메서드
         private void OnValidate()
         {
-            for (int i = 0; i < compositionList.Count; i++)
+            for (int i = 0; i < compositionList.Length; i++)
             {
                 compositionList[i].UpdateIndex(i);
             }

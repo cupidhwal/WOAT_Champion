@@ -39,7 +39,6 @@ namespace Seti
             //        break;
             //}
 
-            actor.Condition.InteractionChange(Interaction.Choice);
             Manager_UI.Instance.Selector(interactionType);
         }
 

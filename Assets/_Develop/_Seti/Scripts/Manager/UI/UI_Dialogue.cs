@@ -15,10 +15,7 @@ namespace Seti
     public class UI_Dialogue : UI_Target
     {
         #region Variables
-        // Current
-        private int currentNumber;
-
-        // 대사 콜렉션
+        // 대사
         private Queue<Dialogue> dialogues;
 
         // UI
@@ -32,18 +29,22 @@ namespace Seti
         public UnityAction OnDialogueEnd;
         #endregion
 
-        public int CurrentNumber => currentNumber;
-
         private void OnEnable()
         {
             dialogues = new Queue<Dialogue>();
             Initialize();
+
+            OnDialogueEnd += Seen;
+
+            Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Dialogue);
         }
 
         private void OnDisable()
         {
             Initialize();
             dialogues = null;
+
+            OnDialogueEnd -= Seen;
         }
 
         //초기화
@@ -54,8 +55,6 @@ namespace Seti
             nameText.text = "";
             sentenceText.text = "";
             nextButton.gameObject.SetActive(false);
-
-            OnDialogueEnd += Seen;
         }
 
         public override void SetTarget(object data)
