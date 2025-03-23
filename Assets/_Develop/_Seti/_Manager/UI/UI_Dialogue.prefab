@@ -404,8 +404,8 @@ MonoBehaviour:
   dialogueSwitch: {fileID: 4346707196398616963}
   nameText: {fileID: 8974843791138050432}
   sentenceText: {fileID: 317118903568092848}
-  npcImage: {fileID: 0}
   nextButton: {fileID: 7142271150694423070}
+  dialogueState: {fileID: 11400000, guid: 49489e9312757eb4fb8ac0d546ea85ae, type: 2}
 --- !u!1 &4346707196398616963
 GameObject:
   m_ObjectHideFlags: 0

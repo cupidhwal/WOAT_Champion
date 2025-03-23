@@ -43,6 +43,7 @@ namespace Seti
             }
         }
         public State_Object PreviousState { get; private set; }
+        public State_Object[] AbleStates => ableStates;
         #endregion
 
         // 라이프 사이클

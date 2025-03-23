@@ -67,10 +67,18 @@ namespace Seti
             //    return;
             //}
 
-            if (actor.CurrentNPC != null)
+            if (Manager_UI.Instance.Scenario.UI_Parts[0].activeSelf)
             {
-                actor.CurrentNPC.Interact(actor);
-                return;
+                UI_Dialogue dialogue = Manager_UI.Instance.Scenario.UI_Parts[0].GetComponent<UI_Dialogue>();
+                dialogue.DrawNextDialogue();
+            }
+            else
+            {
+                if (actor.CurrentNPC != null)
+                {
+                    actor.CurrentNPC.Interact(actor);
+                    return;
+                }
             }
         }
 

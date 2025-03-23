@@ -1,11 +1,34 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Seti
 {
     [CreateAssetMenu(fileName = "Dialogue", menuName = "Scenario/States/Dialogue")]
     public class State_Scenario_Dialogue : State_Scenario
     {
+        // ¿Ã∫•∆Æ
+        public UnityAction<ScenarioData> scenarioEvent;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            scenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[0]);
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            scenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[1]);
+        }
+
+        public override void OnUpdate(float deltaTime)
+        {
+            base.OnUpdate(deltaTime);
+        }
+
         public override Type CheckTransition()
         {
             if (machine.Player.Condition.CurrentAction != Action.Idle)

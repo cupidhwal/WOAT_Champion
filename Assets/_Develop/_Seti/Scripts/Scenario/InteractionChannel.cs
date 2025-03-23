@@ -20,6 +20,11 @@ namespace Seti
         private Dictionary<Actor, UnityAction> actionChangeHandlers = new();
         #endregion
 
+        // ¼Ó¼º
+        #region Properties
+        public List<Actor> Actors => actors;
+        #endregion
+
         private void Signal_StanceChange(Actor trigger)
         {
             foreach (var actor in actors)

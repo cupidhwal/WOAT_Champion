@@ -21,6 +21,8 @@ namespace Seti
         private UI_Trade_Root tradeUI;
         [SerializeField]
         private UI_MacroMECH_Root macroMechUI;
+
+        public int stackCount;
         #endregion
 
         // ¼Ó¼º
@@ -45,8 +47,12 @@ namespace Seti
 
         public void Open(GameObject selected)
         {
+            if (selected.activeSelf) return;
+
             selected.SetActive(true);
             stackUI.Push(selected);
+
+            stackCount = stackUI.Count;
         }
 
         public void Close()
@@ -65,9 +71,10 @@ namespace Seti
                     Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Idle);
                 }
             }
+            stackCount = stackUI.Count;
         }
 
-        private void CloseAll()
+        public void CloseAll()
         {
             int count = stackUI.Count;
             while (count > 0)

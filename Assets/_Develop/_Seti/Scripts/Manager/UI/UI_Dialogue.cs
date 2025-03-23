@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using System.Linq;
 
 namespace Seti
 {
@@ -25,6 +26,7 @@ namespace Seti
         public Button nextButton;
 
         // 대화 관련
+        public State_Scenario_Dialogue dialogueState;
         public UnityAction OnDialogueEnter;
         public UnityAction OnDialogueEnd;
         #endregion
@@ -35,6 +37,9 @@ namespace Seti
             Initialize();
 
             OnDialogueEnd += Seen;
+            OnDialogueEnd += Manager_UI.Instance.CloseAll;
+
+            dialogueState.scenarioEvent += StartDialogue;
 
             Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Dialogue);
         }
@@ -45,6 +50,9 @@ namespace Seti
             dialogues = null;
 
             OnDialogueEnd -= Seen;
+
+            if (dialogueState)
+                dialogueState.scenarioEvent -= StartDialogue;
         }
 
         //초기화
@@ -63,10 +71,25 @@ namespace Seti
         }
 
         //대화 시작하기
+        private void StartDialogue(ScenarioData data)
+        {
+            foreach (var dialogue in data.dialogues)
+            {
+                dialogues.Enqueue(dialogue);
+            }
+
+            // 첫번째 대화를 보여준다
+            DrawNextDialogue();
+            OnDialogueEnter?.Invoke();
+        }
+
         public void StartDialogue(int dialogIndex)
         {
-            //현재 대화씬(dialogIndex) 내용을 큐에 입력
-            //foreach (var dialogue in Manager_Data.Instance.GetDialogData().Dialogues.dialogues)
+            // 가져올 데이터 선택
+            //ScenarioData[] datas = 
+
+            // 현재 대화씬(dialogIndex) 내용을 큐에 입력
+            //foreach (var dialogue in Manager_Scenario.Instance.GetDialogData().Dialogues.dialogues)
             //{
             //    if (dialogue.number == dialogIndex)
             //    {
@@ -74,7 +97,7 @@ namespace Seti
             //    }
             //}
 
-            //첫번째 대화를 보여준다
+            // 첫번째 대화를 보여준다
             DrawNextDialogue();
             OnDialogueEnter?.Invoke();
         }
@@ -90,27 +113,16 @@ namespace Seti
             }
 
             //dialogs에서 하나 꺼내온다
-            //Dialogue dialogue = dialogues.Dequeue();
-            //currentNumber = dialogue.number;
+            Dialogue dialogue = dialogues.Dequeue();
 
-            //if (dialogue.character == 1)
-            //{
-            //    npcImage.SetActive(true);
-            //    npcImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/MainCharacter_Stand");
-            //}
-            //else //dialog.character <= 0
-            //{
-            //    npcImage.SetActive(false);
-            //}
+            nextButton.gameObject.SetActive(false);
 
-            //nextButton.gameObject.SetActive(false);
+            nameText.text = dialogue.name;
 
-            //nameText.text = dialogue.name;
+            StopAllCoroutines();
+            StartCoroutine(TypingSentence(dialogue.sentence));
 
-            //StopAllCoroutines();
-            //StartCoroutine(TypingSentence(dialogue.sentence));
-
-            //// 대화 도중 연출 처리
+            // 대화 도중 연출 처리
             //if (dialogue.nextType == NextType.Composition)
             //    Manager_Scenario.Instance.SelectComposition(dialogue.number, dialogue.order);
         }
@@ -136,9 +148,6 @@ namespace Seti
         {
             //대화 종료시 이벤트 처리
             OnDialogueEnd?.Invoke();
-
-            if (ComponentUtility.TryGetComponentInParent<UIManager>(transform, out var uiManager))
-                uiManager.CloseDialogueUI();
         }
 
         private void Seen()
