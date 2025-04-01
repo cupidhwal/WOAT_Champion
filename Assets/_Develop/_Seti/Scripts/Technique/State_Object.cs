@@ -8,9 +8,9 @@ namespace Seti
     /// </summary>
     public abstract class State_Object : ScriptableObject
     {
-        protected FSM machine;
+        protected FiniteStateMachine machine;
 
-        public void Initialize(FSM machine) => this.machine = machine;
+        public void Initialize(FiniteStateMachine machine) => this.machine = machine;
         public abstract void OnEnter();
         public abstract void OnExit();
         public abstract void OnUpdate(float deltaTime);

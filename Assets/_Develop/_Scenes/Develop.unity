@@ -7312,13 +7312,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   core: {fileID: 11400000, guid: 44cdb6e39103207419888a8d27c15f5f, type: 2}
   onPower: 0
-  maxSpeed: 40.499996
-  turnSpeed: 2.5
-  tiltSpeed: 3.5
-  reverseSpeed: 16.199999
-  acceleration: 180
-  momentum: 6300
-  downForce: 2520
+  maxSpeed: 20.249998
+  turnSpeed: 4
+  tiltSpeed: 5
+  reverseSpeed: 8.099999
+  acceleration: 450
+  momentum: 1800
+  downForce: 720
   brakeCoefficient: 0.5
   boardDirection: 0
 --- !u!114 &7113836022741793667
@@ -7519,6 +7519,10 @@ PrefabInstance:
     - target: {fileID: 382320714519197560, guid: acb371176b4cebb47ba32fa371989f89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658441424933789504, guid: acb371176b4cebb47ba32fa371989f89, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8104075905330638603, guid: acb371176b4cebb47ba32fa371989f89, type: 3}
       propertyPath: m_Name

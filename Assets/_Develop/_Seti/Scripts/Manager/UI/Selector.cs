@@ -23,16 +23,11 @@ namespace Seti
         }
         public void Open()
         {
-            switch (UI)
-            {
-                case Selector_Node node:
-                    node.Open_Root();
-                    break;
+            if (UI is Selector_Node node)
+                node.Open_Root();
 
-                case UI_Target:
-                    Manager_UI.Instance.Open(UI.gameObject);
-                    break;
-            }
+            else
+                Manager_UI.Instance.Open(UI.gameObject);
         }
     }
 }

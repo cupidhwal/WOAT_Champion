@@ -13,11 +13,20 @@ namespace Seti
         // 필드
         #region Variables
         // 시나리오
-        [Header("Scenario : Common")]
+        [Header("Scenario : Common Data")]
+        [SerializeField]
+        private State_Scenario_Dialogue dialogueState;
         [SerializeField]
         private Scenario_Unit_Common designer;
         [SerializeField]
         private Scenario_Unit_Common mechanic;
+
+        [Header("Scenario : Bubbles")]
+        [SerializeField]
+        private GameObject bubblePrefab;
+        [SerializeField]
+        private GameObject bubbles;
+        private readonly Queue<GameObject> bubblePool = new();
 
         // 연출
         [Header("Composition")]
@@ -32,9 +41,6 @@ namespace Seti
         public Scenario_Unit_Common Designer => designer;
         public Scenario_Unit_Common Mechanic => mechanic;
 
-
-
-
         public CinemachineCamera Cinemachine { get; private set; }
         public Composition CurrentComp => currentComposition;
         public GameObject TempTarget { get; private set; }
@@ -48,6 +54,18 @@ namespace Seti
         private void Start()
         {
             Initialize();
+        }
+
+        private void OnEnable()
+        {
+            // 이벤트 처리
+            dialogueState.OnScenarioEvent += OpenBubble;
+        }
+
+        private void OnDisable()
+        {
+            // 이벤트 처리
+            dialogueState.OnScenarioEvent -= OpenBubble;
         }
         #endregion
 
@@ -65,9 +83,30 @@ namespace Seti
         {
             
         }
+
         public void NextDialogue()
         {
             
+        }
+
+        public void OpenBubble(ScenarioData data)
+        {
+            if (!bubblePool.TryDequeue(out var result))
+            {
+                result = Instantiate(bubblePrefab, bubbles.transform);
+            }
+            result.SetActive(true);
+
+            if (result.TryGetComponent<Scenario_Bubble>(out var bubble))
+            {
+                bubble.Speak(data);
+            }
+        }
+
+        public void ExitBubble(GameObject gameObject)
+        {
+            bubblePool.Enqueue(gameObject);
+            gameObject.SetActive(false);
         }
 
         private void Initialize()

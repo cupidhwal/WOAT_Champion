@@ -37,6 +37,7 @@ namespace Seti
         public Interaction CurrentInteraction => currentInteraction;
         public bool InAction => inAction;
         public bool IsGrounded { get; protected set; } = true;
+        public bool IsInteraction { get; set; } = false;
         #endregion
 
         // 라이프 사이클

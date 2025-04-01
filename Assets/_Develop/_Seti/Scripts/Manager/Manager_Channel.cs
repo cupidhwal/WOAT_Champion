@@ -49,6 +49,8 @@ namespace Seti
         // 이벤트 신호 수신 (호스트 지정)
         public void OnNotify(Actor actor)
         {
+            if (actor.Condition.IsInteraction) return;
+
             if (!waitingActors.Contains(actor))
                 waitingActors.Add(actor);
 
@@ -76,18 +78,21 @@ namespace Seti
         {
             if (!channels.TryDequeue(out var result))
             {
-                result = Instantiate(channel, transform);
+                result = Instantiate(channel, this.transform);
             }
             result.transform.position = transform.position;
-            result.transform.SetParent(transform);
             result.SetActive(true);
             return result;
         }
         public void DelChannel(GameObject gameObject)
         {
-            if (gameObject.GetComponent<InteractionChannel>())
+            if (gameObject.TryGetComponent<InteractionChannel>(out var channel))
             {
-                gameObject.transform.SetParent(transform);
+                foreach (var actor in channel.Actors)
+                {
+                    actor.Condition.IsInteraction = false;
+                }
+
                 channels.Enqueue(gameObject);
                 gameObject.SetActive(false);
             }

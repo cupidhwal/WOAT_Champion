@@ -133,7 +133,7 @@ MonoBehaviour:
   dashDuration: 0
   NPC: {fileID: 0}
   aIType: 1
-  interactionType: 0000000001000000
+  interactionType: 000000000100000002000000
 --- !u!114 &4531425310758337169
 MonoBehaviour:
   m_ObjectHideFlags: 0

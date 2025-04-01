@@ -52,8 +52,8 @@ namespace Seti
                 Actor actor = other.GetComponent<Actor>();
 
                 // 직접 참조로 이벤트 핸들러 저장
-                UnityAction stanceHandler = () => Signal_StanceChange(actor);
-                UnityAction actionHandler = () => Signal_ActionChange(actor);
+                void stanceHandler() => Signal_StanceChange(actor);
+                void actionHandler() => Signal_ActionChange(actor);
 
                 // Dictionary에 저장하여 정확한 참조 유지
                 stanceChangeHandlers[actor] = stanceHandler;
@@ -64,6 +64,8 @@ namespace Seti
                 actor.Condition.OnActionChange += actionHandler;
 
                 actors.Add(actor);
+
+                actor.Condition.IsInteraction = true;
             }
         }
 
@@ -89,10 +91,12 @@ namespace Seti
 
                 actors.Remove(actor);
 
+                actor.Condition.IsInteraction = false;
+
                 if (actors.Count < 2)
                 {
-                    actors.Clear();
                     Manager_Channel.Instance.DelChannel(gameObject);
+                    actors.Clear();
                 }
             }
         }

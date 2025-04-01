@@ -8,20 +8,20 @@ namespace Seti
     public class State_Scenario_Dialogue : State_Scenario
     {
         // ¿Ã∫•∆Æ
-        public UnityAction<ScenarioData> scenarioEvent;
+        public UnityAction<ScenarioData> OnScenarioEvent;
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            scenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[0]);
+            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[0]);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            scenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[1]);
+            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[1]);
         }
 
         public override void OnUpdate(float deltaTime)

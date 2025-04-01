@@ -16,6 +16,10 @@ namespace Seti
 
         public void Open_Root()
         {
+            // 대화를 선택하면 셀렉터 닫기
+            if (root is UI_Scenario)
+                Manager_UI.Instance.Close();
+
             Manager_UI.Instance.SelectorUI.Open_Root(root);
         }
 

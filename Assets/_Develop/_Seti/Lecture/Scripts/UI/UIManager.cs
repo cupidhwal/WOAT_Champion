@@ -28,8 +28,8 @@ namespace Seti
 
         public void OpenDialogueUI(int dialogIndex)
         {
-            Toggle(dialogueUI.gameObject);
-            dialogueUI.StartDialogue(dialogIndex);
+            //Toggle(dialogueUI.gameObject);
+            //dialogueUI.StartDialogue(dialogIndex);
         }
 
         public void NextDialogueUI()

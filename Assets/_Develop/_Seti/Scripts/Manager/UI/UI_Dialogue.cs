@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-using System.Linq;
 
 namespace Seti
 {
@@ -39,7 +38,7 @@ namespace Seti
             OnDialogueEnd += Seen;
             OnDialogueEnd += Manager_UI.Instance.CloseAll;
 
-            dialogueState.scenarioEvent += StartDialogue;
+            dialogueState.OnScenarioEvent += StartDialogue;
 
             Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Dialogue);
         }
@@ -52,7 +51,7 @@ namespace Seti
             OnDialogueEnd -= Seen;
 
             if (dialogueState)
-                dialogueState.scenarioEvent -= StartDialogue;
+                dialogueState.OnScenarioEvent -= StartDialogue;
         }
 
         //초기화
@@ -77,25 +76,6 @@ namespace Seti
             {
                 dialogues.Enqueue(dialogue);
             }
-
-            // 첫번째 대화를 보여준다
-            DrawNextDialogue();
-            OnDialogueEnter?.Invoke();
-        }
-
-        public void StartDialogue(int dialogIndex)
-        {
-            // 가져올 데이터 선택
-            //ScenarioData[] datas = 
-
-            // 현재 대화씬(dialogIndex) 내용을 큐에 입력
-            //foreach (var dialogue in Manager_Scenario.Instance.GetDialogData().Dialogues.dialogues)
-            //{
-            //    if (dialogue.number == dialogIndex)
-            //    {
-            //        dialogues.Enqueue(dialogue);
-            //    }
-            //}
 
             // 첫번째 대화를 보여준다
             DrawNextDialogue();
@@ -132,9 +112,9 @@ namespace Seti
         {
             sentenceText.text = "";
 
-            foreach (char latter in typingText)
+            foreach (char letter in typingText)
             {
-                sentenceText.text += latter;
+                sentenceText.text += letter;
                 yield return new WaitForSeconds(0.01f);
             }
 

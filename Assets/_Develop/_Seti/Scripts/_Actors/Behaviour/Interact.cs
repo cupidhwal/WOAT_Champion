@@ -67,6 +67,7 @@ namespace Seti
             //    return;
             //}
 
+            // 대화
             if (Manager_UI.Instance.Scenario.UI_Parts[0].activeSelf)
             {
                 UI_Dialogue dialogue = Manager_UI.Instance.Scenario.UI_Parts[0].GetComponent<UI_Dialogue>();
@@ -76,7 +77,7 @@ namespace Seti
             {
                 if (actor.CurrentNPC != null)
                 {
-                    actor.CurrentNPC.Interact(actor);
+                    actor.CurrentNPC.Interact();
                     return;
                 }
             }

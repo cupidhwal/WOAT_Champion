@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    public class FSM : MonoBehaviour
+    public class FiniteStateMachine : MonoBehaviour
     {
         // 필드
         #region Variables
@@ -83,7 +83,7 @@ namespace Seti
         // State 변경
         private void ChangeState(Type nextStateType)
         {
-            CurrentState?.OnExit();
+            CurrentState.OnExit();
             PreviousState = CurrentState;
 
             CurrentState = states[nextStateType];
