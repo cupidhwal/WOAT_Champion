@@ -7,6 +7,6 @@ namespace Seti
     /// </summary>
     public abstract class Scenario_Unit : MonoBehaviour
     {
-        public abstract void Execute();
+        public abstract void Execute(ScenarioData data);
     }
 }

@@ -15,44 +15,48 @@ namespace Seti
     public class UI_Dialogue : UI_Target
     {
         #region Variables
-        // 대사
-        private Queue<Dialogue> dialogues;
-
         // UI
+        private UI_Scenario scenario;
         public GameObject dialogueSwitch;
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI sentenceText;
         public Button nextButton;
 
+        // 대사
+        private Queue<Dialogue> dialogues;
+
         // 대화 관련
-        public State_Scenario_Dialogue dialogueState;
         public UnityAction OnDialogueEnter;
         public UnityAction OnDialogueEnd;
         #endregion
 
+        // 라이프 사이클
+        #region Life Cycle
+        private void Awake()
+        {
+            // 참조
+            if (!scenario)
+                scenario = GetComponentInParent<UI_Scenario>();
+
+            dialogues = new Queue<Dialogue>();
+        }
+
         private void OnEnable()
         {
-            dialogues = new Queue<Dialogue>();
             Initialize();
 
-            OnDialogueEnd += Seen;
-            OnDialogueEnd += Manager_UI.Instance.CloseAll;
-
-            dialogueState.OnScenarioEvent += StartDialogue;
-
-            Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Dialogue);
+            //OnDialogueEnd += Manager_UI.Instance.CloseAll;
+            scenario.Dialogue.OnScenarioEvent += StartDialogue;
         }
 
         private void OnDisable()
         {
             Initialize();
-            dialogues = null;
 
-            OnDialogueEnd -= Seen;
-
-            if (dialogueState)
-                dialogueState.OnScenarioEvent -= StartDialogue;
+            //OnDialogueEnd -= Manager_UI.Instance.CloseAll;
+            scenario.Dialogue.OnScenarioEvent -= StartDialogue;
         }
+        #endregion
 
         //초기화
         private void Initialize()
@@ -85,22 +89,22 @@ namespace Seti
         //다음 대화를 보여준다 - (큐)dialogs에서 하나 꺼내서 보여준다
         public void DrawNextDialogue()
         {
-            //dialogs 체크
+            // dialogues 체크
             if (dialogues == null || dialogues.Count == 0)
             {
                 EndDialogue();
                 return;
             }
 
-            //dialogs에서 하나 꺼내온다
+            // dialogues 큐
             Dialogue dialogue = dialogues.Dequeue();
 
-            nextButton.gameObject.SetActive(false);
+            // 대화창은 Player 전용
+            if (dialogue.character > 1) return;
 
-            nameText.text = dialogue.name;
-
+            // 대사 출력
             StopAllCoroutines();
-            StartCoroutine(TypingSentence(dialogue.sentence));
+            StartCoroutine(TypingSentence(dialogue));
 
             // 대화 도중 연출 처리
             //if (dialogue.nextType == NextType.Composition)
@@ -108,11 +112,15 @@ namespace Seti
         }
 
         //텍스트 타이핑 연출
-        IEnumerator TypingSentence(string typingText)
+        IEnumerator TypingSentence(Dialogue dialogue)
         {
+            nextButton.gameObject.SetActive(false);
+
+            nameText.text = dialogue.name;
+
             sentenceText.text = "";
 
-            foreach (char letter in typingText)
+            foreach (char letter in dialogue.sentence)
             {
                 sentenceText.text += letter;
                 yield return new WaitForSeconds(0.01f);
@@ -128,16 +136,6 @@ namespace Seti
         {
             //대화 종료시 이벤트 처리
             OnDialogueEnd?.Invoke();
-        }
-
-        private void Seen()
-        {
-            //Manager_Data.Instance.DialogueData.CheckSeens[currentNumber] = true;
-
-            //if (Manager_Data.Instance.DialogueData.CheckSeens[^1])
-            //    Manager_Data.Instance.DialogueData.SeenCompleted = true;
-
-            //SaveLoadManager.Instance.SaveScenario(Manager_Data.Instance.DialogueData);
         }
     }
 }

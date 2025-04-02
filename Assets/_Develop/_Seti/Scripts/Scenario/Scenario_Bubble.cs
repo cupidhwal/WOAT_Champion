@@ -14,14 +14,17 @@ namespace Seti
         #region Variables
         [Header("Dialogue : Text")]
         [SerializeField]
+        private TextMeshProUGUI nameText;
+        [SerializeField]
         private TextMeshProUGUI dialogueText;
 
         private readonly Queue<Dialogue> dialogues = new();
         #endregion
 
-        // 메서드
         public void Speak(ScenarioData data)
         {
+            dialogues.Clear();
+
             foreach (var dialogue in data.dialogues)
             {
                 dialogues.Enqueue(dialogue);
@@ -30,21 +33,24 @@ namespace Seti
             Next();
         }
 
-        //다음 대화를 보여준다 - (큐)dialogs에서 하나 꺼내서 보여준다
-        private void Next()
+        public void Next()
         {
-            //dialogs 체크
+            // dialogues 체크
             if (dialogues == null || dialogues.Count == 0)
             {
                 End();
                 return;
             }
 
-            //dialogs에서 하나 꺼내온다
+            // dialogues 큐
             Dialogue dialogue = dialogues.Dequeue();
 
+            // 대사 출력
+            if (!gameObject.activeSelf)
+                gameObject.SetActive(true);
+
             StopAllCoroutines();
-            StartCoroutine(TypingSentence(dialogue.sentence));
+            StartCoroutine(TypingSentence(dialogue));
         }
 
         private void End()
@@ -53,18 +59,19 @@ namespace Seti
         }
 
         // 텍스트 타이핑 연출
-        IEnumerator TypingSentence(string text)
+        IEnumerator TypingSentence(Dialogue dialogue)
         {
+            nameText.text = dialogue.name;
             dialogueText.text = "";
 
-            foreach (char letter in text)
+            foreach (char letter in dialogue.sentence)
             {
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(0.01f);
             }
 
             yield return new WaitForSeconds(5f);
-            Manager_Scenario.Instance.ExitBubble(gameObject);
+            gameObject.SetActive(false);
 
             yield break;
         }

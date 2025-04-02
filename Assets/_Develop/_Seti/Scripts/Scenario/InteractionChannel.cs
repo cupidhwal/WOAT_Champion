@@ -14,10 +14,11 @@ namespace Seti
     {
         // 필드
         #region Variables
+        [Header("Interaction : Actor")]
         [SerializeField]
         private List<Actor> actors = new();
-        private Dictionary<Actor, UnityAction> stanceChangeHandlers = new();
-        private Dictionary<Actor, UnityAction> actionChangeHandlers = new();
+        private readonly Dictionary<Actor, UnityAction> stanceChangeHandlers = new();
+        private readonly Dictionary<Actor, UnityAction> actionChangeHandlers = new();
         #endregion
 
         // 속성
@@ -43,6 +44,27 @@ namespace Seti
             }
         }
 
+        private void CheckChannel()
+        {
+            if (actors.Count < 2)
+            {
+                Manager_Channel.Instance.DelChannel(gameObject);
+                switch (actors[0])
+                {
+                    case Player:
+                        break;
+
+                    case NPC:
+                        Manager_UI.Instance.Scenario.Bubbles.ExitBubble(actors[0]);
+                        actors[0].Condition.IsInteraction = false;
+                        break;
+                }
+                actors.Clear();
+            }
+        }
+
+        // 이벤트 메서드
+        #region Event Methods
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Actor"))
@@ -63,9 +85,14 @@ namespace Seti
                 actor.Condition.OnStanceChange += stanceHandler;
                 actor.Condition.OnActionChange += actionHandler;
 
-                actors.Add(actor);
+                // 말풍선 등록
+                if (actor is NPC)
+                {
+                    Manager_UI.Instance.Scenario.Bubbles.OpenBubble(actor);
+                }
 
                 actor.Condition.IsInteraction = true;
+                actors.Add(actor);
             }
         }
 
@@ -89,16 +116,25 @@ namespace Seti
                     actionChangeHandlers.Remove(actor);
                 }
 
+                // 말풍선 해제
+                switch (actor)
+                {
+                    case Player:
+                        break;
+
+                    case NPC:
+                        Manager_UI.Instance.Scenario.Bubbles.ExitBubble(actor);
+                        break;
+                }
+
+                // 게스트 상호작용 종료
+                actor.Condition.IsInteraction = false;
                 actors.Remove(actor);
 
-                actor.Condition.IsInteraction = false;
-
-                if (actors.Count < 2)
-                {
-                    Manager_Channel.Instance.DelChannel(gameObject);
-                    actors.Clear();
-                }
+                // 채널 체크
+                CheckChannel();
             }
         }
+        #endregion
     }
 }

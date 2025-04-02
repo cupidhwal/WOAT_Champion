@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33ceabea7554cb246a85b045d3f85284, type: 3}
-  m_Name: Scenario_00_End
+  m_Name: Scenario_End
   m_EditorClassIdentifier: 
   id: 0
   title: "\uCCAB \uBC88\uC9F8 \uBD80\uD65C"
   dialogues:
   - character: 1
-    name: "\uC5D0\uBC14"
-    sentence: "\uB2E4\uC74C\uC5D0 \uB610 \uC640!"
+    name: "\uC720\uC774"
+    sentence: "\uB2E4\uC74C\uC5D0 \uB610 \uB9CC\uB098!"
     nextType: 0

@@ -7,9 +7,9 @@ namespace Seti
     /// </summary>
     public class Scenario_Unit_AI : Scenario_Unit_Actor
     {
-        public override void Execute()
+        private void Start()
         {
-
+            Manager_UI.Instance.Scenario.Dialogue.OnScenarioEvent += Execute;
         }
     }
 }

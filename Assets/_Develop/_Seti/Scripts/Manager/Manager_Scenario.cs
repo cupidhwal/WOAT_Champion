@@ -15,18 +15,9 @@ namespace Seti
         // 시나리오
         [Header("Scenario : Common Data")]
         [SerializeField]
-        private State_Scenario_Dialogue dialogueState;
-        [SerializeField]
         private Scenario_Unit_Common designer;
         [SerializeField]
         private Scenario_Unit_Common mechanic;
-
-        [Header("Scenario : Bubbles")]
-        [SerializeField]
-        private GameObject bubblePrefab;
-        [SerializeField]
-        private GameObject bubbles;
-        private readonly Queue<GameObject> bubblePool = new();
 
         // 연출
         [Header("Composition")]
@@ -55,18 +46,6 @@ namespace Seti
         {
             Initialize();
         }
-
-        private void OnEnable()
-        {
-            // 이벤트 처리
-            dialogueState.OnScenarioEvent += OpenBubble;
-        }
-
-        private void OnDisable()
-        {
-            // 이벤트 처리
-            dialogueState.OnScenarioEvent -= OpenBubble;
-        }
         #endregion
 
         // 이벤트 메서드
@@ -87,26 +66,6 @@ namespace Seti
         public void NextDialogue()
         {
             
-        }
-
-        public void OpenBubble(ScenarioData data)
-        {
-            if (!bubblePool.TryDequeue(out var result))
-            {
-                result = Instantiate(bubblePrefab, bubbles.transform);
-            }
-            result.SetActive(true);
-
-            if (result.TryGetComponent<Scenario_Bubble>(out var bubble))
-            {
-                bubble.Speak(data);
-            }
-        }
-
-        public void ExitBubble(GameObject gameObject)
-        {
-            bubblePool.Enqueue(gameObject);
-            gameObject.SetActive(false);
         }
 
         private void Initialize()

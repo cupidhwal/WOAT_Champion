@@ -34,7 +34,7 @@ namespace Seti
 
         public void NextDialogueUI()
         {
-            dialogueUI.DrawNextDialogue();
+            //dialogueUI.DrawNextDialogue();
         }
 
         public void CloseDialogueUI()

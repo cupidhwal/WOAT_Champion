@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    public class FiniteStateMachine : MonoBehaviour
+    public class FSM_Scenario : Singleton<FSM_Scenario>
     {
         // ÇÊµå
         #region Variables

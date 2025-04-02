@@ -417,6 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8747959a55e12cf4ba790c5f0c9bc807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data_Start: {fileID: 0}
+  data_End: {fileID: 0}
   datas: []
 --- !u!1 &6612187793563961210
 GameObject:
@@ -500,7 +502,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1558346430896136756
 PrefabInstance:

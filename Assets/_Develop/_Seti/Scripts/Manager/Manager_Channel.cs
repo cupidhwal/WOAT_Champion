@@ -12,8 +12,6 @@ namespace Seti
         #region Variables
         [Header("Actor")]
         [SerializeField]
-        private Actor hostActor = null;
-        [SerializeField]
         private List<Actor> waitingActors = new();
 
         [Header("Channel")]
@@ -54,11 +52,8 @@ namespace Seti
             if (!waitingActors.Contains(actor))
                 waitingActors.Add(actor);
 
-            if (hostActor == null)
-                hostActor = actor;
-
-            // 채널 개설은 호스트가 담당
-            if (waitingActors.Count >= 2 && hostActor == actor)
+            // 채널 개설
+            if (waitingActors.Count >= 2)
             {
                 CreateChannel();
             }
@@ -72,7 +67,6 @@ namespace Seti
 
             AddChannel(waitingActors[0].transform);
             waitingActors.Clear();
-            hostActor = null;
         }
         private GameObject AddChannel(Transform transform)
         {
@@ -88,11 +82,6 @@ namespace Seti
         {
             if (gameObject.TryGetComponent<InteractionChannel>(out var channel))
             {
-                foreach (var actor in channel.Actors)
-                {
-                    actor.Condition.IsInteraction = false;
-                }
-
                 channels.Enqueue(gameObject);
                 gameObject.SetActive(false);
             }

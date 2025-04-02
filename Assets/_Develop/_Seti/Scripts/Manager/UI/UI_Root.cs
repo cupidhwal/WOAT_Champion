@@ -11,7 +11,7 @@ namespace Seti
         // Link to Selector
         [Header("UI : Elements")]
         [SerializeField]
-        protected List<GameObject> uIParts = new();
-        public List<GameObject> UI_Parts => uIParts;
+        protected List<GameObject> uIOptions = new();
+        public List<GameObject> UI_Options => uIOptions;
     }
 }

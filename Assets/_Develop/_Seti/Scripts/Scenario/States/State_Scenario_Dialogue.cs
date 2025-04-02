@@ -21,7 +21,7 @@ namespace Seti
         {
             base.OnExit();
 
-            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[1]);
+            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Exit);
         }
 
         public override void OnUpdate(float deltaTime)
@@ -41,6 +41,16 @@ namespace Seti
                 Interaction.Action => typeof(State_Scenario_Action),
                 _ => null,
             };
+        }
+
+        public void OnNext()
+        {
+
+        }
+
+        public void OnStart()
+        {
+            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Enter);
         }
     }
 }

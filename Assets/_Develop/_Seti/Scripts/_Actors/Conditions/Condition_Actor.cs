@@ -53,6 +53,9 @@ namespace Seti
             actor = GetComponent<Actor>();
             rb = GetComponent<Rigidbody>();
 
+            //void InInteraction(Actor actor) => IsInteraction = true;
+            //actor.OnMeetAnother += InInteraction;
+
             inAction = true;
         }
 

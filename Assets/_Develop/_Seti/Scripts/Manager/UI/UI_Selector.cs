@@ -67,23 +67,25 @@ namespace Seti
 
         public void Open_Root(UI_Root root)
         {
-            if (root.UI_Parts.Count > 1 && !gameObject.activeSelf)
+            if (root.UI_Options.Count > 1 && !gameObject.activeSelf)
                 Manager_UI.Instance.Open(gameObject);
 
             Close();
 
-            for (int i = 0; i < root.UI_Parts.Count; i++)
+            for (int i = 0; i < root.UI_Options.Count; i++)
             {
+                // Selector 생성
                 if (!selectors.TryPop(out var result))
                 {
                     result = Instantiate(selector, transform.GetChild(0));
                 }
                 else popCount++;
 
+                // Selector 세팅
                 Selector sel = result.GetComponent<Selector>();
-                sel.Set(root.UI_Parts[i].GetComponent<UI_Target>());
+                sel.Set(root.UI_Options[i].GetComponent<UI_Target>());
 
-                if (root.UI_Parts.Count == 1)
+                if (root.UI_Options.Count == 1)
                     sel.Open();
                 else result.SetActive(true);
             }

@@ -21,7 +21,22 @@ namespace Seti
         public Type_Interaction[] InteractionType => interactionType;
 
         // 상호작용
-        public void Interact() => Manager_UI.Instance.Selector(interactionType);
+        public void Interact()
+        {
+            // 대화
+            if (FSM_Scenario.Instance.CurrentState is State_Scenario_Dialogue)
+            {
+                UI_Dialogue dialogue = Manager_UI.Instance.Scenario.UI_Options[0].GetComponent<UI_Dialogue>();
+                dialogue.DrawNextDialogue();
+
+                Scenario_Unit_Actor unit = GetComponent<Scenario_Unit_Actor>();
+                unit.Next();
+            }
+            else
+            {
+                Manager_UI.Instance.Selector(interactionType);
+            }
+        }
 
         // 이벤트 메서드
         protected override void OnTriggerEnter(Collider other)

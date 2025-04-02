@@ -49,6 +49,7 @@ MonoBehaviour:
   scenarioUI: {fileID: 1759629002680534139}
   tradeUI: {fileID: 5142206882295213288}
   macroMechUI: {fileID: 4838791955020439682}
+  stackCount: 0
 --- !u!1 &5858971627127484456
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,9 +82,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 532480515549065321}
-  - {fileID: 8943858296190217155}
   - {fileID: 6800203896830715699}
   - {fileID: 4517933757257981734}
+  - {fileID: 8943858296190217155}
   m_Father: {fileID: 3526768994565070115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -162,14 +163,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2512703435560301274}
     m_Modifications:
-    - target: {fileID: 3452988527971489718, guid: 94668513b211a87428db575ca03528ea, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3452988527971489718, guid: 94668513b211a87428db575ca03528ea, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3751740227494795047, guid: 94668513b211a87428db575ca03528ea, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -253,14 +246,6 @@ PrefabInstance:
     - target: {fileID: 4431232819321442520, guid: 94668513b211a87428db575ca03528ea, type: 3}
       propertyPath: m_Name
       value: UI_MacroMECH
-      objectReference: {fileID: 0}
-    - target: {fileID: 5934275959469569550, guid: 94668513b211a87428db575ca03528ea, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5934275959469569550, guid: 94668513b211a87428db575ca03528ea, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -488,11 +473,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8562511737650178155, guid: afa80bb0cb9126f4ebb0bfe33805f388, type: 3}
+      propertyPath: bubbles
+      value: 
+      objectReference: {fileID: 1305365313811270686}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afa80bb0cb9126f4ebb0bfe33805f388, type: 3}
+--- !u!114 &1305365313811270686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8980956765473054734, guid: afa80bb0cb9126f4ebb0bfe33805f388, type: 3}
+  m_PrefabInstance: {fileID: 7980187561345674256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b315667464cf204b875f8bd73fe88b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1759629002680534139 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8562511737650178155, guid: afa80bb0cb9126f4ebb0bfe33805f388, type: 3}
