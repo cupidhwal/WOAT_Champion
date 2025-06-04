@@ -11,9 +11,11 @@ namespace Seti
         // 조정값
         [Header("Status")]
         [SerializeField]
-        private bool keepGoing = false;
+        private bool isKeepGoing = false;
         [SerializeField]
-        private bool attention = false;
+        private bool isAttention = false;
+        [SerializeField]
+        private bool isInteraction = false;
 
         [Header("Properties")]
         private float cameraProximity;      // 카메라 밀착도
@@ -89,26 +91,30 @@ namespace Seti
         #region Event Handlers
         private void OnLookPerformed(InputAction.CallbackContext context)
         {
+            if (isInteraction) return;
+
             lookInput = context.ReadValue<Vector2>();
             Rotation();
         }
         private void OnLookCanceled(InputAction.CallbackContext _) => lookInput = Vector2.zero;
-        private void OnKeepGoingStarted(InputAction.CallbackContext _) => keepGoing = true;
-        private void OnKeepGoingCanceled(InputAction.CallbackContext _) => keepGoing = false;
+        private void OnKeepGoingStarted(InputAction.CallbackContext _) => isKeepGoing = true;
+        private void OnKeepGoingCanceled(InputAction.CallbackContext _) => isKeepGoing = false;
         private void OnScrollWheelPerformed(InputAction.CallbackContext context)
         {
-            Vector2 scroll = context.ReadValue<Vector2>();
+            //Vector2 scroll = context.ReadValue<Vector2>();
 
-            cameraProximity -= scroll.y;
-            cameraProximity = Mathf.Clamp01(cameraProximity);
+            //cameraProximity -= scroll.y;
+            //cameraProximity = Mathf.Clamp01(cameraProximity);
 
-            if (cameraProximity == 0)
-                cameraFollow.View_FirstPerson();
-            else cameraFollow.View_ThirdPerson();
+            //if (cameraProximity == 0)
+            //    cameraFollow.View_FirstPerson();
+            //else cameraFollow.View_ThirdPerson();
         }
         #endregion
 
         // 메서드
+        public void OnInteraction(bool flag) => isInteraction = flag;
+
         private void InitializeRotation(float headX, float headY, float bodyY)
         {
             headXRotation = headX;
@@ -135,7 +141,7 @@ namespace Seti
             if (player.Condition.CurrentStance != Stance.Board)
             {
                 // KeepGoing == true일 때, head만 회전 가능
-                if (keepGoing)
+                if (isKeepGoing)
                 {
                     headYRotation += lookInput.x * mouseSensitivity;
                     headTransform.localRotation = Quaternion.Euler(headXRotation, headYRotation, 0f);
@@ -154,7 +160,7 @@ namespace Seti
             }
 
             // 플레이어가 보드에 탑승 중일 경우
-            else if (keepGoing)
+            else if (isKeepGoing)
             {
                 headYRotation += lookInput.x * mouseSensitivity;
                 headTransform.localRotation = Quaternion.Euler(headXRotation, headYRotation, 0f);
@@ -163,10 +169,10 @@ namespace Seti
 
         public void SyncRotationHead()
         {
-            if (keepGoing)
+            if (isKeepGoing)
             {
                 // 주목 기능이 실행 중이었다면 종료
-                if (attention == true && player.Condition.CurrentStance != Stance.Board)
+                if (isAttention == true && player.Condition.CurrentStance != Stance.Board)
                     OnAttentionExit(headTransform.rotation, rb.transform.rotation);
                 return;
             }
@@ -189,7 +195,7 @@ namespace Seti
 
         public void SyncRotationBody()
         {
-            if (!keepGoing)
+            if (!isKeepGoing)
             {
                 rb.MoveRotation(Quaternion.Slerp(rb.rotation, Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0), 0.2f));
             }
@@ -209,7 +215,7 @@ namespace Seti
             if (Vector3.Angle(headTransform.forward, gearDir) > 10)
                 headTransform.rotation = Quaternion.Slerp(headTransform.rotation, gearRot, 0.1f);
             else
-                attention = true;
+                isAttention = true;
         }
 
         private void OnAttentionStay(Quaternion gear)
@@ -225,7 +231,7 @@ namespace Seti
             if (Vector3.Angle(headTransform.forward, rb.transform.forward) > 2.5)
                 headTransform.rotation = Quaternion.Slerp(head, body, 0.1f);
             else
-                attention = false;
+                isAttention = false;
         }
         #endregion
 

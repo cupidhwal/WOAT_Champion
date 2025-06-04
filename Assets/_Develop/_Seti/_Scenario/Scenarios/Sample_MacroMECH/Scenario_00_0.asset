@@ -25,3 +25,13 @@ MonoBehaviour:
       \uD384\uC744 \uAD50\uD658\uD558\uB7EC \uC654\uC5B4?\n\uBB50\uB4E0\uC9C0 \uB9D0\uB9CC
       \uD574! ^\u3161^"
     nextType: 0
+  - character: 1
+    name: "\uD0DC\uC774"
+    sentence: "\uB77C\uC774\uB529\uAE30\uC5B4\uB97C \uAC1C\uC870\uD558\uB824\uBA74
+      \uC5B4\uB5BB\uAC8C \uD574\uC57C \uD574?"
+    nextType: 0
+  - character: 2
+    name: "\uC720\uC774"
+    sentence: "NPC\uC640 \uCC98\uC74C \uC0C1\uD638\uC791\uC6A9\uC744 \uC2DC\uC791\uD560
+      \uB54C\n\uAC1C\uC870 \uBC84\uD2BC\uC744 \uB204\uB974\uBA74 \uB3FC!"
+    nextType: 0

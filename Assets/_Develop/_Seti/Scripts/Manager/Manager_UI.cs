@@ -18,18 +18,25 @@ namespace Seti
         [SerializeField]
         private UI_Scenario scenarioUI;
         [SerializeField]
-        private UI_Trade_Root tradeUI;
+        private UI_Root_Trade tradeUI;
         [SerializeField]
-        private UI_MacroMECH_Root macroMechUI;
+        private UI_Root_MacroMECH macroMechUI;
 
         public int stackCount;
+
+        [Header("Test")]
+        [SerializeField]
+        private Scenario_Test testUI;
         #endregion
 
         // 속성
         public UI_Selector SelectorUI => selectorUI;
         public UI_Scenario Scenario => scenarioUI;
-        public UI_Trade_Root Trade => tradeUI;
-        public UI_MacroMECH_Root MacroMECH => macroMechUI;
+        public UI_Root_Trade Trade => tradeUI;
+        public UI_Root_MacroMECH MacroMECH => macroMechUI;
+
+        public Scenario_Test Test => testUI;
+
 
         // 라이프 사이클
         private void Start()
@@ -52,6 +59,8 @@ namespace Seti
             selected.SetActive(true);
             stackUI.Push(selected);
 
+            Manager_Initialize.Instance.Player.Player_Look.OnInteraction(true);
+
             stackCount = stackUI.Count;
         }
 
@@ -68,9 +77,11 @@ namespace Seti
 
                 if (stackUI.Count == 0)
                 {
+                    Manager_Initialize.Instance.Player.Player_Look.OnInteraction(false);
                     Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Idle);
                 }
             }
+
             stackCount = stackUI.Count;
         }
 

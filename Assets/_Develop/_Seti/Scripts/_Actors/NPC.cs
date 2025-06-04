@@ -9,6 +9,10 @@ namespace Seti
     {
         // 필드
         #region Variables
+        [Header("Common")]
+        [SerializeField]
+        protected Transform headTransform;
+
         [Header("AI : Type")]
         [SerializeField]
         protected Type_AI aIType;
@@ -17,6 +21,17 @@ namespace Seti
         #endregion
 
         // 속성
+        public Transform Head
+        {
+            get
+            {
+                if (!headTransform)
+                {
+                    headTransform = transform.GetChild(1);
+                }
+                return headTransform;
+            }
+        }
         public Type_AI AIType => aIType;
         public Type_Interaction[] InteractionType => interactionType;
 

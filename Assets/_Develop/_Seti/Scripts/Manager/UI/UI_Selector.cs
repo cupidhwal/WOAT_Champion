@@ -32,6 +32,9 @@ namespace Seti
         // 메서드
         public void Open_Node(Type_Interaction[] Interactions)
         {
+            // Test
+            Manager_UI.Instance.Test.Test($"{Interactions.Length}개의 Node");
+
             if (Interactions.Length > 1)
                 Manager_UI.Instance.Open(gameObject);
 
@@ -67,6 +70,9 @@ namespace Seti
 
         public void Open_Root(UI_Root root)
         {
+            // Test
+            Manager_UI.Instance.Test.Test($"Root: {root.name}");
+
             if (root.UI_Options.Count > 1 && !gameObject.activeSelf)
                 Manager_UI.Instance.Open(gameObject);
 

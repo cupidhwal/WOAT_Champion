@@ -21,6 +21,12 @@ namespace Seti
         private readonly Queue<Dialogue> dialogues = new();
         #endregion
 
+        // 라이프 사이클
+        private void LateUpdate()
+        {
+            TraceHead();
+        }
+
         public void Speak(ScenarioData data)
         {
             dialogues.Clear();
@@ -45,17 +51,46 @@ namespace Seti
             // dialogues 큐
             Dialogue dialogue = dialogues.Dequeue();
 
-            // 대사 출력
-            if (!gameObject.activeSelf)
-                gameObject.SetActive(true);
+            // 말풍선은 Player 대사를 쓰지 않는다
+            if (dialogue.character > 1)
+            {
+                // 대사 출력
+                if (!gameObject.activeSelf)
+                    gameObject.SetActive(true);
 
-            StopAllCoroutines();
-            StartCoroutine(TypingSentence(dialogue));
+                StopAllCoroutines();
+                StartCoroutine(TypingSentence(dialogue));
+            }
         }
 
         private void End()
         {
 
+        }
+
+        // 말풍선 트레이싱
+        void TraceHead()
+        {
+            NPC npc = Manager_Initialize.Instance.Player.CurrentNPC;
+            if (!npc) return;
+
+            // NPC 머리 위치
+            Vector3 head_NPC = npc.Head.position;
+            Vector3 head_Screen = Camera.main.WorldToScreenPoint(head_NPC);
+
+            // Canvas Rect
+            RectTransform rect_Canvas = Manager_UI.Instance.transform.GetChild(0).GetComponent<RectTransform>();
+
+            // Bubble Rect
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                rect_Canvas,
+                head_Screen,
+                null,
+                out Vector2 uiPosition
+            );
+
+            RectTransform rect_Bubble = gameObject.GetComponent<RectTransform>();
+            rect_Bubble.anchoredPosition = uiPosition;
         }
 
         // 텍스트 타이핑 연출
