@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Text;
 
 namespace Seti
 {
@@ -19,6 +20,10 @@ namespace Seti
         private TextMeshProUGUI dialogueText;
 
         private readonly Queue<Dialogue> dialogues = new();
+
+        [Header("Dialogue : Properties")]
+        [SerializeField]
+        private int lengthLimit = 15;
         #endregion
 
         // 라이프 사이클
@@ -97,12 +102,27 @@ namespace Seti
         // 텍스트 타이핑 연출
         IEnumerator TypingSentence(Dialogue dialogue)
         {
+            int length = 0;
+
             nameText.text = dialogue.name;
-            dialogueText.text = "";
+            StringBuilder sb = new();
 
             foreach (char letter in dialogue.sentence)
             {
-                dialogueText.text += letter;
+                sb.Append(letter);
+                dialogueText.text = sb.ToString();
+
+                // 줄바꿈 계산을 위한 시각적 길이 카운트
+                if (!",.!?".Contains(letter))
+                    length++;
+
+                // 공백에서만 줄바꿈 허용
+                if (length > lengthLimit && letter == ' ')
+                {
+                    sb.Append('\n');
+                    length = 0;
+                }
+
                 yield return new WaitForSeconds(0.01f);
             }
 

@@ -5,6 +5,7 @@ namespace Seti
     /// <summary>
     /// Abstract NPC
     /// </summary>
+    [RequireComponent(typeof(Scenario_Unit_NPC))]
     public abstract class NPC : Actor
     {
         // ÇÊµå

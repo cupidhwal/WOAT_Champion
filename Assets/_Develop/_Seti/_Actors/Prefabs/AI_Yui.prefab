@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 1015322051270246939}
   - component: {fileID: 3243026045789627101}
   - component: {fileID: 5796632149804778799}
-  - component: {fileID: 4765093837407165260}
+  - component: {fileID: 6869669377544217816}
   m_Layer: 6
   m_Name: AI_Yui
   m_TagString: Actor
@@ -230,7 +230,7 @@ MonoBehaviour:
   NPC: {fileID: 0}
   headTransform: {fileID: 0}
   aIType: 0
-  interactionType: 0100000002000000
+  interactionType: 02000000
 --- !u!114 &3243026045789627101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654620e29c2ffbb44ad8b6c8e8916d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4765093837407165260
+--- !u!114 &6869669377544217816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,13 +268,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8104075905330638603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883144f09c16ecb4b836959b8a8a802c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b0a0d1c5c2dc4043ba9dbb10944cd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data_Enter: {fileID: 0}
-  data_Exit: {fileID: 0}
+  data_Enter: {fileID: 11400000, guid: 42fb1b69821998541809aba5a6a9c7a0, type: 2}
+  data_Exit: {fileID: 11400000, guid: 48ae27b765aa08041a594df3f902cd60, type: 2}
   datas:
-  - {fileID: 11400000, guid: 8766706a6a7277a4e96dcfae82acf473, type: 2}
+  - {fileID: 11400000, guid: 2a386519043f7874ea8b910e765a50de, type: 2}
 --- !u!1001 &44973313898850491
 PrefabInstance:
   m_ObjectHideFlags: 0

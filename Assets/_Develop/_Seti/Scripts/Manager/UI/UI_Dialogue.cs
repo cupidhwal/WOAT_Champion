@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -18,8 +19,8 @@ namespace Seti
         // UI
         private UI_Root_Scenario scenario;
         public GameObject dialogueSwitch;
+        public TextMeshProUGUI dialogueText;
         public TextMeshProUGUI nameText;
-        public TextMeshProUGUI sentenceText;
         public Button nextButton;
 
         // 대사
@@ -28,6 +29,10 @@ namespace Seti
         // 대화 관련
         public UnityAction OnDialogueEnter;
         public UnityAction OnDialogueEnd;
+
+        [Header("Dialogue : Properties")]
+        [SerializeField]
+        private int lengthLimit = 30;
         #endregion
 
         // 라이프 사이클
@@ -64,7 +69,7 @@ namespace Seti
             dialogues.Clear();
 
             nameText.text = "";
-            sentenceText.text = "";
+            dialogueText.text = "";
             nextButton.gameObject.SetActive(false);
         }
 
@@ -114,15 +119,28 @@ namespace Seti
         //텍스트 타이핑 연출
         IEnumerator TypingSentence(Dialogue dialogue)
         {
+            int length = 0;
+
             nextButton.gameObject.SetActive(false);
-
             nameText.text = dialogue.name;
-
-            sentenceText.text = "";
+            StringBuilder sb = new();
 
             foreach (char letter in dialogue.sentence)
             {
-                sentenceText.text += letter;
+                sb.Append(letter);
+                dialogueText.text = sb.ToString();
+
+                // 줄바꿈 계산을 위한 시각적 길이 카운트
+                if (!",.!?".Contains(letter))
+                    length++;
+
+                // 공백에서만 줄바꿈 허용
+                if (length > lengthLimit && letter == ' ')
+                {
+                    sb.Append('\n');
+                    length = 0;
+                }
+
                 yield return new WaitForSeconds(0.01f);
             }
 

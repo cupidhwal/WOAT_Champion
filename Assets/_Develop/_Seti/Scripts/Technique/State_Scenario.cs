@@ -7,8 +7,27 @@ namespace Seti
     /// </summary>
     public abstract class State_Scenario : State_Object
     {
+        // 필드
         protected float elapsed = 0f;
 
+
+        // 속성
+        protected Scenario_Unit_Actor Unit
+        {
+            get
+            {
+                NPC npc = Manager_Initialize.Instance.Player.CurrentNPC;
+                Scenario_Unit_Actor unit = npc.AIType switch
+                {
+                    Type_AI.Mechanic => Manager_Scenario.Instance.Mechanic,
+                    Type_AI.Designer => Manager_Scenario.Instance.Designer,
+                    _ => npc.GetComponent<Scenario_Unit_Actor>()
+                };
+                return unit;
+            }
+        }
+
+        // 메서드
         public override void OnEnter()
         {
             elapsed = 0f;

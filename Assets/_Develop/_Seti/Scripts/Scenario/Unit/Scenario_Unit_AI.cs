@@ -2,14 +2,7 @@ using UnityEngine;
 
 namespace Seti
 {
-    /// <summary>
-    /// 시나리오 Unit : AI
-    /// </summary>
-    public class Scenario_Unit_AI : Scenario_Unit_Actor
+    public class Scenario_Unit_AI : Scenario_Unit_NPC
     {
-        private void Start()
-        {
-            Manager_UI.Instance.Scenario.Dialogue.OnScenarioEvent += Execute;
-        }
     }
 }

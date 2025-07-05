@@ -14,14 +14,14 @@ namespace Seti
         {
             base.OnEnter();
 
-            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Datas[0]);
+            OnScenarioEvent?.Invoke(Unit.Datas[0]);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Exit);
+            OnScenarioEvent?.Invoke(Unit.Exit);
         }
 
         public override void OnUpdate(float deltaTime)
@@ -50,7 +50,7 @@ namespace Seti
 
         public void OnStart()
         {
-            OnScenarioEvent?.Invoke(Manager_Scenario.Instance.Mechanic.Enter);
+            OnScenarioEvent?.Invoke(Unit.Enter);
         }
     }
 }
