@@ -31,7 +31,7 @@ namespace Seti
             else
             {
                 // Test
-                Manager_UI.Instance.Test.Test($"Target: {UI.gameObject.name}");
+                //Manager_UI.Instance.Test.Test($"Target: {UI.gameObject.name}");
 
                 Manager_UI.Instance.Open(UI.gameObject);
             }

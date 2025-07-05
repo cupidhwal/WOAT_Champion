@@ -17,6 +17,9 @@ namespace Seti
         private readonly Dictionary<Actor, GameObject> bubbleMap = new();
         [SerializeField, ReadOnly]
         private int bubbleCount;
+
+        private Scenario_Unit_Actor unit;
+        private Scenario_Bubble bubble;
         #endregion
 
         public override void SetTarget(object data)
@@ -35,9 +38,9 @@ namespace Seti
             if (!bubbleMap.ContainsKey(actor))
                 bubbleMap[actor] = result;
 
-            // 세팅
-            Scenario_Unit_Actor unit = actor.GetComponent<Scenario_Unit_Actor>();
-            Scenario_Bubble bubble = result.GetComponent<Scenario_Bubble>();
+            // 세팅 On
+            unit = actor.GetComponent<Scenario_Unit_Actor>();
+            bubble = result.GetComponent<Scenario_Bubble>();
             unit.OnDialogue += bubble.Speak;
             unit.OnNext += bubble.Next;
 
@@ -49,6 +52,10 @@ namespace Seti
 
         public void ExitBubble(Actor actor)
         {
+            // 세팅 Off
+            unit.OnDialogue -= bubble.Speak;
+            unit.OnNext -= bubble.Next;
+
             if (bubbleMap.ContainsKey(actor))
             {
                 bubblePool.Enqueue(bubbleMap[actor]);

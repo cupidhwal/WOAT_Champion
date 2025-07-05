@@ -16,7 +16,7 @@ namespace Seti
         public void Open_Root()
         {
             // 대화를 선택하면 셀렉터 닫기
-            if (root is UI_Scenario)
+            if (root is UI_Root_Scenario)
             {
                 Manager_UI.Instance.Close();
                 Manager_Initialize.Instance.Player.Condition.InteractionChange(Interaction.Dialogue);

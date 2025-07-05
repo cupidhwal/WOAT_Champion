@@ -65,7 +65,8 @@ namespace Seti
 
         private void End()
         {
-
+            if (Manager_UI.Instance.stackCount > 0)
+                Manager_UI.Instance.CloseAll();
         }
 
         // ∏ª«≥º± ∆Æ∑π¿ÃΩÃ

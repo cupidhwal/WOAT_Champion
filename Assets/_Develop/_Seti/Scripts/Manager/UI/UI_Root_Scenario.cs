@@ -6,7 +6,7 @@ namespace Seti
     /// <summary>
     /// Root : Mark, Scenario
     /// </summary>
-    public class UI_Scenario : UI_Root
+    public class UI_Root_Scenario : UI_Root
     {
         // ÇÊµå
         [Header("Scenario : Common")]

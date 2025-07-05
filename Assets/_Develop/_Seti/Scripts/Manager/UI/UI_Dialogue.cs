@@ -16,7 +16,7 @@ namespace Seti
     {
         #region Variables
         // UI
-        private UI_Scenario scenario;
+        private UI_Root_Scenario scenario;
         public GameObject dialogueSwitch;
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI sentenceText;
@@ -36,7 +36,7 @@ namespace Seti
         {
             // 참조
             if (!scenario)
-                scenario = GetComponentInParent<UI_Scenario>();
+                scenario = GetComponentInParent<UI_Root_Scenario>();
 
             dialogues = new Queue<Dialogue>();
         }
@@ -45,7 +45,7 @@ namespace Seti
         {
             Initialize();
 
-            //OnDialogueEnd += Manager_UI.Instance.CloseAll;
+            OnDialogueEnd += Manager_UI.Instance.CloseAll;
             scenario.Dialogue.OnScenarioEvent += StartDialogue;
         }
 
@@ -53,7 +53,7 @@ namespace Seti
         {
             Initialize();
 
-            //OnDialogueEnd -= Manager_UI.Instance.CloseAll;
+            OnDialogueEnd -= Manager_UI.Instance.CloseAll;
             scenario.Dialogue.OnScenarioEvent -= StartDialogue;
         }
         #endregion

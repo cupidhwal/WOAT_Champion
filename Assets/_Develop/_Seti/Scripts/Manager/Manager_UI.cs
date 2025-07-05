@@ -16,7 +16,7 @@ namespace Seti
 
         [Header("UI")]
         [SerializeField]
-        private UI_Scenario scenarioUI;
+        private UI_Root_Scenario scenarioUI;
         [SerializeField]
         private UI_Root_Trade tradeUI;
         [SerializeField]
@@ -31,7 +31,7 @@ namespace Seti
 
         // ¼Ó¼º
         public UI_Selector SelectorUI => selectorUI;
-        public UI_Scenario Scenario => scenarioUI;
+        public UI_Root_Scenario Scenario => scenarioUI;
         public UI_Root_Trade Trade => tradeUI;
         public UI_Root_MacroMECH MacroMECH => macroMechUI;
 
